@@ -6,15 +6,24 @@
 
 ![when does the build pass](when-does-the-build-pass.gif)
 
-a year ago
+authored on Jul 5, 2013
 
-__a year ago__
+__a year ago!!!__
 
-# Tachikoma.io
+### A gap between Travis CI and GitHub
+Travis CI とGitHubの間
+
+Travis CI is awesome, GitHub is awesome, but there is a gap between them,
+Travis CIは神、GitHubも神、でも間にはスキマがあって
+
+I make awesome web application filling this
+埋める 神webアプリを作っています
+
+Tachikoma.io
 sanemat
 
 ### When does the build fail? 'Now'?
-今落ちたの?
+いつ落ちたの? ホントに「今」?
 
 テスト落ちてるの直したぞ
 うわぁぁぁぁ
@@ -52,7 +61,7 @@ Gemfile.lock, carton.snapshot, npm-shrinkwrap.json
 
 依存関係update hell
 
-これはもうこまめにアップデートしていく以外生き延びるすべはないのは確定的に明らか
+これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか
 
 定期的に bundle update (ruby) / carton update (perl) / david update (node.js)
 
@@ -71,14 +80,15 @@ Travis CI!!
 ## まとめ
 
 private版は有料にしようかと作ってます 価格は予定
+
 for private $9/mo
 for organization-private $29/mo
 for enterprise sanemat_AT_tachikoma.io
 
-アイデアベース
-ビルドログ見えるようにしよう
-ビルド終わったら(終わらなかったら)notification 飛ばしたい
-Intervalの頻度を調整できるようにしたい
+さらにアイデアベース
+- ビルドログ見えるようにしよう
+- ビルド終わったら(終わらなかったら)notification 飛ばしたい
+- Intervalの頻度を調整できるようにしたい
 
 Tachikoma.ioと組み合わせて使うのは,
 
