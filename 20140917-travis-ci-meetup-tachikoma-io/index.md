@@ -2,6 +2,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
 ### When does the build pass?
+
 その build passingはいつ?
 
 ![when does the build pass](when-does-the-build-pass.gif)
@@ -11,22 +12,29 @@ authored on Jul 5, 2013
 __a year ago!!!__
 
 ### A gap between Travis CI and GitHub
+
 Travis CI とGitHubの間
 
 Travis CI is awesome, GitHub is awesome, but there is a gap between them,
+
 Travis CIは神、GitHubも神、でも間にはスキマがあって
 
 I make awesome web application filling this
+
 埋める 神webアプリを作っています
 
 Tachikoma.io
+
 sanemat
 
 ### When does the build fail? 'Now'?
+
 いつ落ちたの? ホントに「今」?
 
 テスト落ちてるの直したぞ
+
 うわぁぁぁぁ
+
 キャプチャ
 
 図
@@ -54,9 +62,11 @@ Travis CI!
 ## One More Thing
 
 各言語編
+
 ruby: bundler, perl: carton, node.js: npm
 
 依存関係コントロール, メタファイル
+
 Gemfile.lock, carton.snapshot, npm-shrinkwrap.json
 
 依存関係update hell
@@ -67,11 +77,13 @@ Gemfile.lock, carton.snapshot, npm-shrinkwrap.json
 
 依存ライブラリをアップデート
 
+```yaml
 .tachikoma.yml
 strategy: bundler
 strategy: carton
 strategy: david
 strategy: none (default)
+```
 
 Tachikoma.io と組み合わせて使うのは,
 
@@ -81,11 +93,12 @@ Travis CI!!
 
 private版は有料にしようかと作ってます 価格は予定
 
-for private $9/mo
-for organization-private $29/mo
-for enterprise sanemat_AT_tachikoma.io
+- for private $9/mo
+- for organization-private $29/mo
+- for enterprise sanemat_AT_tachikoma.io
 
 さらにアイデアベース
+
 - ビルドログ見えるようにしよう
 - ビルド終わったら(終わらなかったら)notification 飛ばしたい
 - Intervalの頻度を調整できるようにしたい
@@ -104,4 +117,5 @@ Travis CI!!!
 それを埋める1つのパーツがTachikoma.ioです。
 
 世界に羽ばたくのでよろしくお願いいたします。
+
 Tachikoma.io
