@@ -1,10 +1,10 @@
-<link href="z.css" rel="stylesheet">
+<link href="page.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
 ### When does the build pass?
 その build passingはいつ?
 
-![when does the build pass](z-when-does-the-build-pass.gif)
+![when does the build pass](when-does-the-build-pass.gif)
 
 a year ago
 
