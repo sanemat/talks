@@ -1,11 +1,11 @@
 <link href="page.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-### When does the build pass?
+### When was the build passing?
 
 その build passingはいつ?
 
-![when does the build pass](when-does-the-build-pass.gif)
+![when was the build passing](when-was-the-build-passing.gif)
 
 authored on Jul 5, 2013
 
