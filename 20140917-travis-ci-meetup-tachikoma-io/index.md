@@ -63,6 +63,10 @@ WOOOOOO
 
 うわぁぁぁぁ。
 
+This is dependent libraries.
+
+これはライブラリの依存のバージョンの話。
+
 It is __not__ a story that, we would have to fix the dependency version.
 
 依存バージョンを固定してればよかった、という話では __ない__ 。
@@ -83,11 +87,11 @@ node.jsのバージョンを上げるには今度は別のライブラリを、
 
 以下略
 
+図
+
 The build failing is __not__ now!
 
 壊れたのは __今__ じゃない
-
-図
 
 ## I'm sick of this!
 
