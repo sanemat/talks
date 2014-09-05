@@ -27,7 +27,7 @@ I make awesome web application filling this
 
 埋める 神webアプリを作っています
 
-Tachikoma.io
+[Tachikoma.io](http://tachikoma.io)
 
 sanemat
 
@@ -65,7 +65,7 @@ WOOOOOO
 
 It is __not__ a story that, we would have to fix the dependency version.
 
-依存バージョンを固定してればよかった、という話では__ない__。
+依存バージョンを固定してればよかった、という話では __ない__ 。
 
 We hit a bug on some library, so we should update that version.
 
@@ -85,7 +85,7 @@ node.jsのバージョンを上げるには今度は別のライブラリを、
 
 The build failing is __not__ now!
 
-壊れたのは今じゃない
+壊れたのは __今__ じゃない
 
 図
 
@@ -93,9 +93,9 @@ The build failing is __not__ now!
 
 うんざりだ!
 
-I made Tachikoma.io, this is awesome application.
+I made [Tachikoma.io](http://tachikoma.io), this is awesome application.
 
-神アプリつくった Tachikoma.io
+神アプリつくった [Tachikoma.io](http://tachikoma.io)
 
 キャプチャ
 
@@ -121,7 +121,7 @@ ruby: bundler, perl: carton, node.js: npm
 
 依存関係コントロール, メタファイル
 
-Gemfile.lock, carton.snapshot, npm-shrinkwrap.json
+Gemfile.lock, carton.snapshot, package.json
 
 依存関係update hell
 
@@ -139,11 +139,13 @@ strategy: david
 strategy: none (default)
 ```
 
-Tachikoma.io と組み合わせて使うのは,
+[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは,
 
 Travis CI!!
 
 ## まとめ
+
+public版はFree!
 
 private版は有料にしようかと作ってます 価格は予定
 
@@ -176,4 +178,4 @@ Yes!
 
 世界に羽ばたくのでよろしくお願いいたします。
 
-Tachikoma.io
+[Tachikoma.io](http://tachikoma.io)
