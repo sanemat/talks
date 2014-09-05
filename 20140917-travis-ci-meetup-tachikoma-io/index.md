@@ -39,9 +39,15 @@ It's the story whether any specific programming language or not.
 
 プログラミング言語問わずよくある話だと思う。
 
+![when was the build failing](./when-was-the-build-failing.gif)
+
 I found the failing test which I want to use.
 
 使いたいライブラリのテストが落ちてるぞ。
+
+I watched the result in Travis CI, I understood this.
+
+Travis CI見て、どこが落ちてるかわかったぞ。
 
 I fixed failing test!
 
@@ -51,22 +57,43 @@ I sent a pull request, but...
 
 プルリクエストを送って、あれ?
 
-![when was the build failing](./when-was-the-build-failing.gif)
+![many test failed](./many-test-failed.gif)
+
+WOOOOOO
 
 うわぁぁぁぁ。
 
-キャプチャ
+It is __not__ a story that, we would have to fix the dependency version.
 
-バージョンを固定してればよかった、という話ではない。
+依存バージョンを固定してればよかった、という話では__ない__。
+
+We hit a bug on some library, so we should update that version.
+
 あるライブラリのバグを踏んでいたので、そのライブラリのバージョンはどうしても上げる必要があった。
-そのライブラリを上げると別のライブラリのバグを踏むので、別のライブラリもバージョンを上げる必要があり、
+
+That requires updated node.js version.
+
+それを動かすためには、node.jsのバージョンを上げる必要があり、
+
+Updating node.js broke another library.
+
+node.jsのバージョンを上げるには今度は別のライブラリを、
+
+(snip)
+
 以下略
+
+The build failing is __not__ now!
+
+壊れたのは今じゃない
 
 図
 
-some library broke backward compatibility
+## I'm sick of this!
 
-## うんざりだ!
+うんざりだ!
+
+I made Tachikoma.io, this is awesome application.
 
 神アプリつくった Tachikoma.io
 
