@@ -19,13 +19,17 @@ __a year ago!!!__
 
 Travis CI とGitHubの間
 
+This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
+
+この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
+
 Travis CI is awesome, GitHub is awesome, but there is a gap between them,
 
 Travis CIは神、GitHubも神、でも間にはスキマがあって
 
 I make awesome web application filling this
 
-埋める 神webアプリを作っています
+埋める 神webアプリを作っています。
 
 [Tachikoma.io](http://tachikoma.io)
 
@@ -59,9 +63,9 @@ I sent a pull request, but...
 
 ![many test failed](./many-test-failed.gif)
 
-WOOOOOO
+WOOOOOO! Fail, Fail, Fail and Fail!
 
-うわぁぁぁぁ。
+うわぁぁぁぁ。 Fail, Fail, Fail and Fail!
 
 This is dependent libraries.
 
