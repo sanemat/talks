@@ -133,31 +133,49 @@ Tachikoma.io と組み合わせて使うのは, Travis CI!
 
 (4分ぐらい?)
 
-## 自分のプロダクト Tachikoma.io の自慢?
+## You boast your product, Tachikoma.io?
 
 自分のプロダクト Tachikoma.io の自慢?
 
-Yes! but
+Yes!
 
-Travis CIとGitHubのエコシステムの自慢です。
+はい!
+
+I boast our(include you) eco system with Travis CI and GitHub.
+
+これは Travis CIとGitHubのエコシステムの自慢です。
 
 ## One More Thing
 
+おまけ
+
+Specific languages
+
 各言語編
 
-ruby: bundler, perl: carton, node.js: npm
+ruby: bundler, perl: carton, node.js: npm, each langualge has own package manager library.
 
-依存関係コントロール, メタファイル
+ruby: bundler, perl: carton, node.js: npm と言語ごとにパッケージマネージャーがある。
 
-Gemfile.lock, carton.snapshot, package.json
+Gemfile.lock, carton.snapshot, package.json, etc. There are meta file for control dependencies.
 
-依存関係update hell
+Gemfile.lock, carton.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
 
-これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか
+Dependency libraries update hell.
 
-定期的に bundle update (ruby) / carton update (perl) / david update (node.js)
+依存関係update hellだ。
 
-依存ライブラリをアップデート
+This is obvious that only way to survive is update frequently.
+
+これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか。
+
+Interval `bundle update`(ruby)/ `carton update`(perl) / `david update`(node.js)
+
+定期的に `bundle update` (ruby) / `carton update` (perl) / `david update` (node.js)
+
+You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yaml`.
+
+それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yaml`を置くだけでok。
 
 ```yaml
 .tachikoma.yml
@@ -167,13 +185,17 @@ strategy: david
 strategy: none (default)
 ```
 
-[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは,
+We use Travis CI in combination with Tachikoma.io!!
 
-Travis CI!!
+[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは, Travis CI!!
 
-## まとめ
+## Summary
 
-Tachikoma.io 使って。
+まとめ
+
+Use [Tachikoma.io](http://tachikoma.io).
+
+[Tachikoma.io](http://tachikoma.io) 使って。
 
 public版はFree!
 
@@ -190,9 +212,9 @@ private版は有料にしようかと作ってます 価格は予定
 - Intervalの頻度を調整できるようにしたい
 - badge作りたい
 
-Tachikoma.ioと組み合わせて使うのは,
+We use Travis CI in combination with Tachikoma.io!!!
 
-Travis CI!!!
+Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
