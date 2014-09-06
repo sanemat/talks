@@ -35,6 +35,8 @@ I make awesome web application filling this
 
 sanemat
 
+Travis CI Meetup 2014-09-17
+
 ### When was the build failing? Actually 'Now'?
 
 いつ落ちたの? ホントに「今」?
@@ -131,6 +133,14 @@ Tachikoma.io と組み合わせて使うのは, Travis CI!
 
 (4分ぐらい?)
 
+## 自分のプロダクト Tachikoma.io の自慢?
+
+自分のプロダクト Tachikoma.io の自慢?
+
+Yes! but
+
+Travis CIとGitHubのエコシステムの自慢です。
+
 ## One More Thing
 
 各言語編
@@ -163,6 +173,8 @@ Travis CI!!
 
 ## まとめ
 
+Tachikoma.io 使って。
+
 public版はFree!
 
 private版は有料にしようかと作ってます 価格は予定
@@ -180,10 +192,6 @@ private版は有料にしようかと作ってます 価格は予定
 Tachikoma.ioと組み合わせて使うのは,
 
 Travis CI!!!
-
-自分のプロダクトの自慢?
-
-Yes!
 
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
