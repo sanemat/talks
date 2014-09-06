@@ -5,11 +5,11 @@
 
 その build passingはいつ?
 
+![when was the build passing](./when-was-the-build-passing.gif)
+
 Nice badge: build passing (Travis CI)
 
 build passing(Travis CI)のナイスバッジ
-
-![when was the build passing](./when-was-the-build-passing.gif)
 
 authored on Jul 5, 2013
 
@@ -173,10 +173,6 @@ Interval `bundle update`(ruby)/ `carton update`(perl) / `david update`(node.js)
 
 定期的に `bundle update` (ruby) / `carton update` (perl) / `david update` (node.js)
 
-You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yaml`.
-
-それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yaml`を置くだけでok。
-
 ```yaml
 .tachikoma.yml
 strategy: bundler
@@ -184,6 +180,10 @@ strategy: carton
 strategy: david
 strategy: none (default)
 ```
+
+You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yaml`.
+
+それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yaml`を置くだけでok。
 
 We use Travis CI in combination with Tachikoma.io!!
 
@@ -197,19 +197,32 @@ Use [Tachikoma.io](http://tachikoma.io).
 
 [Tachikoma.io](http://tachikoma.io) 使って。
 
+Free for public repositories.
+
 public版はFree!
+
+Subscription for private repositories.(I plan)
 
 private版は有料にしようかと作ってます 価格は予定
 
 - for private $9/mo
-- for organization-private $29/mo
+- for organization - private $29/mo
 - for enterprise sanemat_AT_tachikoma.io
+
+More ideas
 
 さらにアイデアベース
 
-- ビルドログ見えるようにしよう
+- Show build log like Travis CI
+- ビルドログ見えるようにしよう Travis CIみたいに
+
+- Notify build completion (not completion)
 - ビルド終わったら(終わらなかったら)notification 飛ばしたい
+
+- Settable interval frequency
 - Intervalの頻度を調整できるようにしたい
+
+- Make badge :)
 - badge作りたい
 
 We use Travis CI in combination with Tachikoma.io!!!
