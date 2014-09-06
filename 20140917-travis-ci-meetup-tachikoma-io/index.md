@@ -69,7 +69,7 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is dependent libraries.
+This is about dependent libraries.
 
 これはライブラリの依存のバージョンの話。
 
