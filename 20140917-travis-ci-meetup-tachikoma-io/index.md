@@ -105,19 +105,29 @@ I made [Tachikoma.io](http://tachikoma.io), this is awesome application.
 
 神アプリつくった [Tachikoma.io](http://tachikoma.io)
 
-キャプチャ
+![interval pull request](./interval-pull-requests.gif)
 
 Interval Pull Request
 
+定期的な Pull Request
+
+Differences between rebuild via Travis CI API
+
 Travis CIのAPIで、rebuildするのとの違い
 
-いつから落ちたかTravis CIでわかる
+When start failing, we can see from Travis CI and GitHub visually.
+
+いつから落ちたか視覚的にTravis CIとGitHubでわかる。
+
+Leave it to Travis CI is that you can Travis CI.
 
 Travis CIのできることはTravis CIに任せる
 
-Tachikoma.io と組み合わせて使うのは,
+We use Travis CI in combination with Tachikoma.io!
 
-Travis CI!
+Tachikoma.io と組み合わせて使うのは, Travis CI!
+
+(Maybe 4minutes?)
 
 (4分ぐらい?)
 
