@@ -5,11 +5,11 @@
 
 その build passingはいつ?
 
+![when was the build passing](./when-was-the-build-passing.gif)
+
 Nice badge: build passing (Travis CI)
 
 build passing(Travis CI)のナイスバッジ
-
-![when was the build passing](./when-was-the-build-passing.gif)
 
 authored on Jul 5, 2013
 
@@ -34,6 +34,8 @@ I make awesome web application filling this
 [Tachikoma.io](http://tachikoma.io)
 
 sanemat
+
+Travis CI Meetup 2014-09-17
 
 ### When was the build failing? Actually 'Now'?
 
@@ -131,23 +133,45 @@ Tachikoma.io と組み合わせて使うのは, Travis CI!
 
 (4分ぐらい?)
 
+## You boast your product, Tachikoma.io?
+
+自分のプロダクト Tachikoma.io の自慢?
+
+Yes!
+
+はい!
+
+I boast our(include you) eco system with Travis CI and GitHub.
+
+これは Travis CIとGitHubのエコシステムの自慢です。
+
 ## One More Thing
+
+おまけ
+
+Specific languages
 
 各言語編
 
-ruby: bundler, perl: carton, node.js: npm
+ruby: bundler, perl: carton, node.js: npm, each langualge has own package manager library.
 
-依存関係コントロール, メタファイル
+ruby: bundler, perl: carton, node.js: npm と言語ごとにパッケージマネージャーがある。
 
-Gemfile.lock, carton.snapshot, package.json
+Gemfile.lock, carton.snapshot, package.json, etc. There are meta file for control dependencies.
 
-依存関係update hell
+Gemfile.lock, carton.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
 
-これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか
+Dependency libraries update hell.
 
-定期的に bundle update (ruby) / carton update (perl) / david update (node.js)
+依存関係update hellだ。
 
-依存ライブラリをアップデート
+This is obvious that only way to survive is update frequently.
+
+これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか。
+
+Interval `bundle update`(ruby)/ `carton update`(perl) / `david update`(node.js)
+
+定期的に `bundle update` (ruby) / `carton update` (perl) / `david update` (node.js)
 
 ```yaml
 .tachikoma.yml
@@ -157,43 +181,72 @@ strategy: david
 strategy: none (default)
 ```
 
-[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは,
+You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yaml`.
 
-Travis CI!!
+それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yaml`を置くだけでok。
 
-## まとめ
+We use Travis CI in combination with Tachikoma.io!!
+
+[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは, Travis CI!!
+
+## Summary
+
+まとめ
+
+Use [Tachikoma.io](http://tachikoma.io).
+
+[Tachikoma.io](http://tachikoma.io) 使って。
+
+Free for public repositories.
 
 public版はFree!
+
+Subscription for private repositories.(I plan)
 
 private版は有料にしようかと作ってます 価格は予定
 
 - for private $9/mo
-- for organization-private $29/mo
+- for organization - private $29/mo
 - for enterprise sanemat_AT_tachikoma.io
+
+More ideas
 
 さらにアイデアベース
 
-- ビルドログ見えるようにしよう
+- Show build log like Travis CI
+- ビルドログ見えるようにしよう Travis CIみたいに
+
+- Notify build completion (not completion)
 - ビルド終わったら(終わらなかったら)notification 飛ばしたい
+
+- Settable interval frequency
 - Intervalの頻度を調整できるようにしたい
 
-Tachikoma.ioと組み合わせて使うのは,
+- Make badge :)
+- badge作りたい
 
-Travis CI!!!
+We use Travis CI in combination with Tachikoma.io!!!
 
-自分のプロダクトの自慢?
+Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
-Yes!
-
+Not updating dependent libraries, this does not damage immediately to library and application.
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
+If you want to add new library, If security issue occurs in library which already use, it is very difficult that you find a combination each library works.
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
+If you find a combination, this is backword solution, and another new library makes more difficulty.
 仮に組み合わせを見つけたとしても、すごく後ろ向きですし、次を追加するとき、より困難になって立ちはだかります。
+Sometimes you can not use new feature of library, speed up, ruby's version up becaouse of your dependencies.
 また、ライブラリの新機能、スピードアップ、rubyのバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。
+Eventually usually use latest (stable) version combinations brings smallest pain.
 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。
+Everyone knows this and understands this, but why we can't?
 ここまでみんな知ってるしわかってるのに、なぜ出来ない?
+I think this is still the lack of tools and integrations.
 それはツールやインテグレーションがまだ不足しているからだ、と私は考えます。
+A piece to fill it is [Tachikoma.io](http://tachikoma.io).
 それを埋める1つのパーツがTachikoma.ioです。
 
+We ship to the world.
 世界に羽ばたくのでよろしくお願いいたします。
 
 [Tachikoma.io](http://tachikoma.io)
