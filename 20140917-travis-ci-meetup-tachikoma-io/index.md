@@ -67,6 +67,8 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 うわぁぁぁぁ。 Fail, Fail, Fail and Fail!
 
+![fail pass](./fail-pass.gif)
+
 This is dependent libraries.
 
 これはライブラリの依存のバージョンの話。
@@ -90,8 +92,6 @@ node.jsのバージョンを上げるには今度は別のライブラリを、
 (snip)
 
 以下略
-
-図
 
 The build failing is __not__ now!
 
