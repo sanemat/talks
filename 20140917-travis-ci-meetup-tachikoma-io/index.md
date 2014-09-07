@@ -213,16 +213,16 @@ More ideas
 
 さらにアイデアベース
 
-- Show build log like Travis CI
+- Show the build log like Travis CI
 - ビルドログ見えるようにしよう Travis CIみたいに
 
-- Notify build completion (not completion)
+- Notify a build completion (and not completion)
 - ビルド終わったら(終わらなかったら)notification 飛ばしたい
 
-- Settable interval frequency
+- Settable an interval frequency
 - Intervalの頻度を調整できるようにしたい
 
-- Make badge :)
+- Make a badge :)
 - badge作りたい
 
 We use Travis CI in combination with Tachikoma.io!!!
