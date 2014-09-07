@@ -229,24 +229,25 @@ We use Travis CI in combination with Tachikoma.io!!!
 
 Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
-Not updating dependent libraries, this does not damage immediately to library and application.
+Not updating the dependent libraries, does not damage the library/application immediately.
+When adding a new library that you want to use, occurring a security issue in a library which already use, it is extremely difficult to find the right version that functions property with it.
+Even if you find the right combination, it's very reactionary and it only gets harder when adding the next one.
+Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of ruby, and other benefits.
+Ultimately, finding the latest(stable) combination periodically will keep damages to a minimum.
+Everyone knows this, so what's stopping them?
+I believe it's due to the lack of tools and integrations.
+That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
+
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
-If you want to add new library, If security issue occurs in library which already use, it is very difficult that you find a combination each library works.
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
-If you find a combination, this is backword solution, and another new library makes more difficulty.
 仮に組み合わせを見つけたとしても、すごく後ろ向きですし、次を追加するとき、より困難になって立ちはだかります。
-Sometimes you can not use new feature of library, speed up, ruby's version up becaouse of your dependencies.
 また、ライブラリの新機能、スピードアップ、rubyのバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。
-Eventually usually use latest (stable) version combinations brings smallest pain.
 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。
-Everyone knows this and understands this, but why we can't?
 ここまでみんな知ってるしわかってるのに、なぜ出来ない?
-I think this is still the lack of tools and integrations.
 それはツールやインテグレーションがまだ不足しているからだ、と私は考えます。
-A piece to fill it is [Tachikoma.io](http://tachikoma.io).
 それを埋める1つのパーツがTachikoma.ioです。
 
-We ship to the world.
+We ship to the world!
 世界に羽ばたくのでよろしくお願いいたします。
 
 [Tachikoma.io](http://tachikoma.io)
