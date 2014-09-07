@@ -99,11 +99,11 @@ The build failing is not __now__ !
 
 壊れたのは __今__ じゃない
 
-Too many tests fail on __now__ pull request. It is difficult to find failing point.
+Too many tests fail on __now__ pull request. It is difficult to find where should I fix.
 
 __今__ のpull requestではテストが盛大に落ちる、場所の特定も面倒だ。
 
-If I'm at first failing point, then I can find this easily, and fix easily too.
+If I'm at first failing build, then I can find this easily, and fix easily too.
 
 はじめのfailの段階なら、場所を特定するのも簡単。直すのも簡単だった。
 
