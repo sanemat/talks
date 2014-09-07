@@ -232,8 +232,8 @@ Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 Not updating the dependent libraries, does not damage the library/application immediately.
 When adding a new library that you want to use, occurring a security issue in a library which already use, it is extremely difficult to find the right version that functions property with it.
 Even if you find the right combination, it's very reactionary and it only gets harder when adding the next one.
-Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of ruby, and other benefits.
-Ultimately, finding the latest(stable) combination periodically will keep damages to a minimum.
+Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits.
+Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum.
 Everyone knows this, so what's stopping them?
 I believe it's due to the lack of tools and integrations.
 That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
