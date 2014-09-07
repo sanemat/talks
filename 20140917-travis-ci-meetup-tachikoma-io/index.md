@@ -248,6 +248,7 @@ That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
 それを埋める1つのパーツがTachikoma.ioです。
 
 We ship to the world!
+
 世界に羽ばたくのでよろしくお願いいたします。
 
 [Tachikoma.io](http://tachikoma.io)
