@@ -15,9 +15,9 @@ authored on Jul 5, 2013
 
 __a year ago!!!__
 
-### A gap between Travis CI and GitHub
+These things give you a lot of trouble often.
 
-Travis CI とGitHubの間のスキマ
+こういうのがだいたい大変なことになる。
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
