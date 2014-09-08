@@ -11,11 +11,11 @@ Nice badge: build passing (Travis CI)
 
 build passing(Travis CI)のナイスバッジ
 
-authored on Jul 5, 2013
+authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
 __a year ago!!!__
 
-These things give you a lot of trouble often.
+These things give us a lot of trouble often.
 
 こういうのがだいたい大変なことになる。
 
