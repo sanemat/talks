@@ -1,9 +1,9 @@
 <link href="page.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-### When was the build passing?
+### When was the build passing? - A gap between Travis CI and GitHub
 
-その build passingはいつ?
+その build passingはいつ? - Travis CI とGitHubの間のスキマ
 
 ![when was the build passing](./when-was-the-build-passing.gif)
 
@@ -11,13 +11,17 @@ Nice badge: build passing (Travis CI)
 
 build passing(Travis CI)のナイスバッジ
 
-authored on Jul 5, 2013
+authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
 __a year ago!!!__
 
-### A gap between Travis CI and GitHub
+These things give us a lot of trouble often.
 
-Travis CI とGitHubの間
+こういうのがだいたい大変なことになる。
+
+Something awful has happened to you?
+
+大変なことになったことある人?
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
@@ -41,9 +45,9 @@ Travis CI Meetup 2014-09-17
 
 いつ落ちたの? ホントに「今」?
 
-It's the story whether any specific programming language or not.
+When we use Travis CI and GitHub, It's the story whether any specific programming language or not.
 
-プログラミング言語問わずよくある話だと思う。
+Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
@@ -54,6 +58,10 @@ I found the failing test which I want to use.
 I watched the result in Travis CI, I understood this.
 
 Travis CI見て、どこが落ちてるかわかったぞ。
+
+I searched the problem. I understood that API requires 'ac' params, this is the problem.
+
+ちょっと調べて、これがAPIの必須パラメーターが足りなくなっていることが原因だとわかった。
 
 I fixed failing test!
 
@@ -71,13 +79,17 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is about dependent libraries.
+This is about library dependency.
 
 これはライブラリの依存のバージョンの話。
 
+We don't fix the dependency version, this is one of the causes.
+
+依存バージョンを固定していなかったことが原因の一つではある。
+
 It is __not__ a story that, we would have to fix the dependency version.
 
-依存バージョンを固定してればよかった、という話では __ない__ 。
+ただし、依存バージョンを固定してればよかった、という話では __ない__ 。
 
 We hit a bug on some library, so we should update that version.
 
@@ -89,7 +101,7 @@ That requires updated node.js version.
 
 Updating node.js broke another library.
 
-node.jsのバージョンを上げるには今度は別のライブラリを、
+それは他のライブラリを壊すので、node.jsのバージョンを上げるには今度は別のライブラリを、
 
 (snip)
 
@@ -105,21 +117,25 @@ __今__ のpull requestではテストが盛大に落ちる、場所の特定も
 
 If I'm at first failing build, then I can find this easily, and fix easily too.
 
-はじめのfailの段階なら、場所を特定するのも簡単。直すのも簡単だった。
+もしこれが、はじめのfailの段階なら、場所を特定するのも簡単。直すのも簡単だった。
 
 ## I'm sick of this!
 
-うんざりだ!
+こういうの、うんざりだ! よくある!
 
 I made [Tachikoma.io](http://tachikoma.io), this is awesome application.
 
-神アプリつくった [Tachikoma.io](http://tachikoma.io)
+神webアプリつくった [Tachikoma.io](http://tachikoma.io)
 
 ![interval pull request](./interval-pull-requests.gif)
 
 Interval Pull Request
 
 定期的な Pull Request
+
+What is pros?
+
+何がいいか?
 
 Differences between rebuild via Travis CI API
 
@@ -129,13 +145,25 @@ When start failing, we can see from Travis CI and GitHub visually.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
+We can see diff between success build and fail one, at GitHub compare view.
+
+落ちたdiffをGitHub上でcompare viewで見ても良い。
+
+We can see the build log at Travis CI.
+
+Travis CIでビルドログを見ても良い。
+
 Leave it to Travis CI is that you can Travis CI.
 
-Travis CIのできることはTravis CIに任せる
+Travis CIのできることはTravis CIに任せる。
 
 We use Travis CI in combination with Tachikoma.io!
 
 Tachikoma.io と組み合わせて使うのは, Travis CI!
+
+This is not bad app?
+
+なかなかいいでしょう?
 
 (Maybe 4minutes?)
 
@@ -149,9 +177,13 @@ Yes!
 
 はい!
 
-I boast our(include you) eco system with Travis CI and GitHub.
+I boast our(include you) developers' eco system with Travis CI and GitHub.
 
-これは Travis CIとGitHubのエコシステムの自慢です。
+これは Travis CIやGitHubといった開発者エコシステムの自慢です。
+
+(Say nice thing)
+
+(うまいこと言った風。)
 
 ## One More Thing
 
@@ -165,17 +197,17 @@ ruby: bundler, perl: carton, node.js: npm, each langualge has own package manage
 
 ruby: bundler, perl: carton, node.js: npm と言語ごとにパッケージマネージャーがある。
 
-Gemfile.lock, carton.snapshot, package.json, etc. There are meta file for control dependencies.
+Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. There are meta file for control dependencies.
 
-Gemfile.lock, carton.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
+Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
 
 Dependency libraries update hell.
 
 依存関係update hellだ。
 
-This is obvious that only way to survive is update frequently.
+This is obvious that only way to survive is updating them frequently.
 
-これはもうこまめにアップデートしていく以外生き延びるすべはないのは明らか。
+これはもうこまめにアップデートしていく以外生き延びるすべはないのは確定的に明らか。
 
 Interval `bundle update`(ruby)/ `carton update`(perl) / `david update`(node.js)
 
@@ -189,9 +221,9 @@ strategy: david
 strategy: none (default)
 ```
 
-You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yaml`.
+You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yml`.
 
-それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yaml`を置くだけでok。
+それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yml`を置くだけでok。
 
 We use Travis CI in combination with Tachikoma.io!!
 
@@ -207,11 +239,11 @@ Use [Tachikoma.io](http://tachikoma.io).
 
 Free for public repositories.
 
-public版はFree!
+public repos版はFree!
 
 Subscription for private repositories.(I plan)
 
-private版は有料にしようかと作ってます 価格は予定
+private repos版は月額有料にしようかと作ってます 価格は予定
 
 - for private $9/mo
 - for organization - private $29/mo
@@ -227,9 +259,6 @@ More ideas
 - Notify a build completion (and not completion)
 - ビルド終わったら(終わらなかったら)notification 飛ばしたい
 
-- Settable an interval frequency
-- Intervalの頻度を調整できるようにしたい
-
 - Make a badge :)
 - badge作りたい
 
@@ -237,12 +266,17 @@ We use Travis CI in combination with Tachikoma.io!!!
 
 Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
+This is service statement below:
+
+この下のはサービスステートメントです:
+
 Not updating the dependent libraries, does not damage the library/application immediately.
 When adding a new library that you want to use, occurring a security issue in a library which already use, it is extremely difficult to find the right version that functions property with it.
 Even if you find the right combination, it's very reactionary and it only gets harder when adding the next one.
 Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits.
 Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum.
 Everyone knows this, so what's stopping them?
+
 I believe it's due to the lack of tools and integrations.
 That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
 
@@ -252,6 +286,7 @@ That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
 また、ライブラリの新機能、スピードアップ、rubyのバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。
 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。
 ここまでみんな知ってるしわかってるのに、なぜ出来ない?
+
 それはツールやインテグレーションがまだ不足しているからだ、と私は考えます。
 それを埋める1つのパーツがTachikoma.ioです。
 
