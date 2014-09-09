@@ -93,15 +93,15 @@ It is __not__ a story that, we would have to fix the dependency version.
 
 We hit a bug on some library, so we should update that version.
 
-あるライブラリのバグを踏んでいたので、そのライブラリのバージョンはどうしても上げる必要があった。
+このライブラリが依存するライブラリのバグを踏んでいた。
 
-That requires updated node.js version.
+なので、依存するライブラリのバージョンはどうしても上げる必要があった。
 
-それを動かすためには、node.jsのバージョンを上げる必要があり、
+バージョンひとつ上げるならよかった。
 
-Updating node.js broke another library.
+だけど、その依存ライブラリを最新版にするにはnode.jsのバージョンを上げる必要があった。
 
-それは他のライブラリを壊すので、node.jsのバージョンを上げるには今度は別のライブラリを、
+node.jsのバージョンを上げると、別の依存ライブラリが壊れるので、
 
 (snip)
 
