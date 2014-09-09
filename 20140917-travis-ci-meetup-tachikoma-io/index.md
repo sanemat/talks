@@ -105,11 +105,11 @@ We can update v0.1.2 to v0.1.3 easily.
 
 Now B's version is v1.2.3, oh. v1 requires bump node.js version.
 
-だけど、その依存ライブラリを最新版にするにはnode.jsのバージョンを上げる必要があった。
+だけど、その依存ライブラリBを最新版にするにはnode.jsのバージョンを上げる必要があった。
 
 Bump node.js version break A's another dependency library C,
 
-node.jsのバージョンを上げると、別の依存ライブラリが壊れるので、
+node.jsのバージョンを上げると、別の依存ライブラリCが壊れるので、
 
 (snip)
 
