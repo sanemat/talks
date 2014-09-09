@@ -51,9 +51,9 @@ Travis CIとGitHubを使っていると、プログラミング言語問わず�
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
-I found the failing test which I want to use.
+I found the failing test, which is library A's one that I want to use.
 
-使いたいライブラリのテストが落ちてるぞ。
+使いたいライブラリAのテストが落ちてるぞ。
 
 I watched the result in Travis CI, I understood this.
 
@@ -79,9 +79,9 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is about library dependency.
+This is about library A's component library dependencies.
 
-これはライブラリの依存のバージョンの話。
+これはライブラリAの依存するライブラリの話。
 
 We don't fix the dependency version, this is one of the causes.
 
@@ -91,15 +91,23 @@ It is __not__ a story that, we would have to fix the dependency version.
 
 ただし、依存バージョンを固定してればよかった、という話では __ない__ 。
 
-We hit a bug on some library, so we should update that version.
+This library A depends on another library B, and A hits B's bug.
 
-このライブラリが依存するライブラリのバグを踏んでいた。
+このライブラリAが依存するライブラリBのバグを踏んでいた。
 
-なので、依存するライブラリのバージョンはどうしても上げる必要があった。
+We should update B's version.
+
+なので、依存するライブラリBのバージョンはどうしても上げる必要があった。
+
+We can update v0.1.2 to v0.1.3 easily.
 
 バージョンひとつ上げるならよかった。
 
+Now B's version is v1.2.3, oh. v1 requires bump node.js version.
+
 だけど、その依存ライブラリを最新版にするにはnode.jsのバージョンを上げる必要があった。
+
+Bump node.js version break A's another dependency library C,
 
 node.jsのバージョンを上げると、別の依存ライブラリが壊れるので、
 
