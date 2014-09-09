@@ -17,11 +17,11 @@ __a year ago!!!__
 
 These things give us a lot of trouble often.
 
-こういうのがだいたい大変なことになる。
+こういうのがだいたい面倒くさいことになる。
 
 Something awful has happened to you?
 
-大変なことになったことある人?
+面倒くさいことになったことある人?
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
