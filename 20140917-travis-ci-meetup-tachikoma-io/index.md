@@ -17,11 +17,11 @@ __a year ago!!!__
 
 These things give us a lot of trouble often.
 
-こういうのがだいたい大変なことになる。
+こういうのがだいたい面倒くさいことになる。
 
 Something awful has happened to you?
 
-大変なことになったことある人?
+面倒くさいことになったことある人?
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
@@ -51,9 +51,9 @@ Travis CIとGitHubを使っていると、プログラミング言語問わず�
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
-I found the failing test which I want to use.
+I found the failing test, which is library A's one that I want to use.
 
-使いたいライブラリのテストが落ちてるぞ。
+使いたいライブラリAのテストが落ちてるぞ。
 
 I watched the result in Travis CI, I understood this.
 
@@ -79,9 +79,9 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is about library dependency.
+This is about library A's component library dependencies.
 
-これはライブラリの依存のバージョンの話。
+これはライブラリAの依存するライブラリの話。
 
 We don't fix the dependency version, this is one of the causes.
 
@@ -91,17 +91,25 @@ It is __not__ a story that, we would have to fix the dependency version.
 
 ただし、依存バージョンを固定してればよかった、という話では __ない__ 。
 
-We hit a bug on some library, so we should update that version.
+This library A depends on another library B, and A hits B's bug.
 
-あるライブラリのバグを踏んでいたので、そのライブラリのバージョンはどうしても上げる必要があった。
+このライブラリAが依存するライブラリBのバグを踏んでいた。
 
-That requires updated node.js version.
+We should update B's version.
 
-それを動かすためには、node.jsのバージョンを上げる必要があり、
+なので、依存するライブラリBのバージョンはどうしても上げる必要があった。
 
-Updating node.js broke another library.
+We can update v0.1.2 to v0.1.3 easily.
 
-それは他のライブラリを壊すので、node.jsのバージョンを上げるには今度は別のライブラリを、
+バージョンひとつ上げるならよかった。
+
+Now B's version is v1.2.3, oh. v1 requires bump node.js version.
+
+だけど、その依存ライブラリBを最新版にするにはnode.jsのバージョンを上げる必要があった。
+
+Bump node.js version break A's another dependency library C,
+
+node.jsのバージョンを上げると、別の依存ライブラリCが壊れるので、
 
 (snip)
 
@@ -283,7 +291,7 @@ That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
 仮に組み合わせを見つけたとしても、すごく後ろ向きですし、次を追加するとき、より困難になって立ちはだかります。
-また、ライブラリの新機能、スピードアップ、rubyのバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。
+また、ライブラリの新機能、スピードアップ、Ruby/Node.js/etc.のバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。
 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。
 ここまでみんな知ってるしわかってるのに、なぜ出来ない?
 
