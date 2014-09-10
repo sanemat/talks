@@ -233,9 +233,9 @@ strategy: david
 strategy: none (default)
 ```
 
-Do you do this? I think you don't do, do you?
+Do you do this? I think you don't do, do you? Yes I do? You do this more easily.
 
-やってますか? やってないでしょ?
+やってますか? やってないでしょ? やってる? もっと簡単になるよ。
 
 You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `.tachikoma.yml`.
 
