@@ -47,6 +47,9 @@ sanemat
 
 Travis CI Meetup 2014-09-17
 
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&t=When%20was%20the%20build%20passing%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
+</iframe>
+
 ### When was the build failing? Actually 'Now'?
 
 いつ落ちたの? ホントに「今」?
@@ -309,3 +312,6 @@ We ship to the world!
 世界に羽ばたくのでよろしくお願いいたします。
 
 [Tachikoma.io](http://tachikoma.io)
+
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&t=When%20was%20the%20build%20passing%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
+</iframe>
