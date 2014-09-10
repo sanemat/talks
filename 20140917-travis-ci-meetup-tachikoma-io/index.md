@@ -1,3 +1,4 @@
+<link href="github-markdown.css" rel="stylesheet">
 <link href="page.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
