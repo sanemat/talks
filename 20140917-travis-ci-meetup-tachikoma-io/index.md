@@ -169,6 +169,10 @@ Leave it to Travis CI is that you can Travis CI.
 
 Travis CIのできることはTravis CIに任せる。
 
+Dependency update is not you want to do! I want to do is writing application!
+
+だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
+
 We use Travis CI in combination with Tachikoma.io!
 
 Tachikoma.io と組み合わせて使うのは, Travis CI!
