@@ -1,15 +1,19 @@
-<link href="page.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-
+---
+pagetitle: When was the build passing?
+css:
+  - github-markdown.css
+  - page.css
+  - http://fonts.googleapis.com/css?family=Lato
+---
 <script type="text/javascript">
   window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
   window.analytics.load("ig7q6np7c1");
   window.analytics.page();
 </script>
 
-### When was the build passing? - A gap between Travis CI and GitHub
+# When was the build passing?
 
-その build passingはいつ? - Travis CI とGitHubの間のスキマ
+その build passingはいつ?
 
 ![when was the build passing](./when-was-the-build-passing.gif)
 
@@ -25,6 +29,10 @@ These things give us a lot of trouble often.
 
 こういうのがだいたい面倒くさいことになる。
 
+I want to solve this! is this talk's theme, and my motivation to coming here.
+
+このめんどくささをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
+
 Something awful has happened to you?
 
 面倒くさいことになったことある人?
@@ -33,29 +41,19 @@ This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
 この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
 
-Travis CI is awesome, GitHub is awesome, but there is a gap between them,
-
-Travis CIは神、GitHubも神、でも間にはスキマがあって
-
-I make awesome web application filling this
-
-埋める 神webアプリを作っています。
-
-[Tachikoma.io](http://tachikoma.io)
-
 sanemat
 
 Travis CI Meetup 2014-09-17
 
-### When was the build failing? Actually 'Now'?
+## When was the build failing? Actually 'Now'?
 
 いつ落ちたの? ホントに「今」?
+
+![when was the build failing](./when-was-the-build-failing.gif)
 
 When we use Travis CI and GitHub, It's the story whether any specific programming language or not.
 
 Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。
-
-![when was the build failing](./when-was-the-build-failing.gif)
 
 I found the failing test, which is library A's one that I want to use.
 
@@ -137,9 +135,9 @@ If I'm at first failing build, then I can find this easily, and fix easily too.
 
 こういうの、うんざりだ! よくある!
 
-I made [Tachikoma.io](http://tachikoma.io), this is awesome application.
+I made [Tachikoma.io][tachikoma-io], this is awesome application.
 
-神webアプリつくった [Tachikoma.io](http://tachikoma.io)
+神webアプリつくった [Tachikoma.io][tachikoma-io]
 
 ![interval pull request](./interval-pull-requests.gif)
 
@@ -171,6 +169,14 @@ Leave it to Travis CI is that you can Travis CI.
 
 Travis CIのできることはTravis CIに任せる。
 
+Leave it to Tachikoma.io is that you can Tachikoma.io.
+
+Tachikoma.ioのできることはTachikoma.ioに任せる。
+
+Dependency update is not you want to do! I want to do is writing application!
+
+だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
+
 We use Travis CI in combination with Tachikoma.io!
 
 Tachikoma.io と組み合わせて使うのは, Travis CI!
@@ -190,14 +196,6 @@ This is not bad app?
 Yes!
 
 はい!
-
-I boast our(include you) developers' eco system with Travis CI and GitHub.
-
-これは Travis CIやGitHubといった開発者エコシステムの自慢です。
-
-(Say nice thing)
-
-(うまいこと言った風。)
 
 ## One More Thing
 
@@ -235,21 +233,41 @@ strategy: david
 strategy: none (default)
 ```
 
-You can do it with [Tachikoma.io](http://tachikoma.io). Only you should do is putting `.tachikoma.yml`.
+Do you do this? I think you don't do, do you? Yes I do? You do this more easily.
 
-それ[Tachikoma.io](http://tachikoma.io)で出来るよ。`.tachikoma.yml`を置くだけでok。
+やってますか? やってないでしょ? やってる? もっと簡単になるよ。
+
+You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `.tachikoma.yml`.
+
+それ[Tachikoma.io][tachikoma-io]で出来るよ。`.tachikoma.yml`を置くだけでok。
+
+Interval `bundle update` and send pull request from Tachikoma.io.
+
+定期的に `bundle update`してTachikoma.ioからpull requestが来る。
+
+Leave it to Travis CI is that you can Travis CI.
+
+Travis CIのできることはTravis CIに任せる。
+
+Leave it to Tachikoma.io is that you can Tachikoma.io.
+
+Tachikoma.ioのできることはTachikoma.ioに任せる。
+
+You should do what you want to do.
+
+あなたはあなたのやりたいことをやろう。
 
 We use Travis CI in combination with Tachikoma.io!!
 
-[Tachikoma.io](http://tachikoma.io) と組み合わせて使うのは, Travis CI!!
+[Tachikoma.io][tachikoma-io] と組み合わせて使うのは, Travis CI!!
 
 ## Summary
 
 まとめ
 
-Use [Tachikoma.io](http://tachikoma.io).
+Use [Tachikoma.io][tachikoma-io].
 
-[Tachikoma.io](http://tachikoma.io) 使って。
+[Tachikoma.io][tachikoma-io] 使って。
 
 Free for public repositories.
 
@@ -280,7 +298,7 @@ We use Travis CI in combination with Tachikoma.io!!!
 
 Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
-This is service statement below:
+## This is service statement below
 
 この下のはサービスステートメントです:
 
@@ -292,7 +310,7 @@ Ultimately, choosing the latest(stable) combination periodically will keep damag
 Everyone knows this, so what's stopping them?
 
 I believe it's due to the lack of tools and integrations.
-That is where [Tachikoma.io](http://tachikoma.io) comes in as a beneficial tool.
+That is where [Tachikoma.io][tachikoma-io] comes in as a beneficial tool.
 
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
@@ -308,4 +326,9 @@ We ship to the world!
 
 世界に羽ばたくのでよろしくお願いいたします。
 
-[Tachikoma.io](http://tachikoma.io)
+[Tachikoma.io][tachikoma-io]
+
+<iframe src="../../add/index.htm?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&t=When%20was%20the%20build%20passing%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
+</iframe>
+
+[tachikoma-io]:http://tachikoma.io/?utm_source=talk&utm_medium=slide&utm_campaign=20140917-travis-ci-meetup-tachikoma-io
