@@ -11,9 +11,13 @@ css:
   window.analytics.page();
 </script>
 
-# When was the build passing? - A gap between Travis CI and GitHub
+# When was the build passing?
 
-その build passingはいつ? - Travis CI とGitHubの間のスキマ
+その build passingはいつ?
+
+A gap between Travis CI and GitHub
+
+Travis CI とGitHubの間のスキマ
 
 ![when was the build passing](./when-was-the-build-passing.gif)
 
