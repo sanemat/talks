@@ -169,6 +169,10 @@ Leave it to Travis CI is that you can Travis CI.
 
 Travis CIのできることはTravis CIに任せる。
 
+Leave it to Tachikoma.io is that you can Tachikoma.io.
+
+Tachikoma.ioのできることはTachikoma.ioに任せる。
+
 Dependency update is not you want to do! I want to do is writing application!
 
 だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
@@ -229,9 +233,29 @@ strategy: david
 strategy: none (default)
 ```
 
+Do you do this? I think you don't do, do you?
+
+やってますか? やってないでしょ?
+
 You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `.tachikoma.yml`.
 
 それ[Tachikoma.io][tachikoma-io]で出来るよ。`.tachikoma.yml`を置くだけでok。
+
+Interval `bundle update` and send pull request from Tachikoma.io.
+
+定期的に `bundle update`してTachikoma.ioからpull requestが来る。
+
+Leave it to Travis CI is that you can Travis CI.
+
+Travis CIのできることはTravis CIに任せる。
+
+Leave it to Tachikoma.io is that you can Tachikoma.io.
+
+Tachikoma.ioのできることはTachikoma.ioに任せる。
+
+You should do what you want to do.
+
+あなたはあなたのやりたいことをやろう。
 
 We use Travis CI in combination with Tachikoma.io!!
 
