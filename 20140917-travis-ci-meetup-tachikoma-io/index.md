@@ -1,3 +1,4 @@
+<!-- $ cp html5github.html5 ~/.pandoc/templates/.; ~/.cabal/bin/pandoc --template=html5github -f markdown -t html5 index.md -s -o index.html-->
 <link href="github-markdown.css" rel="stylesheet">
 <link href="page.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -8,7 +9,7 @@
   window.analytics.page();
 </script>
 
-### When was the build passing? - A gap between Travis CI and GitHub
+# When was the build passing? - A gap between Travis CI and GitHub
 
 その build passingはいつ? - Travis CI とGitHubの間のスキマ
 
@@ -48,10 +49,7 @@ sanemat
 
 Travis CI Meetup 2014-09-17
 
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&t=When%20was%20the%20build%20passing%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
-</iframe>
-
-### When was the build failing? Actually 'Now'?
+## When was the build failing? Actually 'Now'?
 
 いつ落ちたの? ホントに「今」?
 
@@ -284,7 +282,7 @@ We use Travis CI in combination with Tachikoma.io!!!
 
 Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 
-This is service statement below:
+## This is service statement below
 
 この下のはサービスステートメントです:
 

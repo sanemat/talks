@@ -8,35 +8,17 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <style type="text/css">
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
-  </style>
 </head>
 <body>
 <article class="markdown-body">
+<!-- $ cp html5github.html5 ~/.pandoc/templates/.; ~/.cabal/bin/pandoc --template=html5github -f markdown -t html5 index.md -s -o index.html-->
 <p><link href="github-markdown.css" rel="stylesheet"> <link href="page.css" rel="stylesheet"> <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'></p>
 <script type="text/javascript">
   window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
   window.analytics.load("ig7q6np7c1");
   window.analytics.page();
 </script>
-<h3 id="when-was-the-build-passing---a-gap-between-travis-ci-and-github">When was the build passing? - A gap between Travis CI and GitHub</h3>
+<h1 id="when-was-the-build-passing---a-gap-between-travis-ci-and-github">When was the build passing? - A gap between Travis CI and GitHub</h1>
 <p>その build passingはいつ? - Travis CI とGitHubの間のスキマ</p>
 <figure>
 <img src="./when-was-the-build-passing.gif" alt="when was the build passing" /><figcaption>when was the build passing</figcaption>
@@ -58,9 +40,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p><a href="http://tachikoma.io">Tachikoma.io</a></p>
 <p>sanemat</p>
 <p>Travis CI Meetup 2014-09-17</p>
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&amp;t=When%20was%20the%20build%20passing%3F" frameborder="0" frametransparency="1" scrolling="no" height="30" width="400">
-</iframe>
-<h3 id="when-was-the-build-failing-actually-now">When was the build failing? Actually 'Now'?</h3>
+<h2 id="when-was-the-build-failing-actually-now">When was the build failing? Actually 'Now'?</h2>
 <p>いつ落ちたの? ホントに「今」?</p>
 <p>When we use Travis CI and GitHub, It's the story whether any specific programming language or not.</p>
 <p>Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。</p>
@@ -192,7 +172,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 <p>We use Travis CI in combination with Tachikoma.io!!!</p>
 <p>Tachikoma.ioと組み合わせて使うのは, Travis CI!!!</p>
-<p>This is service statement below:</p>
+<h2 id="this-is-service-statement-below">This is service statement below</h2>
 <p>この下のはサービスステートメントです:</p>
 <p>Not updating the dependent libraries, does not damage the library/application immediately. When adding a new library that you want to use, occurring a security issue in a library which already use, it is extremely difficult to find the right version that functions property with it. Even if you find the right combination, it's very reactionary and it only gets harder when adding the next one. Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits. Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum. Everyone knows this, so what's stopping them?</p>
 <p>I believe it's due to the lack of tools and integrations. That is where <a href="http://tachikoma.io">Tachikoma.io</a> comes in as a beneficial tool.</p>
