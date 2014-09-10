@@ -29,6 +29,10 @@ These things give us a lot of trouble often.
 
 こういうのがだいたい面倒くさいことになる。
 
+I want to solve this! is this talk's theme, and my motivation to coming here.
+
+このめんどくささをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
+
 Something awful has happened to you?
 
 面倒くさいことになったことある人?
@@ -36,12 +40,6 @@ Something awful has happened to you?
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
 この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
-
-Travis CI is awesome, GitHub is awesome, but there is a gap between them, I make awesome web application filling this.
-
-Travis CIは神、GitHubも神、でも間にはスキマがあって、それを埋める 神webアプリを作っています。
-
-[Tachikoma.io][tachikoma-io]
 
 sanemat
 
