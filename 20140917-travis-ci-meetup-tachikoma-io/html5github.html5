@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html$if(lang)$ lang="$lang$"$endif$>
+<html$if(lang)$ lang="$lang$"$endif$ prefix="og: http://ogp.me/ns#">
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
@@ -9,6 +9,13 @@ $for(author-meta)$
 $endfor$
 $if(date-meta)$
   <meta name="dcterms.date" content="$date-meta$">
+$endif$
+$if(description)$
+  <meta name="description" content="$description$" />
+$endif$
+  <meta property="og:type" content="article" />
+$if(ogimage)$
+  <meta property="og:image" content="$ogimage$" />
 $endif$
   <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
   <!--[if lt IE 9]>
