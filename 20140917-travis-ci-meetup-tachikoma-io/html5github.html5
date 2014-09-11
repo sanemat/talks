@@ -23,6 +23,9 @@ $endfor$
 $if(math)$
   $math$
 $endif$
+$if(canonical)$
+  <link rel="canonical" href="$canonical$">
+$endif$
 $for(header-includes)$
   $header-includes$
 $endfor$
