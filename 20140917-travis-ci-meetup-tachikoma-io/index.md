@@ -187,7 +187,7 @@ Tachikoma.io と組み合わせて使うのは, Travis CI!
 
 This is not bad app?
 
-なかなかいいでしょう?
+なかなかいいアプリでしょう?
 
 (Maybe 4minutes?)
 
@@ -219,11 +219,11 @@ Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. と依存
 
 Dependency libraries update hell.
 
-依存関係update hellだ。
+これらは依存関係update hellだ。
 
-This is obvious that only way to survive is updating them frequently.
+This is obvious that only way to survive is updating them to latest stable frequently.
 
-これはもうこまめにアップデートしていく以外生き延びるすべはないのは確定的に明らか。
+これはもうこまめに定期的に最新安定版にアップデートしていく以外生き延びるすべはないのは確定的に明らか。
 
 Interval `bundle update`(ruby)/ `carton update`(perl) / `david update`(node.js)
 
