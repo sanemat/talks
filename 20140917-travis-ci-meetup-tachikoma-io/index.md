@@ -173,13 +173,9 @@ When start failing, we can see from Travis CI and GitHub visually.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
-We can see diff between success build and fail one, at GitHub compare view.
-
-落ちたdiffをGitHub上でcompare viewで見ても良い。
-
 We can see the build log at Travis CI.
 
-Travis CIでビルドログを見ても良い。
+Travis CIでビルドログを見るとわかる。
 
 Leave it to Travis CI is that you can Travis CI.
 
@@ -280,6 +276,10 @@ You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `
 Interval `bundle update` and send pull request from Tachikoma.io.
 
 定期的に `bundle update`してTachikoma.ioからpull requestが来る。
+
+This case, not only Travic CI build log but also GitHub compare view.
+
+この場合、Travis CI のbuildログだけでなく、GitHubのcompare viewも頼りになる。
 
 Leave it to Travis CI is that you can Travis CI.
 
