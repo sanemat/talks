@@ -21,25 +21,33 @@ ogimage: http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/i
 
 ![when was the build passing](./when-was-the-build-passing.gif)
 
+If you use GitHub, you often see Travis CI's badge on README.
+
+GitHubを使っていると、READMEにTravis CIのバッジが張ってあるのをよく見る。
+
 Nice badge: build passing (Travis CI)
 
-build passing(Travis CI)のナイスバッジ
+build passing(Travis CI), ナイスバッジですね。
+
+However, when the build passing? is not clear until you see other date parts.
+
+ただ、いつのbuild passingなのかは、他のところを見ないとわからない。
 
 authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
 __a year ago!!!__
 
-These things give us a lot of trouble often.
+I think if the build passed a year ago, then the one will pass now, doesn't it?
 
-こういうのがだいたい面倒くさいことになる。
+一年前build passingだったら今もbuild passingじゃないの?
+
+It is not assured!
+
+そうとは限らない!
 
 I want to solve this! is this talk's theme, and my motivation to coming here.
 
-このめんどくささをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
-
-Something awful has happened to you?
-
-面倒くさいことになったことある人?
+こういうのをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
@@ -139,6 +147,18 @@ If I'm at first failing build, then I can find this easily, and fix easily too.
 
 こういうの、うんざりだ! よくある!
 
+This talk so far is when you use the libraries which other people made.
+
+ここまでの話は他人のライブラリを使う時の話。
+
+It is the same thing when you provide the library/application.
+
+おなじことは自分が、ライブラリの提供側・アプリの提供側の時も言える。
+
+First of all, I will change the provider side!
+
+まずは、提供側から何とかするぞ!
+
 I made [Tachikoma.io][tachikoma-io], this is awesome application.
 
 神webアプリつくった [Tachikoma.io][tachikoma-io]
@@ -161,13 +181,13 @@ When start failing, we can see from Travis CI and GitHub visually.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
-We can see diff between success build and fail one, at GitHub compare view.
+The best thing is relax version dependencies. semver...
 
-落ちたdiffをGitHub上でcompare viewで見ても良い。
+ゆるめのバージョン指定が一番良い。semver...
 
 We can see the build log at Travis CI.
 
-Travis CIでビルドログを見ても良い。
+Travis CIでビルドログを見るとわかる。
 
 Leave it to Travis CI is that you can Travis CI.
 
@@ -177,7 +197,11 @@ Leave it to Tachikoma.io is that you can Tachikoma.io.
 
 Tachikoma.ioのできることはTachikoma.ioに任せる。
 
-Dependency update is not you want to do! I want to do is writing application!
+You should do what you want to do.
+
+あなたはあなたのやりたいことをやろう。
+
+Dependency update is not you want to do! You want to do is writing application!
 
 だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
 
@@ -188,6 +212,22 @@ Tachikoma.io と組み合わせて使うのは, Travis CI!
 This is not bad app?
 
 なかなかいいアプリでしょう?
+
+One more time.
+
+もう一回。
+
+What Tachikoma.io does.
+
+Tachikoma.ioがしてくれること。
+
+This sends interval pull request to repository's master branch with nothing.
+
+リポジトリのmaster branchに対して、何もせずに、定期的に、Pull Requestを送る。
+
+Then you can find diff from the result of pass/fail at Travis CI.
+
+すると、Travis CIのpass/failで差分に気付く。
 
 (Maybe 4minutes?)
 
@@ -204,6 +244,10 @@ Yes!
 ## One More Thing
 
 おまけ
+
+I said 'This send interval pull request with nothing'. 'nothing'.
+
+何もせずに、定期的に、Pull Requestを送る、と言いました。
 
 Specific languages
 
@@ -248,6 +292,10 @@ You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `
 Interval `bundle update` and send pull request from Tachikoma.io.
 
 定期的に `bundle update`してTachikoma.ioからpull requestが来る。
+
+This case, not only Travic CI build log but also GitHub compare view.
+
+この場合、Travis CI のbuildログだけでなく、GitHubのcompare viewも頼りになる。
 
 Leave it to Travis CI is that you can Travis CI.
 
