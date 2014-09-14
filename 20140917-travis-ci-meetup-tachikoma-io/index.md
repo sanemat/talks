@@ -193,7 +193,11 @@ Leave it to Tachikoma.io is that you can Tachikoma.io.
 
 Tachikoma.ioのできることはTachikoma.ioに任せる。
 
-Dependency update is not you want to do! I want to do is writing application!
+You should do what you want to do.
+
+あなたはあなたのやりたいことをやろう。
+
+Dependency update is not you want to do! You want to do is writing application!
 
 だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
 
