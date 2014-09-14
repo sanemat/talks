@@ -21,9 +21,17 @@ ogimage: http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/i
 
 ![when was the build passing](./when-was-the-build-passing.gif)
 
+If you use GitHub, you often see Travis CI's badge on README.
+
+GitHubを使っていると、READMEにTravis CIのバッジが張ってあるのをよく見る。
+
 Nice badge: build passing (Travis CI)
 
-build passing(Travis CI)のナイスバッジ
+build passing(Travis CI), ナイスバッジですね。
+
+However, when the build passing? is not clear until you see other date parts.
+
+ただ、いつのbuild passingなのかは、他のところを見ないとわからない。
 
 authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
