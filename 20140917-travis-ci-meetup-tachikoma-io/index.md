@@ -29,17 +29,17 @@ authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
 __a year ago!!!__
 
-These things give us a lot of trouble often.
+I think if the build passed a year ago, then the one will pass now, doesn't it?
 
-こういうのがだいたい面倒くさいことになる。
+一年前build passingだったら今もbuild passingじゃないの?
+
+It is not assured!
+
+そうとは限らない!
 
 I want to solve this! is this talk's theme, and my motivation to coming here.
 
-このめんどくささをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
-
-Something awful has happened to you?
-
-面倒くさいことになったことある人?
+こういうのをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
 
 This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
@@ -139,6 +139,18 @@ If I'm at first failing build, then I can find this easily, and fix easily too.
 
 こういうの、うんざりだ! よくある!
 
+This talk so far is when you use the libraries which other people made.
+
+ここまでの話は他人のライブラリを使う時の話。
+
+It is the same thing when you provide the library/application.
+
+おなじことは自分が、ライブラリの提供側・アプリの提供側の時も言える。
+
+First of all, I will change the provider side!
+
+まずは、提供側から何とかするぞ!
+
 I made [Tachikoma.io][tachikoma-io], this is awesome application.
 
 神webアプリつくった [Tachikoma.io][tachikoma-io]
@@ -189,6 +201,22 @@ This is not bad app?
 
 なかなかいいアプリでしょう?
 
+One more time.
+
+もう一回。
+
+What Tachikoma.io does.
+
+Tachikoma.ioがしてくれること。
+
+This sends interval pull request to repository's master branch with nothing.
+
+リポジトリのmaster branchに対して、何もせずに、定期的に、Pull Requestを送る。
+
+Then you can find diff from the result of pass/fail at Travis CI.
+
+すると、Travis CIのpass/failで差分に気付く。
+
 (Maybe 4minutes?)
 
 (4分ぐらい?)
@@ -204,6 +232,10 @@ Yes!
 ## One More Thing
 
 おまけ
+
+I said 'This send interval pull request with nothing'. 'nothing'.
+
+何もせずに、定期的に、Pull Requestを送る、と言いました。
 
 Specific languages
 
