@@ -181,6 +181,10 @@ When start failing, we can see from Travis CI and GitHub visually.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
+The best thing is relax version dependencies. semver...
+
+ゆるめのバージョン指定が一番良い。semver...
+
 We can see the build log at Travis CI.
 
 Travis CIでビルドログを見るとわかる。
