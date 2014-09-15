@@ -53,7 +53,7 @@ This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
 
 この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
 
-sanemat
+sanemat - sanemat {AT} tachikoma.io
 
 Travis CI Meetup 2014-09-17
 
@@ -330,8 +330,9 @@ Subscription for private repositories.(I plan)
 private repos版は月額有料にしようかと作ってます 価格は予定
 
 - for private $9/mo
-- for organization - private $29/mo
-- for enterprise sanemat_AT_tachikoma.io
+- for private organization $29/mo
+- for enterprise
+- sanemat {AT} tachikoma.io
 
 More ideas
 
@@ -379,6 +380,8 @@ We ship to the world!
 世界に羽ばたくのでよろしくお願いいたします。
 
 [Tachikoma.io][tachikoma-io]
+
+sanemat {AT} tachikoma.io
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20140917-travis-ci-meetup-tachikoma-io%2F&t=When%20was%20the%20build%20passing%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
 </iframe>
