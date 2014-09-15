@@ -330,7 +330,7 @@ Subscription for private repositories.
 private repos版は月額有料です
 
 - [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
-- [for private organization $29/mo ~~$49~~](https://gumroad.com/l/oDPx/travisci)
+- [for private organization $49/mo](https://gumroad.com/l/oDPx)
 - for enterprise
     - sanemat {AT} tachikoma.io
 
