@@ -325,14 +325,14 @@ Free for public repositories.
 
 public repos版はFree!
 
-Subscription for private repositories.(I plan)
+Subscription for private repositories.
 
-private repos版は月額有料にしようかと作ってます 価格は予定
+private repos版は月額有料です
 
-- for private $9/mo
-- for private organization $29/mo
+- [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
+- [for private organization $29/mo ~~$49~~](https://gumroad.com/l/oDPx/travisci)
 - for enterprise
-- sanemat {AT} tachikoma.io
+    - sanemat {AT} tachikoma.io
 
 More ideas
 
