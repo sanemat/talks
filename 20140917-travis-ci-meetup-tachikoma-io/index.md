@@ -156,11 +156,11 @@ It is the same thing when you provide the library/application.
 
 おなじことは自分が、ライブラリの提供側・アプリの提供側の時も言える。
 
-First of all, I will change the provider side!
+First of all, I change the provider side!
 
 まずは、提供側から何とかするぞ!
 
-I made [Tachikoma.io][tachikoma-io], this is awesome application.
+I made [Tachikoma.io][tachikoma-io], this is an awesome application.
 
 神webアプリつくった [Tachikoma.io][tachikoma-io]
 
@@ -170,7 +170,7 @@ Interval Pull Request
 
 定期的な Pull Request
 
-What is pros?
+What are the pros doing that?
 
 何がいいか?
 
@@ -178,7 +178,7 @@ Differences between rebuild via Travis CI API
 
 Travis CIのAPIで、rebuildするのとの違い
 
-When start failing, we can see from Travis CI and GitHub visually.
+When start fails, we can visually see logs from Travis CI and GitHub.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
@@ -198,11 +198,11 @@ Leave it to Tachikoma.io is that you can Tachikoma.io.
 
 Tachikoma.ioのできることはTachikoma.ioに任せる。
 
-You should do what you want to do.
+You should do what you want to precisely do.
 
 あなたはあなたのやりたいことをやろう。
 
-Dependency update is not you want to do! You want to do is writing application!
+Dependency update is not what you want to do! What you want to do is writing application!
 
 だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
 
@@ -210,7 +210,7 @@ We use Travis CI in combination with Tachikoma.io!
 
 Tachikoma.io と組み合わせて使うのは, Travis CI!
 
-This is not bad app?
+This is not a bad app?
 
 なかなかいいアプリでしょう?
 
@@ -222,7 +222,7 @@ What Tachikoma.io does.
 
 Tachikoma.ioがしてくれること。
 
-This sends interval pull request to repository's master branch with nothing.
+This sends interval pull request to the repository's master branch with nothing.
 
 リポジトリのmaster branchに対して、何もせずに、定期的に、Pull Requestを送る。
 
@@ -242,31 +242,31 @@ Yes!
 
 はい!
 
-## One More Thing
+## One more thing...
 
 おまけ
 
-I said 'This send interval pull request with nothing'. 'nothing'.
+I said 'This send interval pull request with nothing'. Nothing!
 
 何もせずに、定期的に、Pull Requestを送る、と言いました。
 
-Specific languages
+In specific language:
 
 各言語編
 
-ruby: bundler, perl: carton, node.js: npm, each langualge has own package manager library.
+ruby: bundler, perl: carton, node.js: npm, each langualge has its own package manager library.
 
 ruby: bundler, perl: carton, node.js: npm と言語ごとにパッケージマネージャーがある。
 
-Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. There are meta file for control dependencies.
+Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. There are meta files for control dependencies.
 
 Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
 
-Dependency libraries update hell.
+This is Dependency Hell.
 
 これらは依存関係update hellだ。
 
-This is obvious that only way to survive is updating them to latest stable frequently.
+This is obvious that the only way to survive is updating them to the latest stable frequently.
 
 これはもうこまめに定期的に最新安定版にアップデートしていく以外生き延びるすべはないのは確定的に明らか。
 
@@ -282,19 +282,19 @@ strategy: david
 strategy: none (default)
 ```
 
-Do you do this? I think you don't do, do you? Yes I do? You do this more easily.
+Do you do this? I think you don't do, do you? "Yes I do", you says, you can do this more easily.
 
 やってますか? やってないでしょ? やってる? もっと簡単になるよ。
 
-You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `.tachikoma.yml`.
+You can do it with [Tachikoma.io][tachikoma-io]. The only thing that you should do is putting `.tachikoma.yml`.
 
 それ[Tachikoma.io][tachikoma-io]で出来るよ。`.tachikoma.yml`を置くだけでok。
 
-Interval `bundle update` and send pull request from Tachikoma.io.
+Interval `bundle update` and send a pull request from Tachikoma.io.
 
 定期的に `bundle update`してTachikoma.ioからpull requestが来る。
 
-This case, not only Travic CI build log but also GitHub compare view.
+In this case, not only Travic CI builds log, but also the GitHub compare view.
 
 この場合、Travis CI のbuildログだけでなく、GitHubのcompare viewも頼りになる。
 
@@ -333,7 +333,7 @@ private repos版は月額有料です
 - [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
 - [for private organization $49/mo](https://gumroad.com/l/oDPx)
 - for enterprise
-    - sanemat {AT} tachikoma.io
+    - email: sanemat {AT} tachikoma.io
 
 More ideas
 
