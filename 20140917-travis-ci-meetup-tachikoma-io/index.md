@@ -63,27 +63,28 @@ Travis CI Meetup 2014-09-17
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
+<!-- 伝わらないらしい -->
 When we use Travis CI and GitHub, It's the story whether any specific programming language or not.
 
 Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。
 
-I found the failing test, which is library A's one that I want to use.
+I found out the failing test, which is library A's one that I want to use.
 
 使いたいライブラリAのテストが落ちてるぞ。
 
-I watched the result in Travis CI, I understood this.
+I watched the result in Travis CI, and then I understood this.
 
 Travis CI見て、どこが落ちてるかわかったぞ。
 
-I searched the problem. I understood that API requires 'ac' params, this is the problem.
+I searched this. After that I found out that API requires 'ac' params, this is the problem.
 
 ちょっと調べて、これがAPIの必須パラメーターが足りなくなっていることが原因だとわかった。
 
-I fixed failing test!
+Thus, I fixed failing test!
 
 テスト落ちてるの直したぞ。
 
-I sent a pull request, but...
+And finally sent a pull request, but...
 
 プルリクエストを送って、あれ?
 
@@ -95,11 +96,11 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is about library A's component library dependencies.
+This is about the library A's component library dependencies.
 
 これはライブラリAの依存するライブラリの話。
 
-We don't fix the dependency version, this is one of the causes.
+We didn't fix the dependency version, this is one of the causes.
 
 依存バージョンを固定していなかったことが原因の一つではある。
 
@@ -111,7 +112,7 @@ This library A depends on another library B, and A hits B's bug.
 
 このライブラリAが依存するライブラリBのバグを踏んでいた。
 
-We should update B's version.
+Hence, We should update B's version.
 
 なので、依存するライブラリBのバージョンはどうしても上げる必要があった。
 
@@ -131,15 +132,15 @@ node.jsのバージョンを上げると、別の依存ライブラリCが壊れ
 
 以下略
 
-The build failing is not __now__ !
+Great news, The build failing is not happening __now__ !
 
 壊れたのは __今__ じゃない
 
-Too many tests fail on __now__ pull request. It is difficult to find where should I fix.
+Too many tests fail on __now__ pull request. It is difficult to find out where I should fix.
 
 __今__ のpull requestではテストが盛大に落ちる、場所の特定も面倒だ。
 
-If I'm at first failing build, then I can find this easily, and fix easily too.
+If I'm at my first failing build, then I can find out this easily, and fix it easily too.
 
 もしこれが、はじめのfailの段階なら、場所を特定するのも簡単。直すのも簡単だった。
 
