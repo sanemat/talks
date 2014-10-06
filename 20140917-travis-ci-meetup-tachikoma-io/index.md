@@ -29,15 +29,15 @@ Nice badge: build passing (Travis CI)
 
 build passing(Travis CI), ナイスバッジですね。
 
-However, when the build passing? is not clear until you see other date parts.
+However, when the build passing, it is not clear until you see other date parts.
 
 ただ、いつのbuild passingなのかは、他のところを見ないとわからない。
 
 authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
-__a year ago!!!__
+__"a year ago!!!"__
 
-I think if the build passed a year ago, then the one will pass now, doesn't it?
+I think if the build passed a year ago, then it will pass now, won't it?
 
 一年前build passingだったら今もbuild passingじゃないの?
 
@@ -45,11 +45,11 @@ It is not assured!
 
 そうとは限らない!
 
-I want to solve this! is this talk's theme, and my motivation to coming here.
+I want to solve this! This is the theme of my talk and my motivation to come here.
 
 こういうのをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
 
-This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
+This paper is here http://bit.ly/travis-ci-meetup-tachikoma-io
 
 この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
 
