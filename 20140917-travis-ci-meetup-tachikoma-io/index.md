@@ -63,8 +63,7 @@ Travis CI Meetup 2014-09-17
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
-<!-- 伝わらないらしい -->
-When we use Travis CI and GitHub, It's the story whether any specific programming language or not.
+When I use Travis CI and GitHub, I meet this kind of story usually. No matter language I use.
 
 Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。
 
