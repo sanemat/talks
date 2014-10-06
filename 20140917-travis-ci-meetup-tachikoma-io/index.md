@@ -29,15 +29,15 @@ Nice badge: build passing (Travis CI)
 
 build passing(Travis CI), ナイスバッジですね。
 
-However, when the build passing? is not clear until you see other date parts.
+However, when the build passing, it is not clear until you see other date parts.
 
 ただ、いつのbuild passingなのかは、他のところを見ないとわからない。
 
 authored on Jul 5, 2013 (captured on Sep 9, 2014)
 
-__a year ago!!!__
+__"a year ago"!!!__
 
-I think if the build passed a year ago, then the one will pass now, doesn't it?
+I think if the build passed a year ago, then it will pass now, won't it?
 
 一年前build passingだったら今もbuild passingじゃないの?
 
@@ -45,11 +45,11 @@ It is not assured!
 
 そうとは限らない!
 
-I want to solve this! is this talk's theme, and my motivation to coming here.
+I want to solve this! This is the theme of my talk and my motivation to come here.
 
 こういうのをどうにかするぞ! が話したいことで、話しに来たモチベーションです。
 
-This paper is http://bit.ly/travis-ci-meetup-tachikoma-io
+This paper is here http://bit.ly/travis-ci-meetup-tachikoma-io
 
 この資料は http://bit.ly/travis-ci-meetup-tachikoma-io です。
 
@@ -63,27 +63,28 @@ Travis CI Meetup 2014-09-17
 
 ![when was the build failing](./when-was-the-build-failing.gif)
 
+<!-- 伝わらないらしい -->
 When we use Travis CI and GitHub, It's the story whether any specific programming language or not.
 
 Travis CIとGitHubを使っていると、プログラミング言語問わずよくある話だと思う。
 
-I found the failing test, which is library A's one that I want to use.
+I found out the failing test, which is library A's one that I want to use.
 
 使いたいライブラリAのテストが落ちてるぞ。
 
-I watched the result in Travis CI, I understood this.
+I watched the result in Travis CI, and then I understood this.
 
 Travis CI見て、どこが落ちてるかわかったぞ。
 
-I searched the problem. I understood that API requires 'ac' params, this is the problem.
+I searched this. After that I found out that API requires 'ac' params, this is the problem.
 
 ちょっと調べて、これがAPIの必須パラメーターが足りなくなっていることが原因だとわかった。
 
-I fixed failing test!
+Thus, I fixed failing test!
 
 テスト落ちてるの直したぞ。
 
-I sent a pull request, but...
+And finally sent a pull request, but...
 
 プルリクエストを送って、あれ?
 
@@ -95,11 +96,11 @@ WOOOOOO! Fail, Fail, Fail and Fail!
 
 ![fail pass](./fail-pass.gif)
 
-This is about library A's component library dependencies.
+This is about the library A's component library dependencies.
 
 これはライブラリAの依存するライブラリの話。
 
-We don't fix the dependency version, this is one of the causes.
+We didn't fix the dependency version, this is one of the causes.
 
 依存バージョンを固定していなかったことが原因の一つではある。
 
@@ -111,7 +112,7 @@ This library A depends on another library B, and A hits B's bug.
 
 このライブラリAが依存するライブラリBのバグを踏んでいた。
 
-We should update B's version.
+Hence, We should update B's version.
 
 なので、依存するライブラリBのバージョンはどうしても上げる必要があった。
 
@@ -131,15 +132,15 @@ node.jsのバージョンを上げると、別の依存ライブラリCが壊れ
 
 以下略
 
-The build failing is not __now__ !
+Great news, The build failing is not happening __now__ !
 
 壊れたのは __今__ じゃない
 
-Too many tests fail on __now__ pull request. It is difficult to find where should I fix.
+Too many tests fail on __now__ pull request. It is difficult to find out where I should fix.
 
 __今__ のpull requestではテストが盛大に落ちる、場所の特定も面倒だ。
 
-If I'm at first failing build, then I can find this easily, and fix easily too.
+If I'm at my first failing build, then I can find out this easily, and fix it easily too.
 
 もしこれが、はじめのfailの段階なら、場所を特定するのも簡単。直すのも簡単だった。
 
@@ -155,11 +156,11 @@ It is the same thing when you provide the library/application.
 
 おなじことは自分が、ライブラリの提供側・アプリの提供側の時も言える。
 
-First of all, I will change the provider side!
+First of all, I change the provider side!
 
 まずは、提供側から何とかするぞ!
 
-I made [Tachikoma.io][tachikoma-io], this is awesome application.
+I made [Tachikoma.io][tachikoma-io], this is an awesome application.
 
 神webアプリつくった [Tachikoma.io][tachikoma-io]
 
@@ -169,7 +170,7 @@ Interval Pull Request
 
 定期的な Pull Request
 
-What is pros?
+What are the pros doing that?
 
 何がいいか?
 
@@ -177,7 +178,7 @@ Differences between rebuild via Travis CI API
 
 Travis CIのAPIで、rebuildするのとの違い
 
-When start failing, we can see from Travis CI and GitHub visually.
+When start fails, we can visually see logs from Travis CI and GitHub.
 
 いつから落ちたか視覚的にTravis CIとGitHubでわかる。
 
@@ -197,11 +198,11 @@ Leave it to Tachikoma.io is that you can Tachikoma.io.
 
 Tachikoma.ioのできることはTachikoma.ioに任せる。
 
-You should do what you want to do.
+You should do what you want to precisely do.
 
 あなたはあなたのやりたいことをやろう。
 
-Dependency update is not you want to do! You want to do is writing application!
+Dependency update is not what you want to do! What you want to do is writing application!
 
 だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
 
@@ -209,7 +210,7 @@ We use Travis CI in combination with Tachikoma.io!
 
 Tachikoma.io と組み合わせて使うのは, Travis CI!
 
-This is not bad app?
+This is not a bad app?
 
 なかなかいいアプリでしょう?
 
@@ -221,7 +222,7 @@ What Tachikoma.io does.
 
 Tachikoma.ioがしてくれること。
 
-This sends interval pull request to repository's master branch with nothing.
+This sends interval pull request to the repository's master branch with nothing.
 
 リポジトリのmaster branchに対して、何もせずに、定期的に、Pull Requestを送る。
 
@@ -241,31 +242,31 @@ Yes!
 
 はい!
 
-## One More Thing
+## One more thing...
 
 おまけ
 
-I said 'This send interval pull request with nothing'. 'nothing'.
+I said 'This send interval pull request with nothing'. Nothing!
 
 何もせずに、定期的に、Pull Requestを送る、と言いました。
 
-Specific languages
+In specific language:
 
 各言語編
 
-ruby: bundler, perl: carton, node.js: npm, each langualge has own package manager library.
+ruby: bundler, perl: carton, node.js: npm, each langualge has its own package manager library.
 
 ruby: bundler, perl: carton, node.js: npm と言語ごとにパッケージマネージャーがある。
 
-Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. There are meta file for control dependencies.
+Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. There are meta files for control dependencies.
 
 Gemfile, Gemfile.lock, cpanfile, cpanfile.snapshot, package.json, etc. と依存関係コントロールするためのメタファイル群がある。
 
-Dependency libraries update hell.
+This is Dependency Hell.
 
 これらは依存関係update hellだ。
 
-This is obvious that only way to survive is updating them to latest stable frequently.
+This is obvious that the only way to survive is updating them to the latest stable frequently.
 
 これはもうこまめに定期的に最新安定版にアップデートしていく以外生き延びるすべはないのは確定的に明らか。
 
@@ -281,19 +282,19 @@ strategy: david
 strategy: none (default)
 ```
 
-Do you do this? I think you don't do, do you? Yes I do? You do this more easily.
+Do you do this? I think you don't do, do you? "Yes I do", you says, you can do this more easily.
 
 やってますか? やってないでしょ? やってる? もっと簡単になるよ。
 
-You can do it with [Tachikoma.io][tachikoma-io]. Only you should do is putting `.tachikoma.yml`.
+You can do it with [Tachikoma.io][tachikoma-io]. The only thing that you should do is putting `.tachikoma.yml`.
 
 それ[Tachikoma.io][tachikoma-io]で出来るよ。`.tachikoma.yml`を置くだけでok。
 
-Interval `bundle update` and send pull request from Tachikoma.io.
+Interval `bundle update` and send a pull request from Tachikoma.io.
 
 定期的に `bundle update`してTachikoma.ioからpull requestが来る。
 
-This case, not only Travic CI build log but also GitHub compare view.
+In this case, not only Travic CI builds log, but also the GitHub compare view.
 
 この場合、Travis CI のbuildログだけでなく、GitHubのcompare viewも頼りになる。
 
@@ -332,7 +333,7 @@ private repos版は月額有料です
 - [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
 - [for private organization $49/mo](https://gumroad.com/l/oDPx)
 - for enterprise
-    - sanemat {AT} tachikoma.io
+    - email: sanemat {AT} tachikoma.io
 
 More ideas
 
@@ -356,14 +357,14 @@ Tachikoma.ioと組み合わせて使うのは, Travis CI!!!
 この下のはサービスステートメントです:
 
 Not updating the dependent libraries, does not damage the library/application immediately.
-When adding a new library that you want to use, occurring a security issue in a library which already use, it is extremely difficult to find the right version that functions property with it.
-Even if you find the right combination, it's very reactionary and it only gets harder when adding the next one.
+When adding a new library that you want to use, occurring a security issue in a library which is already in use, it is extremely difficult to find the right version that functions properly with it.
+Even if you find the right combination, it's very reactionary and it even gets harder when adding the next one.
 Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits.
 Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum.
 Everyone knows this, so what's stopping them?
 
 I believe it's due to the lack of tools and integrations.
-That is where [Tachikoma.io][tachikoma-io] comes in as a beneficial tool.
+That is where [Tachikoma.io][tachikoma-io] comes in.
 
 ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。
 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。
