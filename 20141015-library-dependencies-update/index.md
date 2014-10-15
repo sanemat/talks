@@ -19,6 +19,14 @@ ogimage: http://sanemat.github.io/talks/20141015-library-dependencies-update/int
 
 そのjQueryは最新版?
 
+そのまえに
+
+POODLE, ShellShock, HeartBleed, 対応した?
+
+セキュリティフィックスはいつでも出てくる。
+
+jQuery
+
 v1.11.1/v2.1.1(2014-10-15 19:00現在)
 
 `bower install jquery`
