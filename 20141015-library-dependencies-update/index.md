@@ -15,7 +15,9 @@ ogimage: http://sanemat.github.io/talks/20141015-library-dependencies-update/int
   window.analytics.page();
 </script>
 
-# そのjQueryは最新版?
+# Do you use the latest jQuery?
+
+そのjQueryは最新版?
 
 
 
