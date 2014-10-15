@@ -148,7 +148,8 @@ sanemat {AT} tachikoma.io
 
 ## The progress
 
-はてなブックマーク効果で130 accounts。
+9/17のtravis ci meetupのLTで公にお披露目。
+9/18-9/20のはてなブックマーク効果、130 accounts。
 hacker newsで+10, プラスアルファで現在2014-10-15 19:23 145。
 private reposの有料アカウント 0。
 pull requestから人が集まる妄想してたけど、今のところそんなことは起きてない。
@@ -163,7 +164,8 @@ pull requestから人が集まる妄想してたけど、今のところそん�
 `bundle update`で日々バージョンを上げていくことが大事だとわかっている企業/個人は、もう内部でその仕組を持っている(?)
 必要だと思った人は内製してそう。e.g. Quipper などもとのtachikoma gem ユーザー。
 Rails界隈以外はそんなにアップデートで死んでない。
-この仕組に載せるまで、まず最新に追いつくところ、が職人芸なので、そこを何とかしたら良い??
+この仕組に載せるまで、まず最新に追いつくところ、が職人芸なので、そこを何とかしたら良い?? しなければいけない?
+定期的にクリーンな環境から何かを提供するaggregatorになる? travis-ci, circle ciのアドオン提供など?
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20141015-library-dependencies-update%2F&t=Do%20you%20use%20the%20latest%20jQuery%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
 </iframe>
