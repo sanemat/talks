@@ -37,6 +37,8 @@ e.g. jQuery v1.4
 
 あとで: 例に出したわりに、bowerはbower.lockがv2で入るので、それまではbower対応しない予定。
 
+この資料は http://bit.ly/1w29hH7 です。
+
 ## When was the build failing? Actually 'Now'?
 
 いつ落ちたの? ホントに「今」?
