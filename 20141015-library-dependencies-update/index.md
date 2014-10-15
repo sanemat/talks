@@ -115,9 +115,18 @@ strategy: none (default)
 
 定期的に `bundle update`してTachikoma.ioからpull requestが来る。
 この場合、Travis CI のbuildログだけでなく、GitHubのcompare viewも頼りになる。
-Travis CIのできることはTravis CIに任せる。
 Tachikoma.ioのできることはTachikoma.ioに任せる。
 あなたはあなたのやりたいことをやろう。
+
+## Summary
+
+public repos版はFree!
+private repos版は月額有料です
+
+- [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
+- [for private organization $49/mo](https://gumroad.com/l/oDPx)
+- for enterprise
+    - email: sanemat {AT} tachikoma.io
 
 ## This is service statement below
 
@@ -136,6 +145,25 @@ Tachikoma.ioのできることはTachikoma.ioに任せる。
 [Tachikoma.io][tachikoma-io]
 
 sanemat {AT} tachikoma.io
+
+## The progress
+
+はてなブックマーク効果で130 accounts。
+hacker newsで+10, プラスアルファで現在2014-10-15 19:23 145。
+private reposの有料アカウント 0。
+pull requestから人が集まる妄想してたけど、今のところそんなことは起きてない。
+1件だけ。しかも未対応のpython… [Exec tachikoma update 20140918181203 by tachikomapocket Pull Request #172 kawazrepos/Kawaz3rd](https://github.com/kawazrepos/Kawaz3rd/pull/172)
+甘くないなー
+影響力のある人/プロダクトに使ってもらう(?) ちょっと博打的発想。
+課金->使用ではなく、1mo無料->課金 にした方がいいかも。(小手先)
+別のマネタイズ? テストやライブラリの統計・解析・分析など
+
+仮説
+
+`bundle update`で日々バージョンを上げていくことが大事だとわかっている企業/個人は、もう内部でその仕組を持っている(?)
+必要だと思った人は内製してそう。e.g. Quipper などもとのtachikoma gem ユーザー。
+Rails界隈以外はそんなにアップデートで死んでない。
+この仕組に載せるまで、まず最新に追いつくところ、が職人芸なので、そこを何とかしたら良い??
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20141015-library-dependencies-update%2F&t=Do%20you%20use%20the%20latest%20jQuery%3F" frameborder=0 frametransparency=1 scrolling=no height=30 width=400>
 </iframe>
