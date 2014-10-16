@@ -153,6 +153,8 @@ sanemat {AT} tachikoma.io
 9/17のtravis ci meetupのLTで公にお披露目。
 9/18-9/20のはてなブックマーク効果、130 accounts。
 hacker newsで+10, プラスアルファで現在2014-10-15 19:23 145。
+1コでもリポジトリをactiveにしてくれた人 61。
+ぼくの意図通りに使えてるようにみえる人 20。
 private reposの有料アカウント 0。
 pull requestから人が集まる妄想してたけど、今のところそんなことは起きてない。
 1件だけ。しかも未対応のpython… [Exec tachikoma update 20140918181203 by tachikomapocket Pull Request #172 kawazrepos/Kawaz3rd](https://github.com/kawazrepos/Kawaz3rd/pull/172)
@@ -160,6 +162,8 @@ pull requestから人が集まる妄想してたけど、今のところそん�
 影響力のある人/プロダクトに使ってもらう(?) ちょっと博打的発想。
 課金->使用ではなく、1mo無料->課金 にした方がいいかも。(小手先)
 別のマネタイズ? テストやライブラリの統計・解析・分析など
+private reposの有料アカウントがそれなりに集まっても、人一人雇うのも厳しい。ゴールは?
+GitHub, Atlassian, Travis CI, Circle CI, ThoughtBot, あたりの1戦略に収まる程度? うーん
 
 仮説
 
