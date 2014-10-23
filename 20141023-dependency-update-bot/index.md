@@ -40,6 +40,8 @@ PythonやPerlの人たちのところに聞きに行ったら、それほど下�
 dependency hellになってないので、そこまで切実じゃない。
 dependency hellにならないように依存ライブラリを厳選する、たとえばdjangoを使わない、など聞いた。
 
+この資料: http://bit.ly/ZILpwC
+
 ## The progress
 
 9/17のtravis ci meetupのLTで公にお披露目。
