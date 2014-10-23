@@ -48,6 +48,7 @@ hacker newsで+10, プラスアルファで現在2014-10-23 19:23 148。
 1コでもリポジトリをactiveにしてくれた人 61。
 ぼくの意図通りに使えてるようにみえる人 20。
 private reposの有料アカウント 0。
+2014-09-14 ~ 2014-10-22 で2483ユーザーなので、ランディングページもうちょっとわかりやすくしたらでだいぶ取りこぼしたかな。
 pull requestから人が集まる妄想してたけど、今のところそんなことは起きてない。
 1件だけ。しかも未対応のpython… [Exec tachikoma update 20140918181203 by tachikomapocket Pull Request #172 kawazrepos/Kawaz3rd](https://github.com/kawazrepos/Kawaz3rd/pull/172)
 甘くないなー
