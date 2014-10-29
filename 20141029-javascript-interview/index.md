@@ -32,6 +32,10 @@ pip(Python), その他
 
 npm-shrinkwrap 使ってる? バージョンってガチガチに固定する? Semver?
 
+## Dependency Update Tool
+
+DavidとかNPMとかでバージョン上げてる?
+
 ## News Source
 
 どこでバージョンアップ知る?
