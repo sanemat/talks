@@ -21,10 +21,13 @@ sanemat - sanemat {AT} tachikoma.io
 
 Tokyo Node Fest 2014-11-15
 
+* Bootstrap v3.3.1, v3.3.0, v3.2.0, v3.1.1, v3.0.3, v2.3.2, ...
+* jQuery v2.1.1, v1.11.1, v1.11.0, v1.10.2, v1.9.1, v1.8.3, v1.7.2, ...
+* AngularJS v1.3.2, v1.2.26, v1.1.5, v1.0.8, ...
+
 ## Summary
 
-public repos版はFree!
-private repos版は月額有料です
+It is free for public repositories, however, requires monthly subscription for private repositories.
 
 - [for private individual $9/mo ~~$19~~](https://gumroad.com/l/JwtkV/travisci)
 - [for private organization $49/mo](https://gumroad.com/l/oDPx)
@@ -32,6 +35,18 @@ private repos版は月額有料です
     - email: sanemat {AT} tachikoma.io
 
 ## This is service statement below
+
+Not updating the dependent libraries, does not damage the library/application immediately.
+When adding a new library that you want to use, occurring a security issue in a library which is already in use, it is extremely difficult to find the right version that functions properly with it.
+Even if you find the right combination, it's very reactionary and it even gets harder when adding the next one.
+
+Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits.
+
+Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum.
+
+Everyone knows this, but what's stopping them?
+
+I believe it's due to the lack of tools and integrations. That is where Tachikoma.io comes in.
 
 この下のはサービスステートメントです:
 
