@@ -26,8 +26,57 @@
 <h1 id="dependency-hell">Dependency Hell</h1>
 <p>sanemat - sanemat {AT} tachikoma.io</p>
 <p>Tokyo Node Fest 2014-11-15</p>
+<p>ぼくはまだ今作っているwebサービスが、AngularJS v1.2を使っていて、いつv1.3に上げようか考えてる</p>
+<ul>
+<li>Bootstrap v3.3.1, v3.3.0, v3.2.0, v3.1.1, v3.0.3, v2.3.2, ...</li>
+<li>jQuery v2.1.1, v1.11.1, v1.11.0, v1.10.2, v1.9.1, v1.8.3, v1.7.2, ...</li>
+<li>AngularJS v1.3.2, v1.2.26, v1.1.5, v1.0.8, ...</li>
+</ul>
+<p>さらに、ポンと直接置いてあるJavaScriptライブラリが!!</p>
+<h2 id="tldr">TL;DR</h2>
+<p>先に結論から言うと、一番痛みが少ないのは、「常に定期的に(安定した)最新版を組み合わせていくこと」</p>
+<h2 id="use-package-manager">Use Package Manager</h2>
+<p>JavaScriptライブラリをポンと置くのは止めよう npm, npm + browserify, bower など</p>
+<p>そして、意識高くなくても「定期的に」「継続して」アップデートできる仕組みを入れよう</p>
+<p>意識高い時は出来る!</p>
+<p>意識低い時でも、Mergeボタン押すだけまでお膳立てしてもらえれば出来る。</p>
+<p>Pull Requestが来てMergeするだけ!</p>
+<p>神webサービス作った。</p>
+<h2 id="david-update-as-a-service">David Update as a Service</h2>
+<h3 id="what-is-david">What is David?</h3>
+<p>davidは作ってない :(</p>
+<figure>
+<img src="./david-dm.gif" alt="david-dm" /><figcaption>david-dm</figcaption>
+</figure>
+<p>Check dependency update.</p>
+<p>And CLI <code>david update</code></p>
+<figure>
+<img src="./david-cli.gif" alt="david-cli" /><figcaption>david-cli</figcaption>
+</figure>
+<h3 id="tachikoma.io">Tachikoma.io</h3>
+<ul>
+<li>GitHub連携</li>
+<li>リポジトリのToggleをON</li>
+<li><code>david update</code></li>
+<li>Pull Requestが来る</li>
+<li>(TravisCI, CircleCI, Werckerなどがあれば)テストが走る</li>
+</ul>
+<figure>
+<img src="./david-update-as-a-service.gif" alt="David-update-as-a-service" /><figcaption>David-update-as-a-service</figcaption>
+</figure>
+<p>なかなかいいアプリでしょう? もう一回。</p>
+<p>Tachikoma.ioがしてくれること。</p>
+<p>リポジトリのmaster branchに対して、<code>david update</code>して、定期的に、Pull Requestを送る。 すると、CIサービスなどのpass/failで差分に気付く。</p>
+<h2 id="future">Future</h2>
+<ul>
+<li>みんなでGitHubのdiff見に行くの意味ないからなんとかする</li>
+<li>最新版まで持ってくるのが出来ればあとはそうでもないんだよ! はい…</li>
+<li>バージョン上げても大丈夫と保証してほしい む…</li>
+<li>npm shrinkwrap 対応</li>
+<li>bower.lock, bower shrinkwrap はやくきてくれー bower v2.0 来たら対応する</li>
+</ul>
 <h2 id="summary">Summary</h2>
-<p>public repos版はFree! private repos版は月額有料です</p>
+<p>It is free for public repositories, however, requires monthly subscription for private repositories.</p>
 <ul>
 <li><a href="https://gumroad.com/l/JwtkV/travisci">for private individual $9/mo <del>$19</del></a></li>
 <li><a href="https://gumroad.com/l/oDPx">for private organization $49/mo</a></li>
@@ -37,6 +86,11 @@
 </ul></li>
 </ul>
 <h2 id="this-is-service-statement-below">This is service statement below</h2>
+<p>Not updating the dependent libraries, does not damage the library/application immediately. When adding a new library that you want to use, occurring a security issue in a library which is already in use, it is extremely difficult to find the right version that functions properly with it. Even if you find the right combination, it's very reactionary and it even gets harder when adding the next one.</p>
+<p>Furthermore, sometimes with an older version, you won't be able to enjoy new library features, increase in speed, updated version of Ruby/Node.js/etc., and other benefits.</p>
+<p>Ultimately, choosing the latest(stable) combination periodically will keep damages to a minimum.</p>
+<p>Everyone knows this, but what's stopping them?</p>
+<p>I believe it's due to the lack of tools and integrations. That is where Tachikoma.io comes in.</p>
 <p>この下のはサービスステートメントです:</p>
 <p>ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。 仮に組み合わせを見つけたとしても、すごく後ろ向きですし、次を追加するとき、より困難になって立ちはだかります。 また、ライブラリの新機能、スピードアップ、Ruby/Node.js/etc.のバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。 ここまでみんな知ってるしわかってるのに、なぜ出来ない?</p>
 <p>それはツールやインテグレーションがまだ不足しているからだ、と私は考えます。 それを埋める1つのパーツがTachikoma.ioです。</p>
