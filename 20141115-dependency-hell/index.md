@@ -21,9 +21,49 @@ sanemat - sanemat {AT} tachikoma.io
 
 Tokyo Node Fest 2014-11-15
 
+ぼくはまだ今作っているwebサービスが、AngularJS v1.2を使っていて、いつv1.3に上げようか考えてる
+
 * Bootstrap v3.3.1, v3.3.0, v3.2.0, v3.1.1, v3.0.3, v2.3.2, ...
 * jQuery v2.1.1, v1.11.1, v1.11.0, v1.10.2, v1.9.1, v1.8.3, v1.7.2, ...
 * AngularJS v1.3.2, v1.2.26, v1.1.5, v1.0.8, ...
+
+さらに、ポンと直接置いてあるJavaScriptライブラリが!!
+
+## TL;DR
+
+先に結論から言うと、一番痛みが少ないのは、「常に定期的に(安定した)最新版を組み合わせていくこと」
+
+## Use Package Manager
+
+JavaScriptライブラリをポンと置くのは止めよう
+npm, npm + browserify, bower など
+
+そして、意識高くなくても「定期的に」「継続して」アップデートできる仕組みを入れよう
+
+意識高い時は出来る!
+
+意識低い時でも、Mergeボタン押すだけまでお膳立てしてもらえれば出来る。
+
+Pull Requestが来てMergeするだけ!
+
+神webサービス作った。
+
+## David Update as a Service
+
+### What is David?
+
+![david-dm](./david-dm.gif)
+
+Check dependency update.
+
+And CLI `david update`
+
+![david-cli](./david-cli.gif)
+
+## Future
+
+* みんなでGitHubのdiff見に行くの意味ないと思ってる
+* 最新版まで持ってくるのが出来ればあとはそうでもないんだよ! はい…
 
 ## Summary
 

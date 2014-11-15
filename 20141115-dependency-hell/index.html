@@ -26,10 +26,36 @@
 <h1 id="dependency-hell">Dependency Hell</h1>
 <p>sanemat - sanemat {AT} tachikoma.io</p>
 <p>Tokyo Node Fest 2014-11-15</p>
+<p>ぼくはまだ今作っているwebサービスが、AngularJS v1.2を使っていて、いつv1.3に上げようか考えてる</p>
 <ul>
 <li>Bootstrap v3.3.1, v3.3.0, v3.2.0, v3.1.1, v3.0.3, v2.3.2, ...</li>
 <li>jQuery v2.1.1, v1.11.1, v1.11.0, v1.10.2, v1.9.1, v1.8.3, v1.7.2, ...</li>
 <li>AngularJS v1.3.2, v1.2.26, v1.1.5, v1.0.8, ...</li>
+</ul>
+<p>さらに、ポンと直接置いてあるJavaScriptライブラリが!!</p>
+<h2 id="tldr">TL;DR</h2>
+<p>先に結論から言うと、一番痛みが少ないのは、「常に定期的に(安定した)最新版を組み合わせていくこと」</p>
+<h2 id="use-package-manager">Use Package Manager</h2>
+<p>JavaScriptライブラリをポンと置くのは止めよう npm, npm + browserify, bower など</p>
+<p>そして、意識高くなくても「定期的に」「継続して」アップデートできる仕組みを入れよう</p>
+<p>意識高い時は出来る!</p>
+<p>意識低い時でも、Mergeボタン押すだけまでお膳立てしてもらえれば出来る。</p>
+<p>Pull Requestが来てMergeするだけ!</p>
+<p>神webサービス作った。</p>
+<h2 id="david-update-as-a-service">David Update as a Service</h2>
+<h3 id="what-is-david">What is David?</h3>
+<figure>
+<img src="./david-dm.gif" alt="david-dm" /><figcaption>david-dm</figcaption>
+</figure>
+<p>Check dependency update.</p>
+<p>And CLI <code>david update</code></p>
+<figure>
+<img src="./david-cli.gif" alt="david-cli" /><figcaption>david-cli</figcaption>
+</figure>
+<h2 id="future">Future</h2>
+<ul>
+<li>みんなでGitHubのdiff見に行くの意味ないと思ってる</li>
+<li>最新版まで持ってくるのが出来ればあとはそうでもないんだよ! はい…</li>
 </ul>
 <h2 id="summary">Summary</h2>
 <p>It is free for public repositories, however, requires monthly subscription for private repositories.</p>
