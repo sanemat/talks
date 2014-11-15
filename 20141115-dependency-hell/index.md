@@ -71,11 +71,11 @@ And CLI `david update`
 * `david update`
 * 定期的にPull Requestが来る
 * (TravisCI, CircleCI, Werckerなどがあれば)テストが走る
-* Merge or Not
+* Merge or Fix
 
-![David-update-as-a-service](./david-update-as-a-service.gif)
+なかなかいいアプリでしょう?
 
-なかなかいいアプリでしょう? もう一回。
+もう一回。
 
 Tachikoma.ioがしてくれること。
 
