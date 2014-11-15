@@ -85,6 +85,8 @@ And CLI `david update`
 
 ![david-cli](./david-cli.gif)
 
+定期的にupdateしてるから、差分が小さい。読める。
+
 Tachikoma.ioなかなかいいアプリでしょう?
 
 もう一回。
