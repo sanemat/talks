@@ -50,6 +50,17 @@ Pull Requestが来てMergeするだけ!
 
 ## David Update as a Service
 
+### Tachikoma.io
+
+![interval-pull-requests](./interval-pull-requests.gif)
+
+* GitHub連携
+* リポジトリのToggleをON
+* `david update`
+* 定期的にPull Requestが来る
+* (TravisCI, CircleCI, Werckerなどがあれば)テストが走る
+* Merge or Fix
+
 ### What is David?
 
 davidは作ってない :(
@@ -62,18 +73,7 @@ And CLI `david update`
 
 ![david-cli](./david-cli.gif)
 
-### Tachikoma.io
-
-![interval-pull-requests](./interval-pull-requests.gif)
-
-* GitHub連携
-* リポジトリのToggleをON
-* `david update`
-* 定期的にPull Requestが来る
-* (TravisCI, CircleCI, Werckerなどがあれば)テストが走る
-* Merge or Fix
-
-なかなかいいアプリでしょう?
+Tachikoma.ioなかなかいいアプリでしょう?
 
 もう一回。
 
