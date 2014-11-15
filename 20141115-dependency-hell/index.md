@@ -79,8 +79,10 @@ And CLI `david update`
 
 Tachikoma.ioがしてくれること。
 
-リポジトリのmaster branchに対して、`david update`して、定期的に、Pull Requestを送る。
-すると、CIサービスなどのpass/failで差分に気付く。
+* リポジトリのmaster branchに対して、
+* `david update`して、
+* 定期的に、Pull Requestを送る。
+* すると、CIサービスなどのpass/failで差分に気付く。
 
 ## Future
 
