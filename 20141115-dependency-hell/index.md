@@ -64,11 +64,14 @@ And CLI `david update`
 
 ### Tachikoma.io
 
+![interval-pull-request](./interval-pull-request.gif)
+
 * GitHub連携
 * リポジトリのToggleをON
 * `david update`
-* Pull Requestが来る
+* 定期的にPull Requestが来る
 * (TravisCI, CircleCI, Werckerなどがあれば)テストが走る
+* Merge or Not
 
 ![David-update-as-a-service](./david-update-as-a-service.gif)
 
