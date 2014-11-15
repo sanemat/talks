@@ -64,7 +64,7 @@ And CLI `david update`
 
 ### Tachikoma.io
 
-![interval-pull-request](./interval-pull-request.gif)
+![interval-pull-requests](./interval-pull-requests.gif)
 
 * GitHub連携
 * リポジトリのToggleをON
