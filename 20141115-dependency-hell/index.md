@@ -21,7 +21,7 @@ sanemat - sanemat {AT} tachikoma.io
 
 Tokyo Node Fest 2014-11-15
 
-ぼくはまだ今作っているwebサービスが、AngularJS v1.2を使っていて、いつv1.3に上げようか考えてる
+今自分で作っているwebサービスが、まだAngularJS v1.2を使っていて、いつv1.3に上げようか考えてる
 
 * Bootstrap v3.3.1, v3.3.0, v3.2.0, v3.1.1, v3.0.3, v2.3.2, ...
 * jQuery v2.1.1, v1.11.1, v1.11.0, v1.10.2, v1.9.1, v1.8.3, v1.7.2, ...
