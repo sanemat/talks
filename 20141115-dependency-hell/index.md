@@ -52,6 +52,8 @@ Pull Requestが来てMergeするだけ!
 
 ### What is David?
 
+davidは作ってない :(
+
 ![david-dm](./david-dm.gif)
 
 Check dependency update.
@@ -60,10 +62,30 @@ And CLI `david update`
 
 ![david-cli](./david-cli.gif)
 
+### Tachikoma.io
+
+* GitHub連携
+* リポジトリのToggleをON
+* `david update`
+* Pull Requestが来る
+* (TravisCI, CircleCI, Werckerなどがあれば)テストが走る
+
+![David-update-as-a-service](./david-update-as-a-service.gif)
+
+なかなかいいアプリでしょう? もう一回。
+
+Tachikoma.ioがしてくれること。
+
+リポジトリのmaster branchに対して、`david update`して、定期的に、Pull Requestを送る。
+すると、CIサービスなどのpass/failで差分に気付く。
+
 ## Future
 
-* みんなでGitHubのdiff見に行くの意味ないと思ってる
+* みんなでGitHubのdiff見に行くの意味ないからなんとかする
 * 最新版まで持ってくるのが出来ればあとはそうでもないんだよ! はい…
+* バージョン上げても大丈夫と保証してほしい む…
+* npm shrinkwrap 対応
+* bower.lock, bower shrinkwrap はやくきてくれー bower v2.0 来たら対応する
 
 ## Summary
 

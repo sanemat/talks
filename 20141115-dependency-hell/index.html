@@ -44,6 +44,7 @@
 <p>神webサービス作った。</p>
 <h2 id="david-update-as-a-service">David Update as a Service</h2>
 <h3 id="what-is-david">What is David?</h3>
+<p>davidは作ってない :(</p>
 <figure>
 <img src="./david-dm.gif" alt="david-dm" /><figcaption>david-dm</figcaption>
 </figure>
@@ -52,10 +53,27 @@
 <figure>
 <img src="./david-cli.gif" alt="david-cli" /><figcaption>david-cli</figcaption>
 </figure>
+<h3 id="tachikoma.io">Tachikoma.io</h3>
+<ul>
+<li>GitHub連携</li>
+<li>リポジトリのToggleをON</li>
+<li><code>david update</code></li>
+<li>Pull Requestが来る</li>
+<li>(TravisCI, CircleCI, Werckerなどがあれば)テストが走る</li>
+</ul>
+<figure>
+<img src="./david-update-as-a-service.gif" alt="David-update-as-a-service" /><figcaption>David-update-as-a-service</figcaption>
+</figure>
+<p>なかなかいいアプリでしょう? もう一回。</p>
+<p>Tachikoma.ioがしてくれること。</p>
+<p>リポジトリのmaster branchに対して、<code>david update</code>して、定期的に、Pull Requestを送る。 すると、CIサービスなどのpass/failで差分に気付く。</p>
 <h2 id="future">Future</h2>
 <ul>
-<li>みんなでGitHubのdiff見に行くの意味ないと思ってる</li>
+<li>みんなでGitHubのdiff見に行くの意味ないからなんとかする</li>
 <li>最新版まで持ってくるのが出来ればあとはそうでもないんだよ! はい…</li>
+<li>バージョン上げても大丈夫と保証してほしい む…</li>
+<li>npm shrinkwrap 対応</li>
+<li>bower.lock, bower shrinkwrap はやくきてくれー bower v2.0 来たら対応する</li>
 </ul>
 <h2 id="summary">Summary</h2>
 <p>It is free for public repositories, however, requires monthly subscription for private repositories.</p>
