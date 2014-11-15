@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Dependency Hell / 2014 Tokyo Node Fest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20141115-dependency-hell/interval-pull-requests.gif" />
+  <title>Dependency Hell</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20141115-dependency-hell/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="dependency-hell">Dependency Hell</h1>
+<p>sanemat - sanemat {AT} tachikoma.io</p>
+<p>Tokyo Node Fest 2014-11-15</p>
+<h2 id="summary">Summary</h2>
+<p>public repos版はFree! private repos版は月額有料です</p>
+<ul>
+<li><a href="https://gumroad.com/l/JwtkV/travisci">for private individual $9/mo <del>$19</del></a></li>
+<li><a href="https://gumroad.com/l/oDPx">for private organization $49/mo</a></li>
+<li>for enterprise
+<ul>
+<li>email: sanemat {AT} tachikoma.io</li>
+</ul></li>
+</ul>
+<h2 id="this-is-service-statement-below">This is service statement below</h2>
+<p>この下のはサービスステートメントです:</p>
+<p>ライブラリの依存バージョンを上げないことは、すぐにはライブラリやアプリケーションにダメージを与えません。 新しく使いたいライブラリを追加するときに、既存のライブラリにセキュリティフィックスが出たときに、それぞれが正しく動作するバージョンの組み合わせを見つけることは、非常に困難です。 仮に組み合わせを見つけたとしても、すごく後ろ向きですし、次を追加するとき、より困難になって立ちはだかります。 また、ライブラリの新機能、スピードアップ、Ruby/Node.js/etc.のバージョンアップなどメリットを享受するために低いバージョンだとそれが使えないことがあります。 結果的に一番痛みが少ないのは、常に定期的に(安定した)最新版を組み合わせていくことです。 ここまでみんな知ってるしわかってるのに、なぜ出来ない?</p>
+<p>それはツールやインテグレーションがまだ不足しているからだ、と私は考えます。 それを埋める1つのパーツがTachikoma.ioです。</p>
+<p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20141115-dependency-hell">Tachikoma.io</a></p>
+<p>sanemat {AT} tachikoma.io</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20141115-dependency-hell%2F&amp;t=Dependency%20Hell%20%2F%202014%20Tokyo%20Node%20Fest" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
