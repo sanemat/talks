@@ -32,7 +32,7 @@ ogimage: http://sanemat.github.io/talks/20141229-what-is-tachikoma-io/interval-p
 * その結果、プロダクトの寿命が伸びる
 * さらに、利用者が、本当にやりたかったコアに多くの時間を割けるようになる
 
-## rubyを適用した箇所
+## Rubyを適用した箇所
 
 * ウェブアプリケーション部分
   * Ruby on Rails on Heroku
@@ -48,12 +48,16 @@ RubyとRailsが開発チームの一番手に馴染んだサービスである
 また、自らドッグフーディングしている,
 Tachikoma.io自身がTachikoma.ioユーザーである
 
-## rubyを活用したことによる効果、社会に及ぼす影響
+## Rubyを活用したことによる効果、社会に及ぼす影響
 
-メンテナブルなRubyアプリケーションの増加によって、Rubyの活用者が増える
-正のフィードバック増加
-売上もみんな増える
-より見たことないものが出てくる
+* Ruby/Railsの活用事例は増えている
+* その一方で、バージョンアップに掛けるコストの話、バージョンアップしないことによる古いRuby/Railsを使っていることの痛み、について聴く頻度も増えている
+  * e.g.
+    * [Rails 4 へのアップグレード時に遭遇した問題 – クックパッド開発者ブログ](http://techlife.cookpad.com/entry/2014/09/30/172628)
+    * hsbt, GMOペパボ [From ‘Legacy’ to ‘Edge’ 2014 edition // Speaker Deck](https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition)
+    * tmm1, GitHub [RubyKaigi 2014 | Ruby 2.1 in Production](http://rubykaigi.org/2014/presentation/S-AmanGupta)
+* Tachikoma.ioの利用などにより、継続的にメンテナブルなRubyアプリケーションの増加によって、健全にRubyアプリケーションを活用する人数、プロジェクトが増える
+* より見たことないものが出てくる
 
 [Tachikoma.io][tachikoma-io]
 
