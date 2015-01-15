@@ -50,7 +50,7 @@ Tachikoma.io自身がTachikoma.ioユーザーである
 
 ## rubyを活用したことによる効果、社会に及ぼす影響
 
-
+???
 
 [Tachikoma.io][tachikoma-io]
 
