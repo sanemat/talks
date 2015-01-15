@@ -1,5 +1,5 @@
 ---
-pagetitle: Why you choose us as the award
+pagetitle: Why you choose us as the award?
 css:
   - github-markdown.css
   - page.css
@@ -17,6 +17,16 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-choose-us-as-the-award/
 
 # Why you choose us as the award?
 
+生産性の高いRuby/Rails。
+プロトタイプ〜初期実装を一発作るには向いているが、継続して開発するには不向きという評判がある(どこで?)
+なお、計画性を持って、継続して開発していくぶんには強い(個人的感想)
+
+実際は? まあ適材適所
+ポンと作るだけ作って、あとはほぼノーコストでメンテしていきたい、場合には不向き
+
+簡単に使えるだけではなく、継続的に使えることを、利用者にも開発者にも啓蒙していく必要がある
+また、発注者(?)にとって、最低限のメンテが必要なことを認識する必要がある
+最低限のメンテ、基準がTachikoma.ioなど使えそう。
 
 [Tachikoma.io][tachikoma-io]
 

@@ -17,6 +17,12 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io
 
 # Why you should use Tachikoma.io?
 
+ユーザーの声
+ruby/railsのEOLの話
+セキュリティアップデートの話
+現実世界で古いバージョンが占める割合
+使い捨てる からのリプレイス
+もしくは、継続的にメンテする決意
 
 [Tachikoma.io][tachikoma-io]
 
