@@ -35,10 +35,10 @@ ogimage: http://sanemat.github.io/talks/20141229-what-is-tachikoma-io/interval-p
 ## Rubyを適用した箇所
 
 * ウェブアプリケーション部分
-  * Ruby on Rails on Heroku
+    * Ruby on Rails on Heroku
 * バックエンドのビジネスロジック部分
-  * Ruby and Tachikoma gem on Digital Ocean
-  * [Tachikoma gem](https://github.com/sanemat/tachikoma) 部分がOSS
+    * Ruby and Tachikoma gem on Digital Ocean
+    * [Tachikoma gem](https://github.com/sanemat/tachikoma) 部分がOSS
 
 Ruby適用箇所で特に新規性なし
 一般的なwebアプリケーション
@@ -52,7 +52,6 @@ Tachikoma.io自身がTachikoma.ioユーザーである
 
 * Ruby/Railsの活用事例は増えている
 * その一方で、バージョンアップに掛けるコストの話、バージョンアップしないことによる古いRuby/Railsを使っていることの痛み、について聴く頻度も増えている
-  * e.g.
     * [Rails 4 へのアップグレード時に遭遇した問題 – クックパッド開発者ブログ](http://techlife.cookpad.com/entry/2014/09/30/172628)
     * hsbt, GMOペパボ [From ‘Legacy’ to ‘Edge’ 2014 edition // Speaker Deck](https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition)
     * tmm1, GitHub [RubyKaigi 2014 | Ruby 2.1 in Production](http://rubykaigi.org/2014/presentation/S-AmanGupta)

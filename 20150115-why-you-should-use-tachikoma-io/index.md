@@ -46,9 +46,9 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io
 
 * 使い捨てる、からのリプレイス
 * 多大なコストを掛けて旧バージョンの保守
-  * e.g. GitHub
+    * e.g. GitHub
 * 継続的に最小限の痛みでアップデート
-  * e.g. With Tachikoma.io
+    * e.g. With Tachikoma.io
 
 [Tachikoma.io][tachikoma-io]
 
