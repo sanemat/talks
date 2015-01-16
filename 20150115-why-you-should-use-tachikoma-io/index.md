@@ -50,6 +50,26 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io
 * 継続的に最小限の痛みでアップデート
     * e.g. With Tachikoma.io
 
+## 定期的に依存ライブラリをアップデートする実例
+
+![bundle update examples](./bundle-update-examples.gif)
+
+## 手作業?
+
+![do it manually](./do-it-manually.gif)
+
+## Tachikoma.io?
+
+![interval pull request](./interval-pull-requests.gif)
+
+## あなたがやりたいのは依存のアップデートですか? アプリケーションを書くことですか?
+
+Tachikoma.ioのできることはTachikoma.ioに任せる。
+
+あなたはあなたのやりたいことをやろう。
+
+だって依存のアップデートがあなたのやりたいことじゃないでしょう? アプリケーション書きたいでしょ!
+
 [Tachikoma.io][tachikoma-io]
 
 sanemat {AT} tachikoma.io
