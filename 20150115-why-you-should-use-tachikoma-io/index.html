@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Why you should use Tachikoma.io? / Fukuoka Ruby Award 2015" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io/interval-pull-requests.gif" />
+  <title>Why you should use Tachikoma.io</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="why-you-should-use-tachikoma.io">Why you should use Tachikoma.io?</h1>
+<h2 id="ユーザーの声">ユーザーの声</h2>
+<blockquote class="twitter-tweet" lang="en">
+<p>
+<a href="https://twitter.com/hashtag/rubykaigiA?src=hash">#rubykaigiA</a> こまめに（毎日とか） bundle update すると Gemfile を頻繁に意識するので掃除のチャンスが増え、結果クリーンな状態を保ちやすいと思う。それを自動化する便利サービス情報です <a href="http://t.co/E0B9T8B112">http://t.co/E0B9T8B112</a>
+</p>
+— Kensuke Nagae (<span class="citation" data-cites="kyanny">@kyanny</span>) <a href="https://twitter.com/kyanny/status/513137063529414656">September 20, 2014</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" lang="en">
+<p>
+<a href="https://twitter.com/godfat"><span class="citation" data-cites="godfat">@godfat</span></a> <a href="https://twitter.com/JuanitoFatas"><span class="citation" data-cites="JuanitoFatas">@JuanitoFatas</span></a> <code>bundle update</code> should be a daily task. But most teams don’t have bandwidth to do that.
+</p>
+— Matthew Rudy Jacobs (<span class="citation" data-cites="matthewrudy">@matthewrudy</span>) <a href="https://twitter.com/matthewrudy/status/542964875811516416">December 11, 2014</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" lang="en">
+<p>
+<a href="https://twitter.com/matthewrudy"><span class="citation" data-cites="matthewrudy">@matthewrudy</span></a> <a href="https://twitter.com/godfat"><span class="citation" data-cites="godfat">@godfat</span></a> Dependency update as a service <a href="http://t.co/QVIsM8tyHg">http://t.co/QVIsM8tyHg</a>
+</p>
+— Juanito Fatas (<span class="citation" data-cites="JuanitoFatas">@JuanitoFatas</span>) <a href="https://twitter.com/JuanitoFatas/status/542965252552265728">December 11, 2014</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" lang="en">
+<p>
+tachikoma.io便利過ぎる．定期的にGemfile.lockアップデートしてくれるし，wercker置いとけばテストもしてくれるし，mergeするだけで良くなった
+</p>
+— okumura takahiro (<span class="citation" data-cites="hfm">@hfm</span>) <a href="https://twitter.com/hfm/status/533268516879622144">November 14, 2014</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<h2 id="rubyrailsのeol">ruby/railsのEOL</h2>
+<ul>
+<li><a href="https://www.ruby-lang.org/ja/news/2014/07/01/eol-for-1-8-7-and-1-9-2/">Ruby 1.8.7 および 1.9.2 のサポート終了について</a></li>
+<li><a href="https://www.ruby-lang.org/ja/news/2014/01/10/ruby-1-9-3-will-end-on-2015/">Ruby 1.9.3 サポートは 2015 年 2 月 23 日に終了します</a></li>
+<li><a href="http://weblog.rubyonrails.org/2013/2/24/maintenance-policy-for-ruby-on-rails/">Riding Rails: Maintenance policy for Ruby on Rails</a></li>
+<li><a href="https://github.com/rails/rails/pull/18306">3-2-stable: ruby 2.2 compatibility by tmm1</a></li>
+</ul>
+<h2 id="セキュリティアップデート">セキュリティアップデート</h2>
+<h2 id="現実世界で古いバージョンが占める割合">現実世界で古いバージョンが占める割合</h2>
+<h2 id="選択肢">選択肢</h2>
+<ul>
+<li>使い捨てる、からのリプレイス</li>
+<li>多大なコストを掛けて旧バージョンの保守
+<ul>
+<li>e.g. GitHub</li>
+</ul></li>
+<li>継続的に最小限の痛みでアップデート
+<ul>
+<li>e.g. With Tachikoma.io</li>
+</ul></li>
+</ul>
+<p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150115-why-you-should-use-tachikoma-io">Tachikoma.io</a></p>
+<p>sanemat {AT} tachikoma.io</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150115-why-you-should-use-tachikoma-io%2F&amp;t=Why%20you%20should%20use%20Tachikoma.io%3F%20%2F%20Fukuoka%20Ruby%20Award%202015" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
