@@ -22,6 +22,9 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/rubykaigiA?src=hash">#rubykaigiA</a> こまめに（毎日とか） bundle update すると Gemfile を頻繁に意識するので掃除のチャンスが増え、結果クリーンな状態を保ちやすいと思う。それを自動化する便利サービス情報です <a href="http://t.co/E0B9T8B112">http://t.co/E0B9T8B112</a></p>&mdash; Kensuke Nagae (@kyanny) <a href="https://twitter.com/kyanny/status/513137063529414656">September 20, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/godfat">@godfat</a> <a href="https://twitter.com/JuanitoFatas">@JuanitoFatas</a> `bundle update` should be a daily task. But most teams don’t have bandwidth to do that.</p>&mdash; Matthew Rudy Jacobs (@matthewrudy) <a href="https://twitter.com/matthewrudy/status/542964875811516416">December 11, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/matthewrudy">@matthewrudy</a> <a href="https://twitter.com/godfat">@godfat</a> Dependency update as a service <a href="http://t.co/QVIsM8tyHg">http://t.co/QVIsM8tyHg</a></p>&mdash; Juanito Fatas (@JuanitoFatas) <a href="https://twitter.com/JuanitoFatas/status/542965252552265728">December 11, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
