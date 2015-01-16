@@ -17,12 +17,35 @@ ogimage: http://sanemat.github.io/talks/20150115-why-you-should-use-tachikoma-io
 
 # Why you should use Tachikoma.io?
 
-ユーザーの声
-ruby/railsのEOLの話
-セキュリティアップデートの話
-現実世界で古いバージョンが占める割合
-使い捨てる からのリプレイス
-もしくは、継続的にメンテする決意
+## ユーザーの声
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/rubykaigiA?src=hash">#rubykaigiA</a> こまめに（毎日とか） bundle update すると Gemfile を頻繁に意識するので掃除のチャンスが増え、結果クリーンな状態を保ちやすいと思う。それを自動化する便利サービス情報です <a href="http://t.co/E0B9T8B112">http://t.co/E0B9T8B112</a></p>&mdash; Kensuke Nagae (@kyanny) <a href="https://twitter.com/kyanny/status/513137063529414656">September 20, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/matthewrudy">@matthewrudy</a> <a href="https://twitter.com/godfat">@godfat</a> Dependency update as a service <a href="http://t.co/QVIsM8tyHg">http://t.co/QVIsM8tyHg</a></p>&mdash; Juanito Fatas (@JuanitoFatas) <a href="https://twitter.com/JuanitoFatas/status/542965252552265728">December 11, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="en"><p>tachikoma.io便利過ぎる．定期的にGemfile.lockアップデートしてくれるし，wercker置いとけばテストもしてくれるし，mergeするだけで良くなった</p>&mdash; okumura takahiro (@hfm) <a href="https://twitter.com/hfm/status/533268516879622144">November 14, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+## ruby/railsのEOL
+
+* [Ruby 1.8.7 および 1.9.2 のサポート終了について](https://www.ruby-lang.org/ja/news/2014/07/01/eol-for-1-8-7-and-1-9-2/)
+* [Ruby 1.9.3 サポートは 2015 年 2 月 23 日に終了します](https://www.ruby-lang.org/ja/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)
+* [Riding Rails: Maintenance policy for Ruby on Rails](http://weblog.rubyonrails.org/2013/2/24/maintenance-policy-for-ruby-on-rails/)
+* [3-2-stable: ruby 2.2 compatibility by tmm1](https://github.com/rails/rails/pull/18306)
+
+## セキュリティアップデート
+
+## 現実世界で古いバージョンが占める割合
+
+## 選択肢
+
+* 使い捨てる、からのリプレイス
+* 多大なコストを掛けて旧バージョンの保守
+  * e.g. GitHub
+* 継続的に最小限の痛みでアップデート
+  * e.g. With Tachikoma.io
 
 [Tachikoma.io][tachikoma-io]
 

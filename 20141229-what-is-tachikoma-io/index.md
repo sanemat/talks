@@ -56,6 +56,7 @@ Tachikoma.io自身がTachikoma.ioユーザーである
     * [Rails 4 へのアップグレード時に遭遇した問題 – クックパッド開発者ブログ](http://techlife.cookpad.com/entry/2014/09/30/172628)
     * hsbt, GMOペパボ [From ‘Legacy’ to ‘Edge’ 2014 edition // Speaker Deck](https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition)
     * tmm1, GitHub [RubyKaigi 2014 | Ruby 2.1 in Production](http://rubykaigi.org/2014/presentation/S-AmanGupta)
+    * [3-2-stable: ruby 2.2 compatibility by tmm1](https://github.com/rails/rails/pull/18306)
 * Tachikoma.ioの利用などにより、継続的にメンテナブルなRubyアプリケーションの増加によって、健全にRubyアプリケーションを活用する人数、プロジェクトが増える
 * より見たことないものが出てくる
 
