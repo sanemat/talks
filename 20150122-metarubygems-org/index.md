@@ -87,6 +87,8 @@ diff見えたら、次はcommitごとのdiffが見たくなる
 
 source_code_url
 
+これはrubygemsの機能ではなく, rubygems.orgの機能
+
 activerecordのsource_code_urlってどこ
 
 gitのtagって任意なので、pushされないこともある
