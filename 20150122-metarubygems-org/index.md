@@ -124,6 +124,15 @@ ruby-toolbox.com への不満
 
 omnirefめっちゃ期待してる
 
+## 他の言語
+
+### [npm](https://www.npmjs.org/)
+
+[browserify](https://www.npmjs.com/package/browserify)
+
+### [cpan](https://cpan.org/)
+
+[DBIx::Skinny](https://metacpan.org/pod/DBIx::Skinny)
 
 ## MetaRubygems.org
 
