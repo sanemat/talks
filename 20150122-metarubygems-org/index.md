@@ -95,7 +95,16 @@ rakeの自由さ e.g. rake-10.1.1
 
 v10.2.0以降はv0.0.0になったっぽい(?) やった
 
-## handcooler.org
+CORS対応 遅すぎて自分で作る気になったんだけど、結局入ってない??マジで?
+
+> CORS(Cross-Origin Resource Sharing)は、その名の通り、ブラウザがオリジン(HTMLを読み込んだサーバのこと)以外のサーバからデータを取得する仕組みです。
+> [CORS(Cross-Origin Resource Sharing)によるクロスドメイン通信の傾向と対策 ｜ Developers.IO](http://dev.classmethod.jp/cloud/cors-cross-origin-resource-sharing-cross-domain/)
+
+[Allow client side javascript to access rubygems API show action by JohnColvin](https://github.com/rubygems/rubygems.org/pull/592)
+
+rack-cors使うなど
+
+## [handcooler.org](http://handcooler.org)
 
 ## 不満を解消するプロジェクトたち
 
