@@ -23,6 +23,78 @@
   window.analytics.load("ig7q6np7c1");
   window.analytics.page();
 </script>
+<h1 id="metarubygems.org">Metarubygems.org</h1>
+<h2 id="自己紹介">自己紹介</h2>
+<p>sanemat サネマツ</p>
+<p>フクオカRuby大賞 本審査のため来た</p>
+<p>無職なのでモツ鍋食べたりとんこつラーメン食べたり</p>
+<p>1/26(月)まで福岡にいる</p>
+<p>これ食べておくとイイ これ見ておくとイイ 募集中</p>
+<h3 id="done">done</h3>
+<ul>
+<li>元祖博多麺もつ屋</li>
+<li>ツナパハ カレー</li>
+<li>博多一幸舎</li>
+<li>八ちゃんラーメン</li>
+</ul>
+<h3 id="yet">yet</h3>
+<ul>
+<li>水炊き 新三浦天神店</li>
+</ul>
+<h3 id="しない話">しない話</h3>
+<p>「Tachikoma.io」</p>
+<ul>
+<li>Ruby/Railsアプリケーションを</li>
+<li>健全に保つ</li>
+<li>一番痛みが少ない</li>
+<li>Bundle Update as a Service</li>
+<li><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150122-metarubygems-org">Tachikoma.io</a></li>
+</ul>
+<h2 id="rubygems.org">Rubygems.org</h2>
+<p>Rubygems.orgに不満があって、ぼくのかんがえたさいきょうのrubygems.org APIつくろうとしてる</p>
+<p>誰か一緒にやらない? or 何かアイデアあったら一緒にやりたい</p>
+<p>お金稼ぐモデルは思いつけてない</p>
+<h2 id="rubygems.org現状確認">Rubygems.org現状確認</h2>
+<p>便利 見た目が改善した(?)</p>
+<p>必要なところが右下に追いやられている</p>
+<p>readme無い</p>
+<p>file api 無い</p>
+<p>diff api 無い</p>
+<p>どのrubyバージョンでtest通してるとか</p>
+<p>どの組み合わせ, たとえばactiverecord v3.2とv4.2でtest通してるとか</p>
+<p>source_code_url</p>
+<p>activerecordのsource_code_urlってどこ</p>
+<p>gitのtagって任意なので、pushされないこともある</p>
+<p>単に忘れている場合も多い</p>
+<p>命名規則</p>
+<p>gemのversioningは 1.9.6 とかなのにtagの命名は自由度高い</p>
+<p>半分以上はv0.0.0命名だけど、v0.0 命名もある これは許容されてそう</p>
+<p>あとはvなしの0.0.0命名</p>
+<p>rakeの自由さ e.g. rake-10.1.1</p>
+<p>v10.2.0以降はv0.0.0になったっぽい(?) やった</p>
+<h2 id="handcooler.org">handcooler.org</h2>
+<h2 id="不満を解消するプロジェクトたち">不満を解消するプロジェクトたち</h2>
+<h3 id="ruby-toolbox.com">ruby-toolbox.com</h3>
+<p>ruby-toolbox.com への不満</p>
+<p>メンテナンスされてない(?)</p>
+<h3 id="bestgems.org">bestgems.org</h3>
+<p><a href="http://bestgems.org/">BestGems.org</a></p>
+<h3 id="omniref.com">omniref.com</h3>
+<p><a href="https://www.omniref.com/">Ruby Documentation Search - Omniref</a></p>
+<p>omnirefめっちゃ期待してる</p>
+<h2 id="metarubygems.org-1">MetaRubygems.org</h2>
+<h3 id="files-api">files API</h3>
+<p><a href="http://raw.metarubygems.org/v1/files?target=activesupport-4.1.0&amp;filename=README.rdoc">files?target=activesupport-4.1.0&amp;filename=README.rdoc</a></p>
+<h3 id="diffs-api">diffs API</h3>
+<p><a href="http://raw.metarubygems.org/v1/diffs?from=activerecord-4.1.0&amp;to=activerecord-4.1.8">diffs?from=activerecord-4.1.0&amp;to=activerecord-4.1.8</a></p>
+<h3 id="進捗">進捗</h3>
+<p>herokuのハッカソンで運営資金もらうぞーとおもったけど、1円ももらえなかった</p>
+<p>sakura vpsの4G 初期費用4300円月額4000円を吸われ続けていくことになってしまった。</p>
+<p>ひとまずTachikoma.ioでスポンサーする。</p>
+<p>これは、rubygems.orgはgemごとのreadmeが見えないのと、diffをgithubにいちいち探しに行くのがツライので、<a href="http://handcooler.org/">HandCooler: Yet Another Rubygems.org</a>以前作った。</p>
+<p>でも自分で使うにも帯に短しだったので、やっぱ自分でgemを保持するか!という気持ちになった。</p>
+<p>rubygems.orgと同じmeta情報取れるようにするのと、file api, diff api, readme apiまでは構想ある。</p>
+<p>ぼくのかんがえたさいきょうのAPI、というところまでは自分で作りきらないとな。未完。</p>
 <p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150122-metarubygems-org">Tachikoma.io</a></p>
 <p>sanemat {AT} tachikoma.io</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150122-metarubygems-org%2F&amp;t=Metarubygems.org%20-%20Yet%20Another%20Rubygems.org%20%2F%20Fukuoka.rb%20%2327" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">

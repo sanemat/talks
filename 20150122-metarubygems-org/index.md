@@ -15,6 +15,133 @@ ogimage: http://sanemat.github.io/talks/20150122-metarubygems-org/interval-pull-
   window.analytics.page();
 </script>
 
+# Metarubygems.org
+
+## 自己紹介
+
+sanemat サネマツ
+
+フクオカRuby大賞 本審査のため来た
+
+無職なのでモツ鍋食べたりとんこつラーメン食べたり
+
+1/26(月)まで福岡にいる
+
+これ食べておくとイイ これ見ておくとイイ 募集中
+
+### done
+
+- 元祖博多麺もつ屋
+- ツナパハ カレー
+- 博多一幸舎
+- 八ちゃんラーメン
+
+### yet
+
+- 水炊き 新三浦天神店
+
+### しない話
+
+「Tachikoma.io」
+
+* Ruby/Railsアプリケーションを
+* 健全に保つ
+* 一番痛みが少ない
+* Bundle Update as a Service
+* [Tachikoma.io][tachikoma-io]
+
+## Rubygems.org
+
+Rubygems.orgに不満があって、ぼくのかんがえたさいきょうのrubygems.org APIつくろうとしてる
+
+誰か一緒にやらない? or 何かアイデアあったら一緒にやりたい
+
+お金稼ぐモデルは思いつけてない
+
+## Rubygems.org現状確認
+
+便利
+見た目が改善した(?)
+
+必要なところが右下に追いやられている
+
+readme無い
+
+file api 無い
+
+diff api 無い
+
+どのrubyバージョンでtest通してるとか
+
+どの組み合わせ, たとえばactiverecord v3.2とv4.2でtest通してるとか
+
+source_code_url
+
+activerecordのsource_code_urlってどこ
+
+gitのtagって任意なので、pushされないこともある
+
+単に忘れている場合も多い
+
+命名規則
+
+gemのversioningは 1.9.6 とかなのにtagの命名は自由度高い
+
+半分以上はv0.0.0命名だけど、v0.0 命名もある これは許容されてそう
+
+あとはvなしの0.0.0命名
+
+rakeの自由さ e.g. rake-10.1.1
+
+v10.2.0以降はv0.0.0になったっぽい(?) やった
+
+## handcooler.org
+
+## 不満を解消するプロジェクトたち
+
+### ruby-toolbox.com
+
+ruby-toolbox.com への不満
+
+メンテナンスされてない(?)
+
+### bestgems.org
+
+[BestGems.org](http://bestgems.org/)
+
+### omniref.com
+
+[Ruby Documentation Search - Omniref](https://www.omniref.com/)
+
+omnirefめっちゃ期待してる
+
+
+## MetaRubygems.org
+
+### files API
+
+[files?target=activesupport-4.1.0&filename=README.rdoc](http://raw.metarubygems.org/v1/files?target=activesupport-4.1.0&filename=README.rdoc)
+
+### diffs API
+
+[diffs?from=activerecord-4.1.0&to=activerecord-4.1.8](http://raw.metarubygems.org/v1/diffs?from=activerecord-4.1.0&to=activerecord-4.1.8)
+
+### 進捗
+
+herokuのハッカソンで運営資金もらうぞーとおもったけど、1円ももらえなかった
+
+sakura vpsの4G 初期費用4300円月額4000円を吸われ続けていくことになってしまった。
+
+ひとまずTachikoma.ioでスポンサーする。
+
+これは、rubygems.orgはgemごとのreadmeが見えないのと、diffをgithubにいちいち探しに行くのがツライので、[HandCooler: Yet Another Rubygems.org](http://handcooler.org/)以前作った。
+
+でも自分で使うにも帯に短しだったので、やっぱ自分でgemを保持するか!という気持ちになった。
+
+rubygems.orgと同じmeta情報取れるようにするのと、file api, diff api, readme apiまでは構想ある。
+
+ぼくのかんがえたさいきょうのAPI、というところまでは自分で作りきらないとな。未完。
+
 [Tachikoma.io][tachikoma-io]
 
 sanemat {AT} tachikoma.io
