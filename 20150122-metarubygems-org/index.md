@@ -60,8 +60,14 @@ Rubygems.orgに不満があって、ぼくのかんがえたさいきょうのru
 
 ## Rubygems.org現状確認
 
+[Rubygems.org](https://rubygems.org/)
+
+e.g. [activerecord](https://rubygems.org/gems/activerecord)
+
 便利
 見た目が改善した(?)
+
+webを使うシチュエーションって無くない?
 
 必要なところが右下に追いやられている
 
@@ -70,6 +76,10 @@ readme無い
 file api 無い
 
 diff api 無い
+
+diff見えたら、次はcommitごとのdiffが見たくなる
+-> githubで見る
+-> 最初からgithubでいいのでは
 
 どのrubyバージョンでtest通してるとか
 
@@ -104,9 +114,9 @@ CORS対応 遅すぎて自分で作る気になったんだけど、結局入っ
 
 rack-cors使うなど
 
-## [handcooler.org](http://handcooler.org)
-
 ## 不満を解消するプロジェクトたち
+
+### [handcooler.org](http://handcooler.org)
 
 ### ruby-toolbox.com
 
