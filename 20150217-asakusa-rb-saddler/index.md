@@ -114,6 +114,30 @@ $ saddler run \
 # Tool name
 ## rubygem name, npm name and command
 
+* saddler
+
+reporter から派生して、荷馬車とか駄獣とかハコブネとか、なんかそういう荷物を運んで運搬するイメージ
+
+```
+x reporter
+x journalism
+x gazette
+x newsletter
+x bearer
+x herald
+x steel
+x saddle
+x packhorse
+```
+
+ruby gemとnode npmで使えて、コマンド名にもなる
+
+候補
+* packsaddle
+* saddles
+* saddler
+* saddlery
+
 # Tool idea
 
 
