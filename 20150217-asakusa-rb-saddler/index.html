@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Saddler - better pronto / Asakusa.rb" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20150217-asakusa-rb-saddler/interval-pull-requests.gif" />
+  <title>Saddler - better pronto</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20150217-asakusa-rb-saddler/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="saddler">Saddler</h1>
+<h2 id="better-pronto">better pronto</h2>
+<h2 id="give-me-advice">Give me advice</h2>
+<ul>
+<li>Tool concept
+<ul>
+<li>other tools?</li>
+</ul></li>
+<li>Tool name
+<ul>
+<li>rubygem name, npm name and command</li>
+</ul></li>
+<li>Tool idea</li>
+</ul>
+<h1 id="tool-concept">Tool concept</h1>
+<h2 id="rubocop">Rubocop</h2>
+<h2 id="pronto">Pronto</h2>
+<h2 id="houndci">HoundCI</h2>
+<p>pronto自体の出来はよい、but 確認しづらいパーツが多すぎる</p>
+<p>ruggedとか、gitlabとか、bitbucketとか</p>
+<p>ラッパー頑張ってるけど、イマイチ</p>
+<p>ラッパーないものとか、別言語とか</p>
+<p>diff部分だけをlint これは別のlint作者(vimlint)からの着想だけど、ファイルをやって、プラス分だけやれたほうがいい たとえば、javascript で <code>var</code> で変数宣言してる行を削った場合、など増分diffのlintだけでは出てこない</p>
+<p>増分diffの範囲になければ無理だけど！ ちょっと、これは後で考える、github pull request commentに引きずられ過ぎかもしれない</p>
+<h2 id="saddler-1">Saddler</h2>
+<p>format examples: https://gist.github.com/sanemat/5416e4f701922a47773a</p>
+<pre><code>git diff -z --name-only origin/master.. \
+ | xargs -0 bundle exec rubocop-select \
+ | xargs rubocop \
+     --require rubocop/formatter/checkstyle_formatter \
+     --format RuboCop::Formatter::CheckstyleFormatter \
+ | checkstyle_filter-git diff origin/master.. \
+ | saddler run \
+     --require github/pull-request-comment-formatter \
+     --format Github::PullRequestCommentFormatter</code></pre>
+<pre><code>$ git diff -z --name-only b5ee3a61...origin/master
+.gitignore^@.rubocop.yml^@.travis.yml^@Gemfile^@README.md^@bin/console^@bin/setup^@checkstyle_filter-git.gemspec^@example/example1.xml^@example/github-pull-requests-files-response.json^@example/invalid.rb^@exe/checkstyle_filter-git^@lib/checkstyle_filter/git.rb^@lib/checkstyle_filter/git/cli.rb^@lib/checkstyle_filter/git/diff_parser.rb^@
+
+$ git diff -z --name-only b5ee3a61...origin/master \
+ | xargs -0 rubocop-select
+/Users/sane/work/ruby-study/checkstyle_filter-git/checkstyle_filter-git.gemspec
+/Users/sane/work/ruby-study/checkstyle_filter-git/Gemfile
+/Users/sane/work/ruby-study/checkstyle_filter-git/bin/console
+/Users/sane/work/ruby-study/checkstyle_filter-git/example/invalid.rb
+/Users/sane/work/ruby-study/checkstyle_filter-git/exe/checkstyle_filter-git
+/Users/sane/work/ruby-study/checkstyle_filter-git/lib/checkstyle_filter/git/cli.rb
+/Users/sane/work/ruby-study/checkstyle_filter-git/lib/checkstyle_filter/git/diff_parser.rb
+/Users/sane/work/ruby-study/checkstyle_filter-git/lib/checkstyle_filter/git.rb
+
+$ git diff -z --name-only b5ee3a61...origin/master \
+ | xargs -0 rubocop-select \
+ | xargs rubocop \
+     --require rubocop/formatter/checkstyle_formatter \
+     --format RuboCop::Formatter::CheckstyleFormatter
+&lt;?xml version=&#39;1.0&#39;?&gt;
+&lt;checkstyle&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/checkstyle_filter-git.gemspec&#39;/&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/Gemfile&#39;/&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/bin/console&#39;/&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/example/invalid.rb&#39;&gt;
+    &lt;error line=&#39;3&#39; column=&#39;100&#39; severity=&#39;info&#39; message=&#39;Line is too long. [188/100]&#39; source=&#39;com.puppycrawl.tools.checkstyle.Metrics/LineLength&#39;/&gt;
+  &lt;/file&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/exe/checkstyle_filter-git&#39;/&gt;
+  &lt;file name=&#39;/Users/sane/work/ruby-study/checkstyle_filter-git/lib/checkstyle_filter/git/cli.rb&#39;&gt;
+    &lt;error line=&#39;14&#39; column=&#39;6&#39; severity=&#39;info&#39; message=&#39;Assignment Branch Condition size for diff is too high. [54.73/15]&#39; source=&#39;com.puppycrawl.tools.checkstyle.Metrics/AbcSize&#39;/&gt;
+(snip)
+
+$ checkstyle_filter-git diff b5ee3a61...origin/master
+
+$ saddler run \
+  --require github/pull-request-comment-formatter \
+  --format Github::PullRequestCommentFormatter</code></pre>
+<p>これのメリット</p>
+<ul>
+<li>確認しづらいパーツが減る</li>
+<li>コマンドラインツールならなんでもいける(jscs, eslint, etc.)</li>
+<li>travis-ci, circle-ciでサクサク動く(はず)</li>
+</ul>
+<h1 id="tool-name">Tool name</h1>
+<h2 id="rubygem-name-npm-name-and-command">rubygem name, npm name and command</h2>
+<h1 id="tool-idea">Tool idea</h1>
+<p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150217-asakusa-rb-saddler">Tachikoma.io</a></p>
+<p>sanemat {AT} tachikoma.io</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-asakusa-rb-saddler%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Asakusa.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
