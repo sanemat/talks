@@ -93,7 +93,7 @@ git diff -z --name-only origin/master.. \
      --require rubocop/formatter/checkstyle_formatter \
      --format RuboCop::Formatter::CheckstyleFormatter \
  | checkstyle_filter-git diff origin/master.. \
- | saddler run \
+ | saddler report \
      --require github/pull-request-comment-formatter \
      --reporter Github::PullRequestCommentFormatter
 ```
@@ -133,9 +133,9 @@ $ git diff -z --name-only b5ee3a61...origin/master \
 
 $ checkstyle_filter-git diff b5ee3a61...origin/master
 
-$ saddler run \
+$ saddler report \
   --require github/pull-request-comment-formatter \
-  --format Github::PullRequestCommentFormatter
+  --reporter Github::PullRequestCommentFormatter
 ```
 
 ### pronto dis
@@ -201,7 +201,7 @@ git diff -z --name-only origin/master.. \
      --require rubocop/formatter/checkstyle_formatter \
      --format RuboCop::Formatter::CheckstyleFormatter \
  | checkstyle_filter-git diff origin/master.. \
- | saddler run \
+ | saddler report \
      --require github/pull-request-comment-formatter \
      --reporter Github::PullRequestCommentFormatter
 ```
@@ -243,7 +243,7 @@ ruby gemとnode npmで名前が使えて、その名前をコマンド名にも�
 
 で、saddler
 
-saddle(馬具)を作る売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか?
+saddle(馬具)を作る売る人がsaddler。reporterとは関係なくなった(?) saddler が report なのか? まあいい、のか?
 
 ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う。sadlerさん。
 

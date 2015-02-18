@@ -89,7 +89,7 @@
      --require rubocop/formatter/checkstyle_formatter \
      --format RuboCop::Formatter::CheckstyleFormatter \
  | checkstyle_filter-git diff origin/master.. \
- | saddler run \
+ | saddler report \
      --require github/pull-request-comment-formatter \
      --reporter Github::PullRequestCommentFormatter</code></pre>
 <pre><code>$ git diff -z --name-only b5ee3a61...origin/master
@@ -126,9 +126,9 @@ $ git diff -z --name-only b5ee3a61...origin/master \
 
 $ checkstyle_filter-git diff b5ee3a61...origin/master
 
-$ saddler run \
+$ saddler report \
   --require github/pull-request-comment-formatter \
-  --format Github::PullRequestCommentFormatter</code></pre>
+  --reporter Github::PullRequestCommentFormatter</code></pre>
 <h3 id="pronto-dis">pronto dis</h3>
 <p>え、prontoでいいじゃん、足りないところあればコントリビューションすればいいじゃん</p>
 <p>pronto自体の出来はよい、but 確認しづらいパーツが多すぎる</p>
@@ -161,7 +161,7 @@ $ saddler run \
      --require rubocop/formatter/checkstyle_formatter \
      --format RuboCop::Formatter::CheckstyleFormatter \
  | checkstyle_filter-git diff origin/master.. \
- | saddler run \
+ | saddler report \
      --require github/pull-request-comment-formatter \
      --reporter Github::PullRequestCommentFormatter</code></pre>
 <p>rubyとnodejsは書くけど、本当はgolangでポン置き出来るようにしたい。</p>
@@ -191,7 +191,7 @@ x packhorse</code></pre>
 <li>saddlery</li>
 </ul>
 <p>で、saddler</p>
-<p>saddle(馬具)を作る売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか?</p>
+<p>saddle(馬具)を作る売る人がsaddler。reporterとは関係なくなった(?) saddler が report なのか? まあいい、のか?</p>
 <p>ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う。sadlerさん。</p>
 <p>Bio Hazard 4 のSaddlerさんはdd。なので苗字と同じ。</p>
 <p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150217-shibuya-rb-saddler">Tachikoma.io</a></p>
