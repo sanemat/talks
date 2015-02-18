@@ -81,6 +81,9 @@ $ GITHUB_ACCESS_TOKEN=token PULL_REQUEST_ID=id pronto run -f github_pr -c origin
 
 ## Saddler
 
+[packsaddle/ruby-saddler](https://github.com/packsaddle/ruby-saddler)
+[packsaddle](https://github.com/packsaddle)
+
 ```
 git diff -z --name-only origin/master.. \
  | xargs -0 bundle exec rubocop-select \
