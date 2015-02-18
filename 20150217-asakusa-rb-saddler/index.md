@@ -100,7 +100,7 @@ $ git diff -z --name-only b5ee3a61...origin/master \
 
 $ checkstyle_filter-git diff b5ee3a61...origin/master
 
-$ saddler run \
+$ saddler report \
   --require github/pull-request-comment-formatter \
   --reporter Github::PullRequestCommentFormatter
 ```
