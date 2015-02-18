@@ -95,7 +95,7 @@ git diff -z --name-only origin/master.. \
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter
+     --reporter Github::PullRequestCommentFormatter
 ```
 
 ```
@@ -203,7 +203,7 @@ git diff -z --name-only origin/master.. \
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter
+     --reporter Github::PullRequestCommentFormatter
 ```
 
 rubyとnodejsは書くけど、本当はgolangでポン置き出来るようにしたい。

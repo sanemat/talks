@@ -91,7 +91,7 @@
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter</code></pre>
+     --reporter Github::PullRequestCommentFormatter</code></pre>
 <pre><code>$ git diff -z --name-only b5ee3a61...origin/master
 .gitignore^@.rubocop.yml^@.travis.yml^@Gemfile^@README.md^@bin/console^@bin/setup^@checkstyle_filter-git.gemspec^@example/example1.xml^@example/github-pull-requests-files-response.json^@example/invalid.rb^@exe/checkstyle_filter-git^@lib/checkstyle_filter/git.rb^@lib/checkstyle_filter/git/cli.rb^@lib/checkstyle_filter/git/diff_parser.rb^@
 
@@ -163,7 +163,7 @@ $ saddler run \
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter</code></pre>
+     --reporter Github::PullRequestCommentFormatter</code></pre>
 <p>rubyとnodejsは書くけど、本当はgolangでポン置き出来るようにしたい。</p>
 <p>出来るのかは知らない。</p>
 <h2 id="question">Question</h2>

@@ -62,7 +62,7 @@ git diff -z --name-only origin/master.. \
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter
+     --reporter Github::PullRequestCommentFormatter
 ```
 
 ```
@@ -102,7 +102,7 @@ $ checkstyle_filter-git diff b5ee3a61...origin/master
 
 $ saddler run \
   --require github/pull-request-comment-formatter \
-  --format Github::PullRequestCommentFormatter
+  --reporter Github::PullRequestCommentFormatter
 ```
 
 これのメリット
