@@ -57,7 +57,7 @@
  | checkstyle_filter-git diff origin/master.. \
  | saddler run \
      --require github/pull-request-comment-formatter \
-     --format Github::PullRequestCommentFormatter</code></pre>
+     --reporter Github::PullRequestCommentFormatter</code></pre>
 <pre><code>$ git diff -z --name-only b5ee3a61...origin/master
 .gitignore^@.rubocop.yml^@.travis.yml^@Gemfile^@README.md^@bin/console^@bin/setup^@checkstyle_filter-git.gemspec^@example/example1.xml^@example/github-pull-requests-files-response.json^@example/invalid.rb^@exe/checkstyle_filter-git^@lib/checkstyle_filter/git.rb^@lib/checkstyle_filter/git/cli.rb^@lib/checkstyle_filter/git/diff_parser.rb^@
 
@@ -94,7 +94,7 @@ $ checkstyle_filter-git diff b5ee3a61...origin/master
 
 $ saddler run \
   --require github/pull-request-comment-formatter \
-  --format Github::PullRequestCommentFormatter</code></pre>
+  --reporter Github::PullRequestCommentFormatter</code></pre>
 <p>これのメリット</p>
 <ul>
 <li>確認しづらいパーツが減る</li>
