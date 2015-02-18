@@ -216,6 +216,8 @@ rubyとnodejsは書くけど、本当はgolangでポン置き出来るように�
 
 ![saddle](saddle.png "")
 
+saddle(馬具)を作る売る人がsaddler。
+
 reporter から派生して、荷馬車とか駄獣とかハコブネとか、なんかそういう荷物を運んで運搬するイメージ
 
 ```
@@ -230,9 +232,10 @@ x saddle
 x packhorse
 ```
 
-ruby gemとnode npmで使えて、コマンド名にもなる
+ruby gemとnode npmで名前が使えて、その名前をコマンド名にもしたい
 
 候補
+
 * packsaddle
 * saddles
 * saddler
@@ -240,8 +243,11 @@ ruby gemとnode npmで使えて、コマンド名にもなる
 
 で、saddler
 
-saddle(馬具)を売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか?
-ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う
+saddle(馬具)を作る売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか?
+
+ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う。sadlerさん。
+
+Bio Hazard 4 のSaddlerさんはdd。なので苗字と同じ。
 
 [Tachikoma.io][tachikoma-io]
 
