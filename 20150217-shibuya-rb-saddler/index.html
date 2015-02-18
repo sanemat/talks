@@ -34,6 +34,9 @@
 <img src="rubocop.gif" alt="Rubocop demo" /><figcaption>Rubocop demo</figcaption>
 </figure>
 <p>デフォルト設定があるが、<code>.rubocop.yml</code>で全部設定変更できる</p>
+<ul>
+<li><a href="https://github.com/bbatsov/rubocop">rubocop</a></li>
+</ul>
 <h2 id="houndci">HoundCI</h2>
 <figure>
 <img src="houndci.gif" alt="HoundCI demo" /><figcaption>HoundCI demo</figcaption>
@@ -72,11 +75,14 @@
 <li>github pull request</li>
 <li>gitlab</li>
 <li>json</li>
-<li>text</li>
+<li><p>text</p></li>
+<li><p><a href="https://github.com/mmozuras/pronto">mmozuras/pronto</a></p></li>
 </ul>
-<p><a href="https://github.com/mmozuras/pronto">mmozuras/pronto</a></p>
 <h2 id="saddler">Saddler</h2>
-<p><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a> <a href="https://github.com/packsaddle">packsaddle</a></p>
+<ul>
+<li><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a></li>
+<li><a href="https://github.com/packsaddle">packsaddle</a></li>
+</ul>
 <pre><code>git diff -z --name-only origin/master.. \
  | xargs -0 bundle exec rubocop-select \
  | xargs rubocop \
@@ -126,18 +132,27 @@ $ saddler run \
 <h3 id="pronto-dis">pronto dis</h3>
 <p>え、prontoでいいじゃん、足りないところあればコントリビューションすればいいじゃん</p>
 <p>pronto自体の出来はよい、but 確認しづらいパーツが多すぎる</p>
-<p>ruggedとか、gitlabとか、bitbucketとか git diff相当でinvalid byte sequenceで落ちる</p>
+<p>ruggedとか、gitlabとか、今はないけどbitbucketとか git diff相当でinvalid byte sequenceで落ちる</p>
 <p>余談 ruggedはlibgit2のrubyバインディングなんだけど、普通にwrapper たとえば、cliの <code>git diff</code> ってめちゃめちゃいろいろなことやる ちょっとウソ言ってるかもだから補足お願い</p>
 <p><code>git diff</code>: HEAD..index <code>git diff FILE_A FILE_B</code>: FILE_A FILE_Bの HEAD..index <code>git diff origin/master</code>: origin/master..index <code>git diff origin/master..HEAD</code>:</p>
 <p>おれはいますぐgit diffの結果がほしいんだ! という場合には、難しい、でも他の選択肢ない <code>checkstyle_filter-git</code> では、gitライブラリいろいろ試した結果、<code>open3.capture3</code> libgit2は当然中のmappingだから、ruggedもだいたい、中のmappingと一緒</p>
-<p>ラッパー頑張ってるけど、イマイチ</p>
-<p>ラッパーないものとか、別言語とか</p>
-<p>diff部分だけをlint これは別のlint作者(vimlint)からの着想だけど、ファイルをやって、プラス分だけやれたほうがいい たとえば、javascript で <code>var</code> で変数宣言してる行を削った場合、など増分diffのlintだけでは出てこない</p>
+<p>pronto-何か間の ラッパー頑張ってるけど、イマイチ 対象とするファイルの抜き出しとか、不満がある</p>
+<p>それからラッパーないものとか、別言語とか</p>
+<p>diff部分だけのlint 各ライブラリの内部メソッドを呼び出す必要がある diff部分だけをlint これは別のlint作者(vimlint)からの着想だけど、ファイルをやって、プラス分だけやれたほうがいい たとえば、javascript で <code>var</code> で変数宣言してる行を削った場合、など増分diffのlintだけでは出てこない</p>
 <p>増分diffの範囲になければ無理だけど！ ちょっと、これは後で考える、github pull request commentに引きずられ過ぎかもしれない</p>
 <h3 id="houndci-dis">houndci dis</h3>
 <p>rubyでwrapperライブラリあるものに今は絞ってる jsのライブラリをgemにしたものってオワコン めっちゃはやい、github pull requestのdiff filesから取得 ただし、反対にそれによる制約も出てくる</p>
 <h3 id="saddler-1">saddler</h3>
-<p>なんでもできる(はず) jscsとかeslintとか、tslintとか、行けるようになるんだ たぶん</p>
+<ul>
+<li>travis-ci, circle-ciでサクサク動く(はず)</li>
+<li>パイプで挟んで伝達できれば、なんでもできる(はず)</li>
+<li>独自フォーマットをできるだけ避ける
+<ul>
+<li>saddlerはcheckstyleを受け取る予定</li>
+<li>checkstyle formatに変換さえすれば、何でもできる(はず)</li>
+</ul></li>
+<li>jscsとかeslintとか、tslintとか、行けるようになるんだ たぶん</li>
+</ul>
 <h3 id="今すぐためしてみたい">今すぐためしてみたい!</h3>
 <p>やっと昨日 saddlerコマンド作り始めたので、もうちょっとお待ちを。 gemとnpmのsaddlerって名前だけ押さえた。</p>
 <pre><code>git diff -z --name-only origin/master.. \
@@ -151,6 +166,25 @@ $ saddler run \
      --format Github::PullRequestCommentFormatter</code></pre>
 <p>rubyとnodejsは書くけど、本当はgolangでポン置き出来るようにしたい。</p>
 <p>出来るのかは知らない。</p>
+<h2 id="question">Question</h2>
+<h3 id="saddlerって何">saddlerって何?</h3>
+<figure>
+<img src="saddle.png" alt="saddle" /><figcaption>saddle</figcaption>
+</figure>
+<p>reporter から派生して、荷馬車とか駄獣とかハコブネとか、なんかそういう荷物を運んで運搬するイメージ</p>
+<pre><code>x reporter
+x journalist
+x gazette
+x newsletter
+x bearer
+x herald
+x steel
+x saddle
+x packhorse</code></pre>
+<p>ruby gemとnode npmで使えて、コマンド名にもなる</p>
+<p>候補 * packsaddle * saddles * saddler * saddlery</p>
+<p>で、saddler</p>
+<p>saddle(馬具)を売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか? ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う</p>
 <p><a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150217-shibuya-rb-saddler">Tachikoma.io</a></p>
 <p>sanemat {AT} tachikoma.io</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-shibuya-rb-saddler%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">

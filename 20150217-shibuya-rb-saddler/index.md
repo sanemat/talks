@@ -29,6 +29,8 @@ Saddlerというライブラリ群を作成中。こんなのあればいいの�
 
 デフォルト設定があるが、`.rubocop.yml`で全部設定変更できる
 
+* [rubocop](https://github.com/bbatsov/rubocop)
+
 ## HoundCI
 
 ![HoundCI demo](houndci.gif "")
@@ -77,12 +79,12 @@ $ GITHUB_ACCESS_TOKEN=token PULL_REQUEST_ID=id pronto run -f github_pr -c origin
 * json
 * text
 
-[mmozuras/pronto](https://github.com/mmozuras/pronto)
+* [mmozuras/pronto](https://github.com/mmozuras/pronto)
 
 ## Saddler
 
-[packsaddle/ruby-saddler](https://github.com/packsaddle/ruby-saddler)
-[packsaddle](https://github.com/packsaddle)
+* [packsaddle/ruby-saddler](https://github.com/packsaddle/ruby-saddler)
+* [packsaddle](https://github.com/packsaddle)
 
 ```
 git diff -z --name-only origin/master.. \
@@ -142,7 +144,7 @@ $ saddler run \
 
 pronto自体の出来はよい、but 確認しづらいパーツが多すぎる
 
-ruggedとか、gitlabとか、bitbucketとか
+ruggedとか、gitlabとか、今はないけどbitbucketとか
 git diff相当でinvalid byte sequenceで落ちる
 
 余談
@@ -159,10 +161,12 @@ ruggedはlibgit2のrubyバインディングなんだけど、普通にwrapper
 `checkstyle_filter-git` では、gitライブラリいろいろ試した結果、`open3.capture3`
 libgit2は当然中のmappingだから、ruggedもだいたい、中のmappingと一緒
 
-ラッパー頑張ってるけど、イマイチ
+pronto-何か間の ラッパー頑張ってるけど、イマイチ
+対象とするファイルの抜き出しとか、不満がある
 
-ラッパーないものとか、別言語とか
+それからラッパーないものとか、別言語とか
 
+diff部分だけのlint 各ライブラリの内部メソッドを呼び出す必要がある
 diff部分だけをlint これは別のlint作者(vimlint)からの着想だけど、ファイルをやって、プラス分だけやれたほうがいい
 たとえば、javascript で `var` で変数宣言してる行を削った場合、など増分diffのlintだけでは出てこない
 
@@ -178,8 +182,12 @@ jsのライブラリをgemにしたものってオワコン
 
 ### saddler
 
-なんでもできる(はず)
-jscsとかeslintとか、tslintとか、行けるようになるんだ たぶん
+* travis-ci, circle-ciでサクサク動く(はず)
+* パイプで挟んで伝達できれば、なんでもできる(はず)
+* 独自フォーマットをできるだけ避ける
+    * saddlerはcheckstyleを受け取る予定
+    * checkstyle formatに変換さえすれば、何でもできる(はず)
+* jscsとかeslintとか、tslintとか、行けるようになるんだ たぶん
 
 ### 今すぐためしてみたい!
 
@@ -201,6 +209,39 @@ git diff -z --name-only origin/master.. \
 rubyとnodejsは書くけど、本当はgolangでポン置き出来るようにしたい。
 
 出来るのかは知らない。
+
+## Question
+
+### saddlerって何?
+
+![saddle](saddle.png "")
+
+reporter から派生して、荷馬車とか駄獣とかハコブネとか、なんかそういう荷物を運んで運搬するイメージ
+
+```
+x reporter
+x journalist
+x gazette
+x newsletter
+x bearer
+x herald
+x steel
+x saddle
+x packhorse
+```
+
+ruby gemとnode npmで使えて、コマンド名にもなる
+
+候補
+* packsaddle
+* saddles
+* saddler
+* saddlery
+
+で、saddler
+
+saddle(馬具)を売る人がsaddler。reporterとは関係なくなった(?) saddler が run なのか? まあいい、のか?
+ちなみに sadler's wells (ロンドンのバレエ劇場, 競走馬)、とはdの数1個違う
 
 [Tachikoma.io][tachikoma-io]
 
