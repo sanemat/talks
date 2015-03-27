@@ -1,5 +1,5 @@
 ---
-pagetitle: PSR-2 Error to GitHub Pull Request Review Comment
+pagetitle: PSR-2でLintした結果を見えるようにして、コード品質の最低限を上げる
 css:
   - github-markdown.css
   - page.css
@@ -7,7 +7,7 @@ css:
 canonical: http://sanemat.github.io/talks/20150327-php-cs-php-study/
 lang: ja
 description: >-
-  PSR-2でLintした結果をGitHubのPull Request上に可視化する。
+  PSR-2でLintした結果をGitHubのPull Request上に可視化する。/ phpstudy 88
 ogimage: http://sanemat.github.io/talks/20150327-php-cs-php-study/github-pull-request-review-comment.gif
 ---
 <script type="text/javascript">
