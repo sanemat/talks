@@ -30,7 +30,7 @@
 <li>Lintの結果をもっと見えるようにしよう。</li>
 <li>重要なのはコードを介した対話 (総花的だ)</li>
 </ul>
-<h2 id="example---php-code-sniffer">Example - PHP Code Sniffer</h2>
+<h2 id="example---php_codesniffer">Example - PHP_CodeSniffer</h2>
 <p>例えばこのコード、<code>if</code>のあとのカッコの前にspaceがない、<code>if () {} else {}</code>のbraceがない。</p>
 <pre class="sourceCode php"><code class="sourceCode php"><span class="co"># test.php</span>
 &lt;<span class="ot">?</span>php
@@ -103,7 +103,7 @@
 <li><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a></li>
 </ul>
 <p>言語中立なのを作った。<strong>Saddler</strong></p>
-<h4 id="example---saddler">example - Saddler</h4>
+<h4 id="example---saddler">Example - Saddler</h4>
 <p>プルリクエストに対してテストが走る、その後処理の中で、実行する。</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TravisCIやCircleCIの after testの中で(travisCI用語でafter_script, CircleCI用語でpost test)</span>
 <span class="kw">git</span> diff --name-only origin/master \
@@ -131,11 +131,11 @@
 <p>と、たぶんなるはずなんだけど、手元にいい感じにsetupしたPHP_CodeSnifferプロジェクト無いので、誰か手伝ってほしい。</p>
 <h4 id="メリット">メリット</h4>
 <ul>
-<li>github上に可視化できること。</li>
+<li>GitHub上に(CIや別サービスにリンクをたどっていく必要なく)可視化できること。</li>
 <li>コード増分だけに適用出来ること。</li>
 <li>コメントを無視もできるところ。身も蓋もないけど。</li>
 </ul>
-<h4 id="build-phases">build phases</h4>
+<h4 id="build-phases">Build phases</h4>
 <ul>
 <li>TravisCI (after_script)
 <ul>
@@ -173,6 +173,7 @@
 <li><a href="http://packsaddle.org/articles/saddler-overview/">変更したファイルにrubocopやjscsを実行して pull requestに自動でコメントする – Saddler - checkstyle to anywhere</a></li>
 </ul>
 <p>sanemat {AT} tachikoma.io</p>
+<p>Bundle Update as a Service, <a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150327-php-cs-php-study">Tachikoma.io</a></p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150327-php-cs-php-study%2F&amp;t=PSR-2%20Error%20to%20GitHub%20Pull%20Request%20Review%20Comment" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>

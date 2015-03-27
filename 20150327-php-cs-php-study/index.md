@@ -24,7 +24,7 @@ ogimage: http://sanemat.github.io/talks/20150327-php-cs-php-study/github-pull-re
 * Lintの結果をもっと見えるようにしよう。
 * 重要なのはコードを介した対話 (総花的だ)
 
-## Example - PHP Code Sniffer
+## Example - PHP_CodeSniffer
 
 例えばこのコード、`if`のあとのカッコの前にspaceがない、`if () {} else {}`のbraceがない。
 
@@ -128,7 +128,7 @@ Time: 90ms; Memory: 2.5Mb
 
 言語中立なのを作った。**Saddler**
 
-#### example - Saddler
+#### Example - Saddler
 
 プルリクエストに対してテストが走る、その後処理の中で、実行する。
 
@@ -166,11 +166,11 @@ git diff --name-only origin/master \
 
 #### メリット
 
-* github上に可視化できること。
+* GitHub上に(CIや別サービスにリンクをたどっていく必要なく)可視化できること。
 * コード増分だけに適用出来ること。
 * コメントを無視もできるところ。身も蓋もないけど。
 
-#### build phases
+#### Build phases
 
 * TravisCI (after_script)
     * [Travis CI: Configuring your build](http://docs.travis-ci.com/user/build-configuration/#Build-Lifecycle)
@@ -211,6 +211,8 @@ git diff --name-only origin/master \
 * [変更したファイルにrubocopやjscsを実行して pull requestに自動でコメントする – Saddler - checkstyle to anywhere](http://packsaddle.org/articles/saddler-overview/)
 
 sanemat {AT} tachikoma.io
+
+Bundle Update as a Service, [Tachikoma.io][tachikoma-io]
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150327-php-cs-php-study%2F&t=PSR-2%20Error%20to%20GitHub%20Pull%20Request%20Review%20Comment" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
