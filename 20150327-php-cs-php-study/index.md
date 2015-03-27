@@ -189,6 +189,16 @@ git diff --name-only origin/master \
 
 と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。
 
+#### build phases
+
+* TravisCI (after_script)
+    * [Travis CI: Configuring your build](http://docs.travis-ci.com/user/build-configuration/#Build-Lifecycle)
+* CircleCI (post test)
+    * [Configuring CircleCI - CircleCI](https://circleci.com/docs/configuration#phases)
+* Jenkins (post build task)
+    * [Post build task - Jenkins - Jenkins Wiki](https://wiki.jenkins-ci.org/display/JENKINS/Post+build+task)
+    * [Jenkins でジョブが失敗した時にだけ実行したい処理があった場合の対応パターン - Thanks Driven Life](http://gongo.hatenablog.com/entry/2014/04/01/100236)
+
 ### コーディング規約の課題(一部済)
 
 * ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
