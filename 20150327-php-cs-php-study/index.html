@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="PSR-2でLintした結果をGitHubのPull Request上に可視化する。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20150327-php-cs-php-study/github-pull-request-review-comment.gif" />
+  <title>PSR-2 Error to GitHub Pull Request Review Comment</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20150327-php-cs-php-study/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="psr-2でlintした結果を見えるようにしてコード品質の最低限を上げる">PSR-2でLintした結果を見えるようにして、コード品質の最低限を上げる</h1>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Lintの結果をもっと活用しよう。</li>
+<li>Lintの結果をもっと見えるようにしよう。</li>
+<li>重要なのはコードを介した対話 (総花的だ)</li>
+</ul>
+<h2 id="コーディング規約の課題">コーディング規約の課題</h2>
+<ul>
+<li>このフレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題
+<ul>
+<li><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</li>
+</ul></li>
+<li>Lintの結果が出てくるのがCIではタイミング遅い
+<ul>
+<li>エディタやIDEで直せるように入れよう 機械がやれ</li>
+</ul></li>
+<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
+<ul>
+<li>ココの話! 機械がやれ</li>
+</ul></li>
+</ul>
+<h2 id="example---php-code-sniffer">Example - PHP Code Sniffer</h2>
+<p>例えばこのコード、<code>if</code>のあとのカッコの前にspaceがない、<code>if () {} else {}</code>のbraceがない。</p>
+<pre class="sourceCode php"><code class="sourceCode php"><span class="co"># test.php</span>
+&lt;<span class="ot">?</span>php
+<span class="kw">if</span><span class="ot">(</span><span class="kw">$a</span>==<span class="dv">2</span><span class="ot">)</span>
+    <span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span>
+<span class="kw">else</span>
+    <span class="fu">echo</span> <span class="st">&#39;3&#39;</span><span class="ot">;</span></code></pre>
+<p>これをPHP Code Snifferでチェックすると、エラーが表示される。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">php</span> phpcs.phar --standard=PSR2 test.php
+
+<span class="kw">FILE</span>: C:\Users\ishida\src\test.php
+<span class="kw">--------------------------------------------------------------------------------</span>
+
+<span class="kw">FOUND</span> 7 ERRORS AFFECTING 4 LINES
+<span class="kw">--------------------------------------------------------------------------------</span>
+
+ <span class="kw">1</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Expected 1 space after closing brace<span class="kw">;</span> <span class="kw">0</span> found
+ <span class="kw">2</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Expected 1 space after IF keyword<span class="kw">;</span> <span class="kw">0</span> found
+ <span class="kw">2</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Inline control structures are not allowed
+ <span class="kw">2</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Whitespace found at end of line
+ <span class="kw">4</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Expected 1 space after ELSE keyword<span class="kw">;</span> <span class="kw">newline</span> found
+ <span class="kw">4</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Inline control structures are not allowed
+ <span class="kw">5</span> <span class="kw">|</span> <span class="kw">ERROR</span> <span class="kw">|</span> [<span class="kw">x</span>] Expected 1 blank line at end of file<span class="kw">;</span> <span class="kw">2</span> found
+<span class="kw">--------------------------------------------------------------------------------</span>
+
+<span class="kw">PHPCBF</span> CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+<span class="kw">--------------------------------------------------------------------------------</span>
+
+
+<span class="kw">Time</span>: 90ms<span class="kw">;</span> <span class="kw">Memory</span>: 2.5Mb</code></pre>
+<p><a href="http://qiita.com/iakio/items/4ce17c46e46de80adec7">PHPのコーディングスタイルをPHP_CodeSnifferで修正する - Qiita</a></p>
+<p>コード規約あると何がウレシイかというと、どうでもいいことでのストレスが減らせる。</p>
+<p>コードレビューの時間をどうでもいい指摘ばっかりしたくない。どっちでもいいこととか。4space, 2space, tab とか。</p>
+<p>どうでもいいことは、指摘もしたくない。機械的に勝手に直されてほしい。</p>
+<p><code>php-cs-fixer</code>を使おう。</p>
+<h3 id="コーディング規約の課題一部済">コーディング規約の課題(一部済)</h3>
+<ul>
+<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
+<ul>
+<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
+</ul></li>
+<li>Lintの結果が出てくるのがCIではタイミング遅い
+<ul>
+<li>エディタやIDEで直せるように入れよう</li>
+</ul></li>
+<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
+<ul>
+<li>ココの話!</li>
+</ul></li>
+</ul>
+<h3 id="正論だがしかし">正論だがしかし</h3>
+<p>正論だし、メリットもわかる。ではなんで徹底されない? 単に、ツールやテクノロジーが足りてない。 知ってればわかるだけの話。やろう。</p>
+<p>仕事の生産性上げるのは、仕事だ!</p>
+<h2 id="入力支援">入力支援</h2>
+<p>エディタなりIDEなりの手元でガンガン支援受けて直すのが一番いい。</p>
+<h2 id="コマンド">コマンド</h2>
+<p><code>php-cs-fixer</code>やphp code sniffer付属の<code>phpcbf</code>。</p>
+<ul>
+<li><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">FriendsOfPHP/PHP-CS-Fixer</a></li>
+<li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
+<li><a href="http://qiita.com/dozo/items/ed4baa58a0131945ad6f">コーディング規約自動調整ツールCodeSniffer2とphp-cs-fixer - Qiita</a></li>
+<li><a href="http://qiita.com/hshimo/items/e8374fe721492ac4658b">PHPコードをコマンドで自動整形! Condig Standards Fixer と PHP_CodeSniffer - Qiita</a></li>
+</ul>
+<h2 id="エディタ">エディタ</h2>
+<ul>
+<li><a href="https://github.com/stephpy/vim-php-cs-fixer">stephpy/vim-php-cs-fixer (vim)</a></li>
+<li><a href="https://gist.github.com/shouhei/9005edbfa66470a3a592">PHP CS fixerをemacsから使うための関数 (emacs)</a></li>
+<li><a href="https://github.com/benmatselby/sublime-phpcs">benmatselby/sublime-phpcs (sublime)</a></li>
+<li><a href="https://github.com/benmatselby/atom-php-checkstyle">benmatselby/atom-php-checkstyle (atom)</a></li>
+<li><a href="https://www.jetbrains.com/phpstorm/help/using-php-code-sniffer-tool.html">Using PHP Code Sniffer Tool (phpstorm)</a></li>
+<li><a href="http://p2-dev.pdt-extensions.org/phpfeatures.html">PHP features The PDT Extension Group eclipse p2 repository (eclipse)</a></li>
+</ul>
+<p>良いタイトルが合ったので、持ってきた。</p>
+<ul>
+<li><a href="http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html">PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)</a></li>
+</ul>
+<h3 id="コーディング規約の課題一部済-1">コーディング規約の課題(一部済)</h3>
+<ul>
+<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
+<ul>
+<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
+</ul></li>
+<li><del>Lintの結果が出てくるのがCIではタイミング遅い</del>
+<ul>
+<li><del>エディタやIDEで直せるように入れよう</del></li>
+</ul></li>
+<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
+<ul>
+<li>ココの話!</li>
+</ul></li>
+</ul>
+<h2 id="結果の可視化">結果の可視化</h2>
+<p>git のコミットフックとか、テスト/CIに混ぜてるとか、悪くない。</p>
+<p>でもカジュアルにpushはしてほしい。push蹴られるのは個人的にはあまり好みではない。</p>
+<h3 id="pull-request-review-comment">Pull Request Review Comment</h3>
+<p>全員がlint済みのものをpushしてくれるか? というと疑問。</p>
+<p>こんな感じに、pull requestにreview commentがつくツールやサービスがある。 おもにrubyプロジェクトの場合 Hound(Web Service), Hound(OSS), Prontoというのを使う。</p>
+<figure>
+<img src="./github-pull-request-review-comment.png" title="pull request review comment" alt="review comment" /><figcaption>review comment</figcaption>
+</figure>
+<p>言語ごとに実装してるのマヌケっぽい。</p>
+<ul>
+<li><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a></li>
+</ul>
+<p>言語中立なのを作った。<strong>Saddler</strong></p>
+<p>今はgithub だけですが、reporter差し替えて使えるようにしているので、gitlab, bitbucket, なども対応するつもり。svnとかmercurialでも使いたい人がいれば reporterつくればよい。</p>
+<h4 id="example---saddler">example - Saddler</h4>
+<p>プルリクエストに対してテストが走る、その後処理の中で、実行する。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TravisCIやCircleCIの after testの中で(travisCI用語でafter_script, CircleCI用語でpost test)</span>
+<span class="kw">git</span> diff --name-only origin/master \
+  <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*.php$&quot;</span> \
+  <span class="kw">|</span> <span class="kw">xargs</span> phpcs --report=checkstyle \
+  <span class="kw">|</span> <span class="kw">checkstyle_filter-git</span> diff origin/master \
+  <span class="kw">|</span> <span class="kw">saddler</span> report \
+      <span class="kw">--require</span> saddler/reporter/github \
+      <span class="kw">--reporter</span> Saddler::Reporter::Github::PullRequestReviewComment</code></pre>
+<p>途中出力</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> diff --name-only origin/master \
+  <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*.php$&quot;</span> \
+  <span class="kw">|</span> <span class="kw">xargs</span> phpcs --report=checkstyle
+
+<span class="kw">&lt;?xml</span> version=<span class="st">&quot;1.0&quot;</span> encoding=<span class="st">&quot;UTF-8&quot;</span>?<span class="kw">&gt;</span>
+<span class="kw">&lt;checkstyle</span> version=<span class="st">&quot;1.0.0&quot;</span><span class="kw">&gt;</span>
+ <span class="kw">&lt;file</span> name=<span class="st">&quot;/path/to/code/myfile.php&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;error</span> line=<span class="st">&quot;2&quot;</span> column=<span class="st">&quot;1&quot;</span> severity=<span class="st">&quot;error&quot;</span> message=<span class="st">&quot;Missing file doc comment&quot;</span> source=<span class="st">&quot;PEAR.Commenting.FileComment&quot;</span>/<span class="kw">&gt;</span>
+  <span class="kw">&lt;error</span> line=<span class="st">&quot;20&quot;</span> column=<span class="st">&quot;43&quot;</span> severity=<span class="st">&quot;error&quot;</span> message=<span class="st">&quot;PHP keywords must be lowercase; expected &amp;quot;false&amp;quot; but found &amp;quot;FALSE&amp;quot;&quot;</span> source=<span class="st">&quot;Generic.PHP.LowerCaseConstant&quot;</span>/<span class="kw">&gt;</span>
+  <span class="kw">&lt;error</span> line=<span class="st">&quot;47&quot;</span> column=<span class="st">&quot;1&quot;</span> severity=<span class="st">&quot;error&quot;</span> message=<span class="st">&quot;Line not indented correctly; expected 4 spaces but found 1&quot;</span> source=<span class="st">&quot;PEAR.WhiteSpace.ScopeIndent&quot;</span>/<span class="kw">&gt;</span>
+  <span class="kw">&lt;error</span> line=<span class="st">&quot;47&quot;</span> column=<span class="st">&quot;20&quot;</span> severity=<span class="st">&quot;warning&quot;</span> message=<span class="st">&quot;Equals sign not aligned with surrounding assignments&quot;</span> source=<span class="st">&quot;Generic.Formatting.MultipleStatementAlignment&quot;</span>/<span class="kw">&gt;</span>
+  <span class="kw">&lt;error</span> line=<span class="st">&quot;51&quot;</span> column=<span class="st">&quot;4&quot;</span> severity=<span class="st">&quot;error&quot;</span> message=<span class="st">&quot;Missing function doc comment&quot;</span> source=<span class="st">&quot;PEAR.Commenting.FunctionComment&quot;</span>/<span class="kw">&gt;</span>
+ <span class="kw">&lt;</span>/<span class="kw">file&gt;</span>
+<span class="kw">&lt;</span>/<span class="kw">checkstyle&gt;</span></code></pre>
+<p>と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。</p>
+<h4 id="メリット">メリット</h4>
+<ul>
+<li>github上に可視化できること。</li>
+<li>コード増分だけに適用出来ること。</li>
+<li>コメントを無視もできるところ。身も蓋もないけど。</li>
+</ul>
+<h4 id="build-phases">build phases</h4>
+<ul>
+<li>TravisCI (after_script)
+<ul>
+<li><a href="http://docs.travis-ci.com/user/build-configuration/#Build-Lifecycle">Travis CI: Configuring your build</a></li>
+</ul></li>
+<li>CircleCI (post test)
+<ul>
+<li><a href="https://circleci.com/docs/configuration#phases">Configuring CircleCI - CircleCI</a></li>
+</ul></li>
+<li>Jenkins (post build task)
+<ul>
+<li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Post+build+task">Post build task - Jenkins - Jenkins Wiki</a></li>
+<li><a href="http://gongo.hatenablog.com/entry/2014/04/01/100236">Jenkins でジョブが失敗した時にだけ実行したい処理があった場合の対応パターン - Thanks Driven Life</a></li>
+</ul></li>
+</ul>
+<h3 id="コーディング規約の課題一部済-2">コーディング規約の課題(一部済)</h3>
+<ul>
+<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
+<ul>
+<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
+</ul></li>
+<li><del>Lintの結果が出てくるのがCIではタイミング遅い</del>
+<ul>
+<li><del>エディタやIDEで直せるように入れよう</del></li>
+</ul></li>
+<li><del>リポジトリに設定は入っているのだが、従っていないコードがpushされる</del>
+<ul>
+<li><del>ココの話!</del></li>
+</ul></li>
+</ul>
+<h2 id="設定したがしかし">設定したがしかし</h2>
+<h3 id="設定したら終わりか">設定したら終わりか?</h3>
+<p>ノー。そこから始まり。</p>
+<h3 id="無視できなくする">無視できなくする</h3>
+<p>あまりうまくない。 直さないと緊急デプロイできない とかはつらい。</p>
+<h3 id="重要なのは">重要なのは</h3>
+<p>重要なのはコードを介した対話だ!</p>
+<hr />
+<h2 id="参照">参照</h2>
+<ul>
+<li><a href="http://qiita.com/iakio/items/4ce17c46e46de80adec7">PHPのコーディングスタイルをPHP_CodeSnifferで修正する - Qiita</a></li>
+<li><a href="http://www.php-fig.org/psr/psr-2/">PSR-2 — Coding Style Guide</a></li>
+<li><a href="http://www.slideshare.net/yandod/psrphp">新標準PSRに学ぶきれいなPHP</a></li>
+<li><a href="http://blog.jetbrains.com/webide/2012/11/more-php-formatting-options-and-bundled-code-styles-for-ps/">More PHP Formatting Options and Bundled Code Styles for PSR-1/PSR-2 and Symfony2 | WebStorm &amp; PhpStorm Blog</a></li>
+<li><a href="http://blog.tojiru.net/article/278307117.html">PSR-0はなぜ0（≒最重要）なのか - 泥のように</a></li>
+<li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
+<li><a href="http://qiita.com/waterada/items/5174f771308ffc71b0c7">CakePHP のソースコードのレビュー結果を共有してみる - Qiita</a></li>
+<li><a href="https://github.com/packsaddle/ruby-saddler">Saddler</a></li>
+</ul>
+<p>sanemat {AT} tachikoma.io</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150327-php-cs-php-study%2F&amp;t=PSR-2%20Error%20to%20GitHub%20Pull%20Request%20Review%20Comment" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
