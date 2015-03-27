@@ -24,16 +24,7 @@ ogimage: http://sanemat.github.io/talks/20150327-php-cs-php-study/github-pull-re
 * Lintの結果をもっと見えるようにしよう。
 * 重要なのはコードを介した対話 (総花的だ)
 
-## コーディング規約の課題
-
-* このフレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題
-    * [自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ
-* Lintの結果が出てくるのがCIではタイミング遅い
-    * エディタやIDEで直せるように入れよう 機械がやれ
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話! 機械がやれ
-
-## Example - PHP Code Sniffer
+## Example - PHP_CodeSniffer
 
 例えばこのコード、`if`のあとのカッコの前にspaceがない、`if () {} else {}`のbraceがない。
 
@@ -46,7 +37,7 @@ else
     echo '3';
 ```
 
-これをPHP Code Snifferでチェックすると、エラーが表示される。
+これをPHP_CodeSnifferでチェックすると、エラーが表示される。
 
 ```bash
 $ php phpcs.phar --standard=PSR2 test.php
@@ -81,16 +72,7 @@ Time: 90ms; Memory: 2.5Mb
 
 どうでもいいことは、指摘もしたくない。機械的に勝手に直されてほしい。
 
-`php-cs-fixer`を使おう。
-
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* Lintの結果が出てくるのがCIではタイミング遅い
-    * エディタやIDEで直せるように入れよう
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話!
+`PHP_CodeSniffer`や`php-cs-fixer`を使おう。
 
 ### 正論だがしかし
 
@@ -106,7 +88,7 @@ Time: 90ms; Memory: 2.5Mb
 
 ## コマンド
 
-`php-cs-fixer`やphp code sniffer付属の`phpcbf`。
+`php-cs-fixer`やPHP_CodeSniffer付属の`phpcbf`。
 
 * [FriendsOfPHP/PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 * [PHP CS Fixerで快適PHPライフ - Fivestar's blog](http://fivestar.hatenablog.com/entry/2014/12/08/033345)
@@ -126,41 +108,27 @@ Time: 90ms; Memory: 2.5Mb
 
 * [PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)](http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html)
 
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* ~~Lintの結果が出てくるのがCIではタイミング遅い~~
-    * ~~エディタやIDEで直せるように入れよう~~
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話!
-
 ## 結果の可視化
-
-git のコミットフックとか、テスト/CIに混ぜてるとか、悪くない。
-
-でもカジュアルにpushはしてほしい。push蹴られるのは個人的にはあまり好みではない。
 
 ### Pull Request Review Comment
 
-全員がlint済みのものをpushしてくれるか? というと疑問。
-
-こんな感じに、pull requestにreview commentがつくツールやサービスがある。
-おもにrubyプロジェクトの場合 Hound(Web Service), Hound(OSS), Prontoというのを使う。
+こんな感じに、GitHub Pull RequestにReview Commentがつくツールやサービスがある。
+この行が長過ぎます、という例。
 
 ![review comment](./github-pull-request-review-comment.png 'pull request review comment')
 
-言語ごとに実装してるのマヌケっぽい。
+おもにrubyプロジェクトの場合
+[Hound(Web Service)](https://houndci.com/),
+[Hound(OSS)](https://github.com/thoughtbot/hound),
+[Pronto](https://github.com/mmozuras/pronto)
+というのを使う。
+各言語ごとにいろいろある。言語ごとに実装してるのマヌケっぽい。
 
 * [packsaddle/ruby-saddler](https://github.com/packsaddle/ruby-saddler)
 
 言語中立なのを作った。**Saddler**
 
-今はgithub だけですが、reporter差し替えて使えるようにしているので、gitlab,
-bitbucket, なども対応するつもり。svnとかmercurialでも使いたい人がいれば
-reporterつくればよい。
-
-#### example - Saddler
+#### Example - Saddler
 
 プルリクエストに対してテストが走る、その後処理の中で、実行する。
 
@@ -194,15 +162,15 @@ git diff --name-only origin/master \
 </checkstyle>
 ```
 
-と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。
+と、たぶんなるはずなんだけど、手元にいい感じにsetupしたPHP_CodeSnifferプロジェクト無いので、誰か手伝ってほしい。
 
 #### メリット
 
-* github上に可視化できること。
+* GitHub上に(CIや別サービスにリンクをたどっていく必要なく)可視化できること。
 * コード増分だけに適用出来ること。
 * コメントを無視もできるところ。身も蓋もないけど。
 
-#### build phases
+#### Build phases
 
 * TravisCI (after_script)
     * [Travis CI: Configuring your build](http://docs.travis-ci.com/user/build-configuration/#Build-Lifecycle)
@@ -212,29 +180,20 @@ git diff --name-only origin/master \
     * [Post build task - Jenkins - Jenkins Wiki](https://wiki.jenkins-ci.org/display/JENKINS/Post+build+task)
     * [Jenkins でジョブが失敗した時にだけ実行したい処理があった場合の対応パターン - Thanks Driven Life](http://gongo.hatenablog.com/entry/2014/04/01/100236)
 
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* ~~Lintの結果が出てくるのがCIではタイミング遅い~~
-    * ~~エディタやIDEで直せるように入れよう~~
-* ~~リポジトリに設定は入っているのだが、従っていないコードがpushされる~~
-    * ~~ココの話!~~
-
-
 ## 設定したがしかし
 
 ### 設定したら終わりか?
 ノー。そこから始まり。
-
-### 無視できなくする
-
-あまりうまくない。
-直さないと緊急デプロイできない とかはつらい。
+チームがコードをどう考えていくか、をすり寄せ続ける必要がある。
 
 ### 重要なのは
 
 重要なのはコードを介した対話だ!
+
+## Saddler 確実に詰まる
+
+設定しかけてわかんなかったらバンバン聞いてください。 @sanemat に。
+全員(自分も含めて)シェルスクリプト周りかCIサービス周りで確実に詰まる。
 
 ----
 
@@ -248,8 +207,12 @@ git diff --name-only origin/master \
 * [PHP CS Fixerで快適PHPライフ - Fivestar's blog](http://fivestar.hatenablog.com/entry/2014/12/08/033345)
 * [CakePHP のソースコードのレビュー結果を共有してみる - Qiita](http://qiita.com/waterada/items/5174f771308ffc71b0c7)
 * [Saddler](https://github.com/packsaddle/ruby-saddler)
+* [jser/jser.github.ioの記事をpull request時にLintする仕組み | Web Scratch](http://efcl.info/2015/03/04/linting-article/)
+* [変更したファイルにrubocopやjscsを実行して pull requestに自動でコメントする – Saddler - checkstyle to anywhere](http://packsaddle.org/articles/saddler-overview/)
 
 sanemat {AT} tachikoma.io
+
+Bundle Update as a Service, [Tachikoma.io][tachikoma-io]
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150327-php-cs-php-study%2F&t=PSR-2%20Error%20to%20GitHub%20Pull%20Request%20Review%20Comment" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>

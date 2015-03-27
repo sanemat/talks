@@ -30,22 +30,7 @@
 <li>Lintの結果をもっと見えるようにしよう。</li>
 <li>重要なのはコードを介した対話 (総花的だ)</li>
 </ul>
-<h2 id="コーディング規約の課題">コーディング規約の課題</h2>
-<ul>
-<li>このフレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題
-<ul>
-<li><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</li>
-</ul></li>
-<li>Lintの結果が出てくるのがCIではタイミング遅い
-<ul>
-<li>エディタやIDEで直せるように入れよう 機械がやれ</li>
-</ul></li>
-<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
-<ul>
-<li>ココの話! 機械がやれ</li>
-</ul></li>
-</ul>
-<h2 id="example---php-code-sniffer">Example - PHP Code Sniffer</h2>
+<h2 id="example---php_codesniffer">Example - PHP_CodeSniffer</h2>
 <p>例えばこのコード、<code>if</code>のあとのカッコの前にspaceがない、<code>if () {} else {}</code>のbraceがない。</p>
 <pre class="sourceCode php"><code class="sourceCode php"><span class="co"># test.php</span>
 &lt;<span class="ot">?</span>php
@@ -53,7 +38,7 @@
     <span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span>
 <span class="kw">else</span>
     <span class="fu">echo</span> <span class="st">&#39;3&#39;</span><span class="ot">;</span></code></pre>
-<p>これをPHP Code Snifferでチェックすると、エラーが表示される。</p>
+<p>これをPHP_CodeSnifferでチェックすると、エラーが表示される。</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">php</span> phpcs.phar --standard=PSR2 test.php
 
 <span class="kw">FILE</span>: C:\Users\ishida\src\test.php
@@ -80,29 +65,14 @@
 <p>コード規約あると何がウレシイかというと、どうでもいいことでのストレスが減らせる。</p>
 <p>コードレビューの時間をどうでもいい指摘ばっかりしたくない。どっちでもいいこととか。4space, 2space, tab とか。</p>
 <p>どうでもいいことは、指摘もしたくない。機械的に勝手に直されてほしい。</p>
-<p><code>php-cs-fixer</code>を使おう。</p>
-<h3 id="コーディング規約の課題一部済">コーディング規約の課題(一部済)</h3>
-<ul>
-<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
-<ul>
-<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
-</ul></li>
-<li>Lintの結果が出てくるのがCIではタイミング遅い
-<ul>
-<li>エディタやIDEで直せるように入れよう</li>
-</ul></li>
-<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
-<ul>
-<li>ココの話!</li>
-</ul></li>
-</ul>
+<p><code>PHP_CodeSniffer</code>や<code>php-cs-fixer</code>を使おう。</p>
 <h3 id="正論だがしかし">正論だがしかし</h3>
 <p>正論だし、メリットもわかる。ではなんで徹底されない? 単に、ツールやテクノロジーが足りてない。 知ってればわかるだけの話。やろう。</p>
 <p>仕事の生産性上げるのは、仕事だ!</p>
 <h2 id="入力支援">入力支援</h2>
 <p>エディタなりIDEなりの手元でガンガン支援受けて直すのが一番いい。</p>
 <h2 id="コマンド">コマンド</h2>
-<p><code>php-cs-fixer</code>やphp code sniffer付属の<code>phpcbf</code>。</p>
+<p><code>php-cs-fixer</code>やPHP_CodeSniffer付属の<code>phpcbf</code>。</p>
 <ul>
 <li><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">FriendsOfPHP/PHP-CS-Fixer</a></li>
 <li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
@@ -122,37 +92,18 @@
 <ul>
 <li><a href="http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html">PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)</a></li>
 </ul>
-<h3 id="コーディング規約の課題一部済-1">コーディング規約の課題(一部済)</h3>
-<ul>
-<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
-<ul>
-<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
-</ul></li>
-<li><del>Lintの結果が出てくるのがCIではタイミング遅い</del>
-<ul>
-<li><del>エディタやIDEで直せるように入れよう</del></li>
-</ul></li>
-<li>リポジトリに設定は入っているのだが、従っていないコードがpushされる
-<ul>
-<li>ココの話!</li>
-</ul></li>
-</ul>
 <h2 id="結果の可視化">結果の可視化</h2>
-<p>git のコミットフックとか、テスト/CIに混ぜてるとか、悪くない。</p>
-<p>でもカジュアルにpushはしてほしい。push蹴られるのは個人的にはあまり好みではない。</p>
 <h3 id="pull-request-review-comment">Pull Request Review Comment</h3>
-<p>全員がlint済みのものをpushしてくれるか? というと疑問。</p>
-<p>こんな感じに、pull requestにreview commentがつくツールやサービスがある。 おもにrubyプロジェクトの場合 Hound(Web Service), Hound(OSS), Prontoというのを使う。</p>
+<p>こんな感じに、GitHub Pull RequestにReview Commentがつくツールやサービスがある。 この行が長過ぎます、という例。</p>
 <figure>
 <img src="./github-pull-request-review-comment.png" title="pull request review comment" alt="review comment" /><figcaption>review comment</figcaption>
 </figure>
-<p>言語ごとに実装してるのマヌケっぽい。</p>
+<p>おもにrubyプロジェクトの場合 <a href="https://houndci.com/">Hound(Web Service)</a>, <a href="https://github.com/thoughtbot/hound">Hound(OSS)</a>, <a href="https://github.com/mmozuras/pronto">Pronto</a> というのを使う。 各言語ごとにいろいろある。言語ごとに実装してるのマヌケっぽい。</p>
 <ul>
 <li><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a></li>
 </ul>
 <p>言語中立なのを作った。<strong>Saddler</strong></p>
-<p>今はgithub だけですが、reporter差し替えて使えるようにしているので、gitlab, bitbucket, なども対応するつもり。svnとかmercurialでも使いたい人がいれば reporterつくればよい。</p>
-<h4 id="example---saddler">example - Saddler</h4>
+<h4 id="example---saddler">Example - Saddler</h4>
 <p>プルリクエストに対してテストが走る、その後処理の中で、実行する。</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TravisCIやCircleCIの after testの中で(travisCI用語でafter_script, CircleCI用語でpost test)</span>
 <span class="kw">git</span> diff --name-only origin/master \
@@ -177,14 +128,14 @@
   <span class="kw">&lt;error</span> line=<span class="st">&quot;51&quot;</span> column=<span class="st">&quot;4&quot;</span> severity=<span class="st">&quot;error&quot;</span> message=<span class="st">&quot;Missing function doc comment&quot;</span> source=<span class="st">&quot;PEAR.Commenting.FunctionComment&quot;</span>/<span class="kw">&gt;</span>
  <span class="kw">&lt;</span>/<span class="kw">file&gt;</span>
 <span class="kw">&lt;</span>/<span class="kw">checkstyle&gt;</span></code></pre>
-<p>と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。</p>
+<p>と、たぶんなるはずなんだけど、手元にいい感じにsetupしたPHP_CodeSnifferプロジェクト無いので、誰か手伝ってほしい。</p>
 <h4 id="メリット">メリット</h4>
 <ul>
-<li>github上に可視化できること。</li>
+<li>GitHub上に(CIや別サービスにリンクをたどっていく必要なく)可視化できること。</li>
 <li>コード増分だけに適用出来ること。</li>
 <li>コメントを無視もできるところ。身も蓋もないけど。</li>
 </ul>
-<h4 id="build-phases">build phases</h4>
+<h4 id="build-phases">Build phases</h4>
 <ul>
 <li>TravisCI (after_script)
 <ul>
@@ -200,28 +151,13 @@
 <li><a href="http://gongo.hatenablog.com/entry/2014/04/01/100236">Jenkins でジョブが失敗した時にだけ実行したい処理があった場合の対応パターン - Thanks Driven Life</a></li>
 </ul></li>
 </ul>
-<h3 id="コーディング規約の課題一部済-2">コーディング規約の課題(一部済)</h3>
-<ul>
-<li><del>フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題</del>
-<ul>
-<li><del><a href="http://0xcc.net/blog/archives/000135.html">自転車置場の議論</a>はヤメロ</del></li>
-</ul></li>
-<li><del>Lintの結果が出てくるのがCIではタイミング遅い</del>
-<ul>
-<li><del>エディタやIDEで直せるように入れよう</del></li>
-</ul></li>
-<li><del>リポジトリに設定は入っているのだが、従っていないコードがpushされる</del>
-<ul>
-<li><del>ココの話!</del></li>
-</ul></li>
-</ul>
 <h2 id="設定したがしかし">設定したがしかし</h2>
 <h3 id="設定したら終わりか">設定したら終わりか?</h3>
-<p>ノー。そこから始まり。</p>
-<h3 id="無視できなくする">無視できなくする</h3>
-<p>あまりうまくない。 直さないと緊急デプロイできない とかはつらい。</p>
+<p>ノー。そこから始まり。 チームがコードをどう考えていくか、をすり寄せ続ける必要がある。</p>
 <h3 id="重要なのは">重要なのは</h3>
 <p>重要なのはコードを介した対話だ!</p>
+<h2 id="saddler-確実に詰まる">Saddler 確実に詰まる</h2>
+<p>設定しかけてわかんなかったらバンバン聞いてください。 <span class="citation" data-cites="sanemat">@sanemat</span> に。 全員(自分も含めて)シェルスクリプト周りかCIサービス周りで確実に詰まる。</p>
 <hr />
 <h2 id="参照">参照</h2>
 <ul>
@@ -233,8 +169,11 @@
 <li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
 <li><a href="http://qiita.com/waterada/items/5174f771308ffc71b0c7">CakePHP のソースコードのレビュー結果を共有してみる - Qiita</a></li>
 <li><a href="https://github.com/packsaddle/ruby-saddler">Saddler</a></li>
+<li><a href="http://efcl.info/2015/03/04/linting-article/">jser/jser.github.ioの記事をpull request時にLintする仕組み | Web Scratch</a></li>
+<li><a href="http://packsaddle.org/articles/saddler-overview/">変更したファイルにrubocopやjscsを実行して pull requestに自動でコメントする – Saddler - checkstyle to anywhere</a></li>
 </ul>
 <p>sanemat {AT} tachikoma.io</p>
+<p>Bundle Update as a Service, <a href="http://tachikoma.io/?utm_source=talk&amp;utm_medium=slide&amp;utm_campaign=20150327-php-cs-php-study">Tachikoma.io</a></p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150327-php-cs-php-study%2F&amp;t=PSR-2%20Error%20to%20GitHub%20Pull%20Request%20Review%20Comment" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>
