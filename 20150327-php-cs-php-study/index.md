@@ -24,15 +24,6 @@ ogimage: http://sanemat.github.io/talks/20150327-php-cs-php-study/github-pull-re
 * Lintの結果をもっと見えるようにしよう。
 * 重要なのはコードを介した対話 (総花的だ)
 
-## コーディング規約の課題
-
-* このフレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題
-    * [自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ
-* Lintの結果が出てくるのがCIではタイミング遅い
-    * エディタやIDEで直せるように入れよう 機械がやれ
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話! 機械がやれ
-
 ## Example - PHP Code Sniffer
 
 例えばこのコード、`if`のあとのカッコの前にspaceがない、`if () {} else {}`のbraceがない。
@@ -81,16 +72,7 @@ Time: 90ms; Memory: 2.5Mb
 
 どうでもいいことは、指摘もしたくない。機械的に勝手に直されてほしい。
 
-`php-cs-fixer`を使おう。
-
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* Lintの結果が出てくるのがCIではタイミング遅い
-    * エディタやIDEで直せるように入れよう
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話!
+`php code sniffer`や`php-cs-fixer`を使おう。
 
 ### 正論だがしかし
 
@@ -126,39 +108,25 @@ Time: 90ms; Memory: 2.5Mb
 
 * [PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)](http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html)
 
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* ~~Lintの結果が出てくるのがCIではタイミング遅い~~
-    * ~~エディタやIDEで直せるように入れよう~~
-* リポジトリに設定は入っているのだが、従っていないコードがpushされる
-    * ココの話!
-
 ## 結果の可視化
-
-git のコミットフックとか、テスト/CIに混ぜてるとか、悪くない。
-
-でもカジュアルにpushはしてほしい。push蹴られるのは個人的にはあまり好みではない。
 
 ### Pull Request Review Comment
 
-全員がlint済みのものをpushしてくれるか? というと疑問。
-
 こんな感じに、pull requestにreview commentがつくツールやサービスがある。
-おもにrubyプロジェクトの場合 Hound(Web Service), Hound(OSS), Prontoというのを使う。
+この行が長過ぎます、という例。
 
 ![review comment](./github-pull-request-review-comment.png 'pull request review comment')
 
-言語ごとに実装してるのマヌケっぽい。
+おもにrubyプロジェクトの場合
+[Hound(Web Service)](https://houndci.com/),
+[Hound(OSS)](https://github.com/thoughtbot/hound),
+[Pronto](https://github.com/mmozuras/pronto)
+というのを使う。
+各言語ごとにいろいろある。言語ごとに実装してるのマヌケっぽい。
 
 * [packsaddle/ruby-saddler](https://github.com/packsaddle/ruby-saddler)
 
 言語中立なのを作った。**Saddler**
-
-今はgithub だけですが、reporter差し替えて使えるようにしているので、gitlab,
-bitbucket, なども対応するつもり。svnとかmercurialでも使いたい人がいれば
-reporterつくればよい。
 
 #### example - Saddler
 
@@ -212,25 +180,11 @@ git diff --name-only origin/master \
     * [Post build task - Jenkins - Jenkins Wiki](https://wiki.jenkins-ci.org/display/JENKINS/Post+build+task)
     * [Jenkins でジョブが失敗した時にだけ実行したい処理があった場合の対応パターン - Thanks Driven Life](http://gongo.hatenablog.com/entry/2014/04/01/100236)
 
-### コーディング規約の課題(一部済)
-
-* ~~フレームワークのルールはそうかも知れないが自分はこっちの方がいい 問題~~
-    * ~~[自転車置場の議論](http://0xcc.net/blog/archives/000135.html)はヤメロ~~
-* ~~Lintの結果が出てくるのがCIではタイミング遅い~~
-    * ~~エディタやIDEで直せるように入れよう~~
-* ~~リポジトリに設定は入っているのだが、従っていないコードがpushされる~~
-    * ~~ココの話!~~
-
-
 ## 設定したがしかし
 
 ### 設定したら終わりか?
 ノー。そこから始まり。
-
-### 無視できなくする
-
-あまりうまくない。
-直さないと緊急デプロイできない とかはつらい。
+チームがコードをどう考えていくか、をすり寄せ続ける必要がある。
 
 ### 重要なのは
 
