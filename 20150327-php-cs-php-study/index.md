@@ -37,7 +37,7 @@ else
     echo '3';
 ```
 
-これをPHP Code Snifferでチェックすると、エラーが表示される。
+これをPHP_CodeSnifferでチェックすると、エラーが表示される。
 
 ```bash
 $ php phpcs.phar --standard=PSR2 test.php
@@ -72,7 +72,7 @@ Time: 90ms; Memory: 2.5Mb
 
 どうでもいいことは、指摘もしたくない。機械的に勝手に直されてほしい。
 
-`php code sniffer`や`php-cs-fixer`を使おう。
+`PHP_CodeSniffer`や`php-cs-fixer`を使おう。
 
 ### 正論だがしかし
 
@@ -88,7 +88,7 @@ Time: 90ms; Memory: 2.5Mb
 
 ## コマンド
 
-`php-cs-fixer`やphp code sniffer付属の`phpcbf`。
+`php-cs-fixer`やPHP_CodeSniffer付属の`phpcbf`。
 
 * [FriendsOfPHP/PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 * [PHP CS Fixerで快適PHPライフ - Fivestar's blog](http://fivestar.hatenablog.com/entry/2014/12/08/033345)
@@ -112,7 +112,7 @@ Time: 90ms; Memory: 2.5Mb
 
 ### Pull Request Review Comment
 
-こんな感じに、pull requestにreview commentがつくツールやサービスがある。
+こんな感じに、GitHub Pull RequestにReview Commentがつくツールやサービスがある。
 この行が長過ぎます、という例。
 
 ![review comment](./github-pull-request-review-comment.png 'pull request review comment')
@@ -162,7 +162,7 @@ git diff --name-only origin/master \
 </checkstyle>
 ```
 
-と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。
+と、たぶんなるはずなんだけど、手元にいい感じにsetupしたPHP_CodeSnifferプロジェクト無いので、誰か手伝ってほしい。
 
 #### メリット
 
@@ -190,6 +190,11 @@ git diff --name-only origin/master \
 
 重要なのはコードを介した対話だ!
 
+## Saddler 確実に詰まる
+
+設定しかけてわかんなかったらバンバン聞いてください。 @sanemat に。
+全員(自分も含めて)シェルスクリプト周りかCIサービス周りで確実に詰まる。
+
 ----
 
 ## 参照
@@ -202,6 +207,8 @@ git diff --name-only origin/master \
 * [PHP CS Fixerで快適PHPライフ - Fivestar's blog](http://fivestar.hatenablog.com/entry/2014/12/08/033345)
 * [CakePHP のソースコードのレビュー結果を共有してみる - Qiita](http://qiita.com/waterada/items/5174f771308ffc71b0c7)
 * [Saddler](https://github.com/packsaddle/ruby-saddler)
+* [jser/jser.github.ioの記事をpull request時にLintする仕組み | Web Scratch](http://efcl.info/2015/03/04/linting-article/)
+* [変更したファイルにrubocopやjscsを実行して pull requestに自動でコメントする – Saddler - checkstyle to anywhere](http://packsaddle.org/articles/saddler-overview/)
 
 sanemat {AT} tachikoma.io
 
