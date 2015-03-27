@@ -27,7 +27,7 @@
 <h2 id="tldr">TL;DR</h2>
 <ul>
 <li>Lintの結果をもっと活用しよう。</li>
-<li>もっと見えるようにしよう。</li>
+<li>Lintの結果をもっと見えるようにしよう。</li>
 <li>重要なのはコードを介した対話 (総花的だ)</li>
 </ul>
 <h2 id="コーディング規約の課題">コーディング規約の課題</h2>
@@ -97,11 +97,12 @@
 </ul></li>
 </ul>
 <h3 id="正論だがしかし">正論だがしかし</h3>
-<p>正論だし、メリットもわかる。ではなんで徹底されない? ツールやテクノロジーが足りてない。 知ってればわかるだけの話。やろう。</p>
+<p>正論だし、メリットもわかる。ではなんで徹底されない? 単に、ツールやテクノロジーが足りてない。 知ってればわかるだけの話。やろう。</p>
 <p>仕事の生産性上げるのは、仕事だ!</p>
 <h2 id="入力支援">入力支援</h2>
 <p>エディタなりIDEなりの手元でガンガン支援受けて直すのが一番いい。</p>
 <h2 id="コマンド">コマンド</h2>
+<p><code>php-cs-fixer</code>やphp code sniffer付属の<code>phpcbf</code>。</p>
 <ul>
 <li><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">FriendsOfPHP/PHP-CS-Fixer</a></li>
 <li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
@@ -115,8 +116,11 @@
 <li><a href="https://github.com/benmatselby/sublime-phpcs">benmatselby/sublime-phpcs (sublime)</a></li>
 <li><a href="https://github.com/benmatselby/atom-php-checkstyle">benmatselby/atom-php-checkstyle (atom)</a></li>
 <li><a href="https://www.jetbrains.com/phpstorm/help/using-php-code-sniffer-tool.html">Using PHP Code Sniffer Tool (phpstorm)</a></li>
-<li><p><a href="http://p2-dev.pdt-extensions.org/phpfeatures.html">PHP features The PDT Extension Group eclipse p2 repository (eclipse)</a></p></li>
-<li><p><a href="http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html">PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)</a></p></li>
+<li><a href="http://p2-dev.pdt-extensions.org/phpfeatures.html">PHP features The PDT Extension Group eclipse p2 repository (eclipse)</a></li>
+</ul>
+<p>良いタイトルが合ったので、持ってきた。</p>
+<ul>
+<li><a href="http://www.1x1.jp/blog/2014/09/code-format-is-not-human-task.html">PHP コードの整形はプログラマがやるべきことじゃない - Shin x blog(phpstorm)</a></li>
 </ul>
 <h3 id="コーディング規約の課題一部済-1">コーディング規約の課題(一部済)</h3>
 <ul>
@@ -135,9 +139,9 @@
 </ul>
 <h2 id="結果の可視化">結果の可視化</h2>
 <p>git のコミットフックとか、テスト/CIに混ぜてるとか、悪くない。</p>
-<p>でもカジュアルにpushはしてほしい。</p>
+<p>でもカジュアルにpushはしてほしい。push蹴られるのは個人的にはあまり好みではない。</p>
 <h3 id="pull-request-review-comment">Pull Request Review Comment</h3>
-<p>全員がlint済みのものをpushしてくれるか? というと疑問 低い方に合わせることも必要。</p>
+<p>全員がlint済みのものをpushしてくれるか? というと疑問。</p>
 <p>こんな感じに、pull requestにreview commentがつくツールやサービスがある。 おもにrubyプロジェクトの場合 Hound(Web Service), Hound(OSS), Prontoというのを使う。</p>
 <figure>
 <img src="./github-pull-request-review-comment.png" title="pull request review comment" alt="review comment" /><figcaption>review comment</figcaption>
@@ -147,6 +151,7 @@
 <li><a href="https://github.com/packsaddle/ruby-saddler">packsaddle/ruby-saddler</a></li>
 </ul>
 <p>言語中立なのを作った。<strong>Saddler</strong></p>
+<p>今はgithub だけですが、reporter差し替えて使えるようにしているので、gitlab, bitbucket, なども対応するつもり。svnとかmercurialでも使いたい人がいれば reporterつくればよい。</p>
 <h4 id="example---saddler">example - Saddler</h4>
 <p>プルリクエストに対してテストが走る、その後処理の中で、実行する。</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># TravisCIやCircleCIの after testの中で(travisCI用語でafter_script, CircleCI用語でpost test)</span>
@@ -173,6 +178,12 @@
  <span class="kw">&lt;</span>/<span class="kw">file&gt;</span>
 <span class="kw">&lt;</span>/<span class="kw">checkstyle&gt;</span></code></pre>
 <p>と、たぶんなるはずなんだけど、手元にいい感じにsetupしたphpプロジェクト無いので、誰か手伝ってほしい。</p>
+<h4 id="メリット">メリット</h4>
+<ul>
+<li>github上に可視化できること。</li>
+<li>コード増分だけに適用出来ること。</li>
+<li>コメントを無視もできるところ。身も蓋もないけど。</li>
+</ul>
 <h4 id="build-phases">build phases</h4>
 <ul>
 <li>TravisCI (after_script)
@@ -221,6 +232,7 @@
 <li><a href="http://blog.tojiru.net/article/278307117.html">PSR-0はなぜ0（≒最重要）なのか - 泥のように</a></li>
 <li><a href="http://fivestar.hatenablog.com/entry/2014/12/08/033345">PHP CS Fixerで快適PHPライフ - Fivestar's blog</a></li>
 <li><a href="http://qiita.com/waterada/items/5174f771308ffc71b0c7">CakePHP のソースコードのレビュー結果を共有してみる - Qiita</a></li>
+<li><a href="https://github.com/packsaddle/ruby-saddler">Saddler</a></li>
 </ul>
 <p>sanemat {AT} tachikoma.io</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-shibuya-rb-saddler%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
