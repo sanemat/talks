@@ -24,6 +24,141 @@
 </script>
 <h1 id="changelog-for-ruby-module">Changelog for Ruby Module</h1>
 <p>sanemat {AT} tachikoma.io</p>
+<h2 id="changelog-読んでる">changelog 読んでる?</h2>
+<p>changelog 読んでる?</p>
+<ul>
+<li><code>changelog.md</code></li>
+<li><code>github.com/{:repos}/releases</code></li>
+<li><code>github.com/{:repos}/compare/{:base}...{:head}</code></li>
+</ul>
+<h2 id="ブラウザから読みやすい-vs-gem-packageに含まれている">ブラウザから読みやすい VS gem packageに含まれている</h2>
+<p>ブラウザから読みやすい VS gem packageに含まれている</p>
+<p>確かに一番読みやすいのはキチンと書かれた GitHub releases</p>
+<p>しかしやっぱりgem packageにchangelog.md入れたい気持ちがある</p>
+<p>GitHubはProgressive Enhancement 的な</p>
+<h2 id="パッケージング順番">パッケージング順番</h2>
+<p>となると必然、</p>
+<p>バージョンアップの準備が整う -&gt; バージョン番号インクリメント, changelog書く(順不同) -&gt; bundle exec rake release (rake release内部でbuild, git tag, push to github, push to rubygems)</p>
+<p>重要なのは、package moduleする前に、changelogを書きたいということ。 そして、package moduleとgit tagはほぼ同時(になってしまう)こと。</p>
+<h2 id="changelog-toolchain">Changelog toolchain</h2>
+<p>各言語でchangelogツールチェーンの取り組みはいくつもあって選びにくいが E.g <a href="http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く">社内gemとOSSのgemのメンテについて - くりにっき</a></p>
+<p>手を入れやすくてよく出来ているもの、私見ではconventional-changelog。</p>
+<h3 id="conventional-changelog">conventional-changelog</h3>
+<p>TDDのt_wadaさんおすすめ。 <a href="http://www.slideshare.net/t_wada/javajaoss/42">OSS についてあれこれ</a> jser.infoのazuさんおすすめ。 <a href="http://azu.github.io/slide/cto/changelog.html">われわれは、いかにして変更点を追うか</a></p>
+<pre class="text"><code>                       component        commit title
+        commit type       /                /
+                \        |                |
+                 feat(ngInclude): add template url parameter to events
+
+        body -&gt;  The &#39;src` (i.e. the url of the template to load) is now provided to the
+                 `$includeContentRequested`, `$includeContentLoaded` and `$includeContentError`
+                 events.
+
+ referenced  -&gt;  Closes #8453
+ issues          Closes #8454</code></pre>
+<p>規約に従ってコミットログを書くと、そこからchangelogを生成する。 規約は自分で決められるが、presetとしてangularjsやjqueryのものがある。 おすすめはangularjs。</p>
+<p>これいいじゃん!</p>
+<p>でもnodejsなんだよねー</p>
+<h4 id="私見">私見</h4>
+<p>こういう細かいツールチェーンはnodejsに乗ればよくない？</p>
+<p>ちょっと前は、同じ機能のもの後から車輪の再発明しおって!(rakeとかsassとか)と若干思ってたけど 最近はgolangやnodejsで書いて、shellやcmd.exeからどう使うか考えればいいのでは、という方にマインドが傾いている。</p>
+<p>ココカラ、ココマデ、のうち、ココカラ、はgit tagから取るので問題ない。 ココマデ、はデフォルトはpackage.jsonから取得してしまう。</p>
+<p>しかし、設定がjsでかけるので、問題ない。</p>
+<p>問題ない？</p>
+<h3 id="ruby-moduleからconventional-changelogを使う-part1">Ruby moduleからconventional-changelogを使う part1</h3>
+<pre><code>$ echo &#39;{}&#39; &gt; package.json
+$ npm i --save-dev conventional-changelog</code></pre>
+<pre><code># .conventional-changelog.context.js
+&#39;use strict&#39;;
+var execSync = require(&#39;child_process&#39;).execSync;
+var version = &quot;&quot; + execSync(&#39;ruby -e \&#39;require &quot;./lib/saddler/reporter/github/version&quot;; print Saddler::Reporter::Github::VERSION\&#39;&#39;);
+var host = &#39;https://github.com&#39;;
+var owner = &#39;packsaddle&#39;;
+var repository = &#39;ruby-saddler-reporter-github&#39;;
+
+module.exports = {
+  version: gemspec.version,
+  host: host,
+  owner: owner,
+  repository: repository
+};</code></pre>
+<pre><code>$ node_modules/.bin/conventional-changelog -i changelog.md --overwrite --preset angular --context .conventional-changelog.context.js</code></pre>
+<p>こういうのが生成できる</p>
+<pre class="md"><code>&lt;a name=&quot;0.2.0&quot;&gt;&lt;/a&gt;
+# [0.2.0](https://github.com/packsaddle/ruby-saddler-reporter-github/compare/v0.1.6...v0.2.0) (2015-10-02)
+
+
+### Features
+
+* **patch:** use inherited patch, patches ([05e2306](https://github.com/packsaddle/ruby-saddler-reporter-github/commit/05e2306))
+* **repository:** use inherited repository ([3834b1f](https://github.com/packsaddle/ruby-saddler-reporter-github/commit/3834b1f))
+
+
+
+&lt;a name=&quot;0.1.6&quot;&gt;&lt;/a&gt;
+## [0.1.6](https://github.com/packsaddle/ruby-saddler-reporter-github/compare/v0.1.5...v0.1.6) (2015-10-02)
+
+* Improve document.
+
+
+&lt;a name=&quot;0.1.5&quot;&gt;&lt;/a&gt;
+## [0.1.5](https://github.com/packsaddle/ruby-saddler-reporter-github/compare/v0.1.4...v0.1.5) (2015-09-21)
+
+#### Features
+
+* **client:** Compatibility to Jenkins Pull Request Builder ([56fa18d](https://github.com/packsaddle/ruby-saddler-reporter-github/commit/56fa18dd8cef23bb5579971abc087d31de28adf4))</code></pre>
+<p>はじめだけちょっと頑張ると、あとはツールの流れに乗れるのでよいですね。</p>
+<h3 id="ruby-moduleからconventional-changelogを使う-part2">Ruby moduleからconventional-changelogを使う part2</h3>
+<p>とはいえ、moduleごとに違う場所にあるversionのファイル探して、requireして printするのツライ。 homepageもgemspecと二重管理になるのでツライ。version同様定数に持たせてもいいけど、あんまり。</p>
+<p>そこで、.gemspecをparseしていい感じにする parse_gemspec と、そのcliのparse_gemspec-cli を使う。</p>
+<pre><code>$ parse-gemspec-cli checkstyle_filter-git.gemspec | jq .
+{
+  &quot;name&quot;: &quot;checkstyle_filter-git&quot;,
+  &quot;version&quot;: &quot;1.0.3.pre.beta&quot;,
+  &quot;homepage&quot;: &quot;https://github.com/packsaddle/ruby-checkstyle_filter-git&quot;
+}</code></pre>
+<p>こんなかんじになるので、</p>
+<pre><code>&#39;use strict&#39;;
+var execSync = require(&#39;child_process&#39;).execSync;
+var gemspec = JSON.parse(execSync(&#39;bundle exec parse-gemspec-cli parse_gemspec-cli.gemspec&#39;));
+
+module.exports = {
+  version: gemspec.version
+};</code></pre>
+<p>こう使える。</p>
+<p><a href="https://sanematsu.wordpress.com/2015/09/25/use-conventional-changelog-on-ruby-product/">conventional-changelog(npm)をRuby pruductから使う | 實松アウトプット</a></p>
+<p>最終的にこうなって</p>
+<pre><code># .conventional-changelog.context.js
+&#39;use strict&#39;;
+var execSync = require(&#39;child_process&#39;).execSync;
+var URI = require(&#39;urijs&#39;);
+
+var gemspec = JSON.parse(execSync(&#39;bundle exec parse-gemspec-cli saddler-reporter-github.gemspec&#39;));
+var homepageUrl = gemspec.homepage;
+var url = new URI(homepageUrl);
+var host = url.protocol() + &#39;://&#39; + url.authority();
+var owner = url.pathname().split(&#39;/&#39;)[1];
+var repository = url.pathname().split(&#39;/&#39;)[2];
+
+module.exports = {
+  version: gemspec.version,
+  host: host,
+  owner: owner,
+  repository: repository
+};</code></pre>
+<pre><code># package.json
+{
+  &quot;devDependencies&quot;: {
+    &quot;conventional-changelog&quot;: &quot;0.4.3&quot;,
+    &quot;urijs&quot;: &quot;^1.16.1&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;changelog&quot;: &quot;conventional-changelog -i CHANGELOG.md --overwrite --preset angular --context .conventional-changelog.context.js&quot;
+  }
+}</code></pre>
+<p>となり、</p>
+<p>バージョンアップの準備が整う -&gt; バージョン番号インクリメント, changelog書く(<code>$ npm run changelog</code>) (順不同) -&gt; bundle exec rake release</p>
+<p>これが実現できる。</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151130-conventional-changelog-for-ruby%2F&amp;t=Changelog%20for%20Ruby%20Module%20%2F%20Lightning%20Talks" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>
