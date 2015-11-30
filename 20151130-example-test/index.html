@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Example Test for Ruby Module / Lightning Talks" />
+  <meta property="og:type" content="article" />
+  <title>Example Test for Ruby Module</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20151130-example-test/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="example-test-for-ruby-module">Example Test for Ruby Module</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="that-moment-when-you-have-executed-bundle-exec-rake-release">That moment when you have executed <code>bundle exec rake release</code></h2>
+<p><code>bundle exec rake release</code> あるある</p>
+<ul>
+<li>Forget to require a split file after refactoring
+<ul>
+<li>リファクタリングしてファイル分割したらrequire 忘れる</li>
+</ul></li>
+<li>Forget to add a necessary file
+<ul>
+<li>必要なファイルがない</li>
+</ul></li>
+<li>Add an unnecessary file
+<ul>
+<li>不要なファイルがある</li>
+</ul></li>
+</ul>
+<h2 id="example-test">Example test</h2>
+<ul>
+<li><a href="http://swdyh.tumblr.com/post/55771477125/go%E3%81%AEexample%E3%83%86%E3%82%B9%E3%83%88%E3%81%8C%E4%BE%BF%E5%88%A9">GoのExampleテストが便利 : swdyh</a></li>
+<li><a href="http://efcl.info/2015/07/29/example-test-on-npm/">npmパッケージをExampleテストしよう | Web Scratch</a></li>
+</ul>
+<p>Add actual example into <code>./example</code> directory as &quot;you usually use&quot;.</p>
+<p>実際に動くexampleを<code>./example</code>ディレクトリ以下に「普通に使うように」作る。</p>
+<h3 id="example-test-example">Example test example</h3>
+<p>Isolate an example into <code>./example</code>.</p>
+<p>Exampleは<code>./example</code> 以下に閉じ込める。</p>
+<p>Use this quite regularly.</p>
+<p>普通に使う。</p>
+<p><a href="https://github.com/packsaddle/ruby-env_pull_request">packsaddle/ruby-env_pull_request</a></p>
+<pre><code>example/
+├── Gemfile
+├── Gemfile.lock
+├── example.rb
+└── vendor
+    └── bundle</code></pre>
+<pre><code># example/Gemfile
+source &#39;https://rubygems.org&#39;
+gem &#39;env_pull_request&#39;, path: &#39;../&#39;</code></pre>
+<pre><code># .gitignore
+/example/.bundle/
+/example/vendor/bundle/</code></pre>
+<pre><code>$ cd example &amp;&amp; bundle install --path vendor/bundle</code></pre>
+<pre><code># example/example.rb
+require &#39;env_pull_request&#39;
+
+env = EnvPullRequest.new
+puts env.pull_request_id</code></pre>
+<pre><code>$ cd example &amp;&amp; bundle exec ruby example.rb &amp;&amp; cd ..
+
+$ cd example &amp;&amp; TRAVIS_PULL_REQUEST=123 bundle exec ruby example.rb &amp;&amp; cd ..
+123</code></pre>
+<pre><code># .travis.yml
+script:
+- bundle exec rake &amp;&amp; cd example &amp;&amp; bundle exec ruby example.rb &amp;&amp; cd ..</code></pre>
+<h2 id="good-point">Good point</h2>
+<p>なにがよいのか</p>
+<ul>
+<li>You can confirm there are necessary files exactly on <code>./example/vendor/bundle</code>
+<ul>
+<li><code>./example/vendor/bundle</code> 以下に必要なファイルが必要なだけ来ているか確認できる</li>
+</ul></li>
+</ul>
+<h3 id="differences">Differences</h3>
+<p>他の方法との違い</p>
+<h4 id="difference-from-print-debug-binding.pry-and-byebug">Difference from print debug, <code>binding.pry</code> and <code>byebug</code></h4>
+<p>print debug, binding.pry/byebug と何が違うのか</p>
+<ul>
+<li>Keep an actual example on <code>./example</code>
+<ul>
+<li>実際に動くexampleが<code>./example</code>以下に出来る・残る</li>
+</ul></li>
+<li>Become into test template
+<ul>
+<li>testのひな形に出来る</li>
+</ul></li>
+<li>Un-executable code in <code>README.md</code> is awful
+<ul>
+<li><code>README.md</code> に実行できないコードをそれっぽく書くよりよっぽどマシ</li>
+</ul></li>
+</ul>
+<h4 id="write-a-test-is-better">Write a test is better</h4>
+<p>テスト書いたほうがいいじゃん</p>
+<ul>
+<li>Sure!
+<ul>
+<li>ごもっとも!</li>
+</ul></li>
+</ul>
+<h2 id="where-to-use">Where to use</h2>
+<p>使いどころ</p>
+<ul>
+<li>Use while thinking module interface
+<ul>
+<li>まずインターフェースの考え始めに使う</li>
+<li><a href="http://yosuke-furukawa.hatenablog.com/entry/2014/04/22/121014">Unix Philosophy と Node.jsのモジュールの作り方 - from scratch</a></li>
+<li><a href="https://gist.github.com/substack/5075355">how I write modules - substack</a></li>
+</ul></li>
+<li>Find careless mistake
+<ul>
+<li>ケアレスミスの発見用</li>
+</ul></li>
+<li>Substitute writing test with this
+<ul>
+<li>テスト書くのが難しい場合に代用する</li>
+</ul></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>まとめ</p>
+<p>Example test as &quot;you usually use&quot; is valuable in some case.</p>
+<p>「普通に使うように」exampleを書くというのが便利なときがある</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151130-example-test%2F&amp;t=Example%20Test%20for%20Ruby%20Module%20%2F%20Lightning%20Talks" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
