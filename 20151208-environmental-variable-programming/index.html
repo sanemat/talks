@@ -25,29 +25,8 @@
 <h1 id="environmental-variable-programming">Environmental Variable Programming</h1>
 <p>環境変数プログラミング</p>
 <p>sanemat {AT} tachikoma.io</p>
-<h2 id="examples">Examples</h2>
-<p>環境変数を取得してプログラミングする必要が有ることがある</p>
-<ul>
-<li>リポジトリにpushしたくないデータ
-<ul>
-<li>GitHubのaccess tokenなど</li>
-</ul></li>
-<li>環境固有のデータ
-<ul>
-<li>RAILS_ENVなど</li>
-<li>CI環境など</li>
-</ul></li>
-</ul>
-<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="co"># リポジトリにpushしたくないデータ</span>
-token = <span class="dt">ENV</span>[<span class="st">&#39;GITHUB_ACCESS_TOKEN&#39;</span>]
-
-<span class="co"># 環境固有のデータ</span>
-<span class="kw">if</span> <span class="dt">ENV</span>[<span class="st">&#39;SOME_VAR&#39;</span>].downcase == <span class="st">&#39;true&#39;</span>
-  <span class="co"># your code</span>
-<span class="kw">end</span></code></pre>
-<p>今回は、環境固有のデータ、特にCI環境の話をする。<code>dotenv</code>などの話はしない。</p>
-<p>CI環境固有のデータは、build周りのツールや、デプロイ周りのツールで必要となる。 この中で出会った興味深いこと、作ったツールの話をする。</p>
-<h2 id="ciでの環境変数の扱い">CIでの環境変数の扱い</h2>
+<h2 id="environment-variables-in-ci">Environment variables in CI</h2>
+<p>CIでの環境変数の扱い</p>
 <h3 id="environment-variables---travis-ci"><a href="http://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables">Environment Variables - Travis CI</a></h3>
 <pre class="text"><code>CI=true
 TRAVIS=true
@@ -60,7 +39,8 @@ LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 RAILS_ENV=test
 RACK_ENV=test
-MERB_ENV=test</code></pre>
+MERB_ENV=test
+(snip)</code></pre>
 <h3 id="environment-variables---circleci"><a href="https://circleci.com/docs/environment-variables#build-details">Environment variables - CircleCI</a></h3>
 <pre><code>CIRCLECI=true
 CI=true
@@ -71,31 +51,54 @@ CIRCLE_PROJECT_REPONAME=bar
   The repository name of the project being tested,
   i.e. &quot;bar&quot; in circleci.com/gh/foo/bar/123
 CIRCLE_BRANCH=master
-  The name of the branch being tested, e.g. &#39;master&#39;.</code></pre>
-<p>いろんな環境変数</p>
-<p>CI環境によって違う</p>
-<p>特にルールはない(と思う) あるのかも? ちょっと後で聞いてみたいけど</p>
-<p>結構なんとなく似通ったいろいろ <code>CI=true</code>など。ツールによっては、CI=trueだとカバレッジをcoverallsに送る、など。</p>
-<h2 id="なんとなく感じ取ったルール">なんとなく感じ取ったルール</h2>
-<h3 id="truthyのとき">truthyのとき</h3>
+  The name of the branch being tested, e.g. &#39;master&#39;.
+(snip)</code></pre>
+<p>Many environment variables, they depend on CI.</p>
+<p>いろんな環境変数、CI環境によって違う。</p>
+<p>There is no shared rules, I think.</p>
+<p>特にルールはない(と思う)。あるのかも?</p>
+<p>I want to know this later.</p>
+<p>ちょっと後で聞いてみたいけど。</p>
+<p>But there are similar rules.</p>
+<p>結構なんとなく似通ったいろいろ。</p>
+<p>For example, <code>CI=true</code>. Some tool sends code coverage to &quot;Coveralls&quot; if <code>CI=true</code>.</p>
+<p><code>CI=true</code>など。ツールによっては、<code>CI=true</code>だとカバレッジをcoverallsに送る、など。</p>
+<h2 id="feel">Feel</h2>
+<p>なんとなく感じ取ったルール</p>
+<h3 id="truethy-case">Truethy case</h3>
+<p>truthyのとき</p>
 <ul>
-<li>何か文字列が入る</li>
+<li>Some string</li>
 </ul>
-<h3 id="falseyのとき">falseyのとき</h3>
-<ul>
-<li>環境変数のkey自体がなくなるパターン</li>
-<li>環境変数のvalueが空文字列のパターン</li>
-</ul>
-<h2 id="問題">問題</h2>
-<h3 id="あるある1">あるある1</h3>
-<p>結構こういう、このキーである、という情報はどうにか有るのだが、 こういう値を取りうる、という記述が欠けていることが多い。</p>
-<p>しかも、これがCI環境間で統一されていない。 さらに、同じCI環境内でも、keyによって違う。</p>
-<h3 id="あるある2">あるある2</h3>
-<p>ruby固有のメンドイこととしては、 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy</p>
-<h3 id="あるある3">あるある3</h3>
-<p>travis-ci決め打ちで作って、circle-ciで使いたくなる よくある</p>
-<h3 id="あるある4">あるある4</h3>
-<p>テストでいちいち考えなくちゃいけないことが増える pull requestやテスト自体がCI環境上で動くので。 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。</p>
+<p>何か文字列が入る</p>
+<h3 id="falsey-case">Falsey case</h3>
+<p>falseyのとき</p>
+<h4 id="there-are-no-key-in-environment-variables">There are no key in environment variables</h4>
+<p>環境変数のkey自体がなくなるパターン</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> <span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>]
+  <span class="co"># your code</span>
+<span class="kw">end</span></code></pre>
+<h4 id="environment-variables-value-is-empty-string">Environment variables' value is empty string</h4>
+<p>環境変数のvalueが空文字列のパターン</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> !<span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>].empty?
+  <span class="co"># your code</span>
+<span class="kw">end</span></code></pre>
+<h2 id="problems">Problems</h2>
+<p>問題</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part1">That moment when you use environment variables. part1</h3>
+<p>あるある1</p>
+<p>結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、 こういう値を取りうる、という記述が欠けていることが多い。</p>
+<p>しかも、(当然だけど)CI環境間で統一されていない。 さらに、同じCI環境内でも、keyによって違うことがある。</p>
+<p>&quot;patch welcome!&quot; って言われるんだけど、それはツライ。</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part2">That moment when you use environment variables. part2</h3>
+<p>あるある2</p>
+<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part3">That moment when you use environment variables. part3</h3>
+<p>あるある3</p>
+<p>Travis CI決め打ちで作って、CircleCIで使いたくなる よくある</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part4">That moment when you use environment variables. part4</h3>
+<p>あるある4</p>
+<p>テストでいちいち考えなくちゃいけないことが増える。 pull requestやテスト自体がCI環境上で動くので、二重構造になる。 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。</p>
 <h2 id="env_branch"><a href="https://github.com/packsaddle/ruby-env_branch">env_branch</a></h2>
 <p>branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
 <h3 id="usage">Usage</h3>
@@ -105,10 +108,27 @@ env_branch = <span class="dt">EnvBranch</span>.new
 env_branch.branch? <span class="co">#=&gt; true</span>
 env_branch.branch_name <span class="co">#=&gt; &#39;your-branch-name&#39;</span></code></pre>
 <h3 id="question">Question</h3>
-<p>branch名ってgitコマンドで取れるのでは? CI環境によって違う</p>
-<p>Travis-CIだと、環境変数から取るのが良い</p>
-<p>checkout</p>
-<p>なので、git branchしてもbranch名はいない</p>
+<p>Q. branch名って<code>git branch</code>コマンドで取れるのでは?</p>
+<p>A. CI環境によって違う</p>
+<p>Travis-CIだと、環境変数から取るのが良い。</p>
+<p>pull requestのtestをするときに、</p>
+<pre><code>$ git clone --depth=50 https://github.com/packsaddle/rubocop-select.git packsaddle/rubocop-select
+$ cd packsaddle/rubocop-select
+$ git fetch origin +refs/pull/58/merge:
+$ git checkout -qf FETCH_HEAD
+
+$ git branch
+* (detached from FETCH_HEAD)
+  master</code></pre>
+<p>branchのpushのtestをするときに、</p>
+<pre><code>git clone --depth=50 --branch=sanemat-patch-1 https://github.com/packsaddle/ruby-parse_gemspec.git packsaddle/ruby-parse_gemspec
+$ cd packsaddle/ruby-parse_gemspec
+$ git checkout -qf 1e185190162d8a3b021bbb27aa422c4b00272117
+
+$ git branch
+* (detached from 1e18519)
+  sanemat-patch-1</code></pre>
+<p>なので、<code>git branch</code>してもcurrent branchにbranch名はない。</p>
 <h3 id="helper">helper</h3>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_branch/test_helper&#39;</span>
 
@@ -125,7 +145,7 @@ env_branch.branch_name <span class="co">#=&gt; &#39;your-branch-name&#39;</span>
 <span class="kw">end</span></code></pre>
 <p>各CI環境でのbranchに関する環境変数を、いったん退避して、最後書き戻す。便利。</p>
 <h2 id="env_pull_request"><a href="https://github.com/packsaddle/ruby-env_pull_request">env_pull_request</a></h2>
-<p>pull request idを取り出したい。 <code>https://github.com/sanemat/node-boolify-string/pull/16</code>だとしたら、'16'これ。 pull requestだった場合、ここに数字が入る。 GitHubのpull requestに対してhookなりで何かをしたい場合、これを使ってリクエストする必要がある。</p>
+<p>pull request idを取り出したい。 <code>https://github.com/sanemat/node-boolify-string/pull/16</code>だとしたら、'16'これ。 GitHubのpull requestに対してhookなりで何かをしたい場合、これを使ってリクエストする必要がある。</p>
 <p>pull_request番号を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_pull_request&#39;</span>
 
@@ -146,7 +166,8 @@ env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
   <span class="kw">end</span>
 <span class="kw">end</span></code></pre>
 <p>便利なので使ってください</p>
-<h2 id="対応しているci環境">対応しているCI環境</h2>
+<h2 id="supported-ci-env">Supported CI env</h2>
+<p>対応しているCI環境</p>
 <ul>
 <li>env_branch
 <ul>
@@ -161,8 +182,8 @@ env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
 </ul></li>
 </ul>
 <h2 id="余談">余談</h2>
-<h3 id="pull-requestでない場合">pull requestでない場合</h3>
-<p>falseyの場合、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
+<h3 id="pull-request">pull request</h3>
+<p>falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
 <p>引用</p>
 <blockquote>
 <p>TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request, “false” if it’s not a pull request.</p>

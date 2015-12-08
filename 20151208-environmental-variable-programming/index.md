@@ -21,33 +21,10 @@ description: env_branch and env_pull_request - Environmental Variable Programmin
 sanemat {AT} tachikoma.io
 
 
-## Examples
+## Environment variables in CI
 
-環境変数を取得してプログラミングする必要が有ることがある
+CIでの環境変数の扱い
 
-* リポジトリにpushしたくないデータ
-    * GitHubのaccess tokenなど
-* 環境固有のデータ
-    * RAILS_ENVなど
-    * CI環境など
-
-```ruby
-# リポジトリにpushしたくないデータ
-token = ENV['GITHUB_ACCESS_TOKEN']
-
-# 環境固有のデータ
-if ENV['SOME_VAR'].downcase == 'true'
-  # your code
-end
-```
-
-今回は、環境固有のデータ、特にCI環境の話をする。`dotenv`などの話はしない。
-
-CI環境固有のデータは、build周りのツールや、デプロイ周りのツールで必要となる。
-この中で出会った興味深いこと、作ったツールの話をする。
-
-
-## CIでの環境変数の扱い
 
 ### [Environment Variables - Travis CI](http://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables)
 
@@ -64,7 +41,9 @@ LC_ALL=en_US.UTF-8
 RAILS_ENV=test
 RACK_ENV=test
 MERB_ENV=test
+(snip)
 ```
+
 
 ### [Environment variables - CircleCI](https://circleci.com/docs/environment-variables#build-details)
 
@@ -79,59 +58,110 @@ CIRCLE_PROJECT_REPONAME=bar
   i.e. "bar" in circleci.com/gh/foo/bar/123
 CIRCLE_BRANCH=master
   The name of the branch being tested, e.g. 'master'.
+(snip)
 ```
 
-いろんな環境変数
+Many environment variables, they depend on CI.
 
-CI環境によって違う
+いろんな環境変数、CI環境によって違う。
 
-特にルールはない(と思う)
-あるのかも?
-ちょっと後で聞いてみたいけど
+There is no shared rules, I think.
 
-結構なんとなく似通ったいろいろ
-`CI=true`など。ツールによっては、CI=trueだとカバレッジをcoverallsに送る、など。
+特にルールはない(と思う)。あるのかも?
 
+I want to know this later.
 
-## なんとなく感じ取ったルール
+ちょっと後で聞いてみたいけど。
 
-### truthyのとき
+But there are similar rules.
 
-* 何か文字列が入る
+結構なんとなく似通ったいろいろ。
 
-### falseyのとき
+For example, `CI=true`. Some tool sends code coverage to "Coveralls" if `CI=true`.
 
-* 環境変数のkey自体がなくなるパターン
-* 環境変数のvalueが空文字列のパターン
+`CI=true`など。ツールによっては、`CI=true`だとカバレッジをcoverallsに送る、など。
 
 
-## 問題
+## Feel
 
-### あるある1
+なんとなく感じ取ったルール
 
-結構こういう、このキーである、という情報はどうにか有るのだが、
+
+### Truethy case
+
+truthyのとき
+
+* Some string
+
+何か文字列が入る
+
+
+### Falsey case
+
+falseyのとき
+
+
+#### There are no key in environment variables
+
+環境変数のkey自体がなくなるパターン
+
+```ruby
+if ENV['SOME_VALUE']
+  # your code
+end
+```
+
+
+#### Environment variables' value is empty string
+
+環境変数のvalueが空文字列のパターン
+
+```ruby
+if !ENV['SOME_VALUE'].empty?
+  # your code
+end
+```
+
+
+## Problems
+
+問題
+
+
+### That moment when you use environment variables. part1
+
+あるある1
+
+結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、
 こういう値を取りうる、という記述が欠けていることが多い。
 
-しかも、これがCI環境間で統一されていない。
-さらに、同じCI環境内でも、keyによって違う。
+しかも、(当然だけど)CI環境間で統一されていない。
+さらに、同じCI環境内でも、keyによって違うことがある。
+
+"patch welcome!" って言われるんだけど、それはツライ。
 
 
-### あるある2
+### That moment when you use environment variables. part2
 
-ruby固有のメンドイこととしては、
+あるある2
+
+Ruby固有のメンドイこととしては、
 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy
 
+### That moment when you use environment variables. part3
 
-### あるある3
+あるある3
 
-travis-ci決め打ちで作って、circle-ciで使いたくなる
+Travis CI決め打ちで作って、CircleCIで使いたくなる
 よくある
 
 
-### あるある4
+### That moment when you use environment variables. part4
 
-テストでいちいち考えなくちゃいけないことが増える
-pull requestやテスト自体がCI環境上で動くので。
+あるある4
+
+テストでいちいち考えなくちゃいけないことが増える。
+pull requestやテスト自体がCI環境上で動くので、二重構造になる。
 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。
 
 
@@ -152,14 +182,38 @@ env_branch.branch_name #=> 'your-branch-name'
 
 ### Question
 
-branch名ってgitコマンドで取れるのでは?
-CI環境によって違う
+Q. branch名って`git branch`コマンドで取れるのでは?
 
-Travis-CIだと、環境変数から取るのが良い
+A. CI環境によって違う
 
-checkout
+Travis-CIだと、環境変数から取るのが良い。
 
-なので、git branchしてもbranch名はいない
+pull requestのtestをするときに、
+
+```
+$ git clone --depth=50 https://github.com/packsaddle/rubocop-select.git packsaddle/rubocop-select
+$ cd packsaddle/rubocop-select
+$ git fetch origin +refs/pull/58/merge:
+$ git checkout -qf FETCH_HEAD
+
+$ git branch
+* (detached from FETCH_HEAD)
+  master
+```
+
+branchのpushのtestをするときに、
+
+```
+git clone --depth=50 --branch=sanemat-patch-1 https://github.com/packsaddle/ruby-parse_gemspec.git packsaddle/ruby-parse_gemspec
+$ cd packsaddle/ruby-parse_gemspec
+$ git checkout -qf 1e185190162d8a3b021bbb27aa422c4b00272117
+
+$ git branch
+* (detached from 1e18519)
+  sanemat-patch-1
+```
+
+なので、`git branch`してもcurrent branchにbranch名はない。
 
 
 ### helper
@@ -187,7 +241,6 @@ end
 
 pull request idを取り出したい。
 `https://github.com/sanemat/node-boolify-string/pull/16`だとしたら、'16'これ。
-pull requestだった場合、ここに数字が入る。
 GitHubのpull requestに対してhookなりで何かをしたい場合、これを使ってリクエストする必要がある。
 
 pull_request番号を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。
@@ -218,7 +271,9 @@ end
 
 便利なので使ってください
 
-## 対応しているCI環境
+## Supported CI env
+
+対応しているCI環境
 
 * env_branch
     * Travis-ci
@@ -231,9 +286,9 @@ end
 
 ## 余談
 
-### pull requestでない場合
+### pull request
 
-falseyの場合、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
+falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
 
 引用
 
