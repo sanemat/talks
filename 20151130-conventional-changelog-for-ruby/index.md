@@ -204,7 +204,20 @@ $ node_modules/.bin/conventional-changelog -i changelog.md --overwrite --preset 
 とはいえ、moduleごとに違う場所にあるversionのファイル探して、requireして printするのツライ。
 homepageもgemspecと二重管理になるのでツライ。version同様定数に持たせてもいいけど、あんまり。
 
-そこで、.gemspecをparseしていい感じにする  parse_gemspec と、そのcliのparse_gemspec-cli を使う。
+```ruby
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'rubocop/select/version'
+
+Gem::Specification.new do |spec|
+  spec.name          = 'rubocop-select'
+  spec.version       = RuboCop::Select::VERSION
+  spec.homepage      = 'https://github.com/packsaddle/rubocop-select'
+(snip)
+```
+
+そこで、だいたいこうなっている.gemspecをparseしていい感じのpure ruby hashにする  parse_gemspec と、そのcliのparse_gemspec-cli を使う。
 
 ```
 $ parse-gemspec-cli checkstyle_filter-git.gemspec | jq .
@@ -215,7 +228,7 @@ $ parse-gemspec-cli checkstyle_filter-git.gemspec | jq .
 }
 ```
 
-JSONとしてoutputするので、あとは言語中立。
+cliは、JSONとしてoutputするので、あとは言語中立。
 
 ```
 'use strict';
