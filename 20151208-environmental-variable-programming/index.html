@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="env_branch and env_pull_request - Environmental Variable Programming" />
+  <meta property="og:type" content="article" />
+  <title>Environmental Variable Programming</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20151208-environmental-variable-programming/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="environmental-variable-programming">Environmental Variable Programming</h1>
+<p>環境変数プログラミング</p>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="environment-variables-in-ci">Environment variables in CI</h2>
+<p>CIでの環境変数の扱い</p>
+<h3 id="environment-variables---travis-ci"><a href="http://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables">Environment Variables - Travis CI</a></h3>
+<pre class="text"><code>CI=true
+TRAVIS=true
+CONTINUOUS_INTEGRATION=true
+DEBIAN_FRONTEND=noninteractive
+HAS_JOSH_K_SEAL_OF_APPROVAL=true
+USER=travis (do not depend on this value)
+HOME=/home/travis (do not depend on this value)
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+RAILS_ENV=test
+RACK_ENV=test
+MERB_ENV=test
+(snip)</code></pre>
+<h3 id="environment-variables---circleci"><a href="https://circleci.com/docs/environment-variables#build-details">Environment variables - CircleCI</a></h3>
+<pre><code>CIRCLECI=true
+CI=true
+CIRCLE_PROJECT_USERNAME=foo
+  The username or organization name of the project being tested,
+  i.e. &quot;foo&quot; in circleci.com/gh/foo/bar/123
+CIRCLE_PROJECT_REPONAME=bar
+  The repository name of the project being tested,
+  i.e. &quot;bar&quot; in circleci.com/gh/foo/bar/123
+CIRCLE_BRANCH=master
+  The name of the branch being tested, e.g. &#39;master&#39;.
+(snip)</code></pre>
+<p>Many environment variables, they depend on CI.</p>
+<p>いろんな環境変数、CI環境によって違う。</p>
+<p>There is no shared rules, I think.</p>
+<p>特にルールはない(と思う)。あるのかも?</p>
+<p>I want to know this later.</p>
+<p>ちょっと後で聞いてみたいけど。</p>
+<p>But there are similar rules.</p>
+<p>結構なんとなく似通ったいろいろ。</p>
+<p>For example, <code>CI=true</code>. Some tool sends code coverage to &quot;Coveralls&quot; if <code>CI=true</code>.</p>
+<p><code>CI=true</code>など。ツールによっては、<code>CI=true</code>だとカバレッジをcoverallsに送る、など。</p>
+<h2 id="feel">Feel</h2>
+<p>なんとなく感じ取ったルール</p>
+<h3 id="truethy-case">Truethy case</h3>
+<p>truthyのとき</p>
+<ul>
+<li>Some string</li>
+</ul>
+<p>何か文字列が入る</p>
+<h3 id="falsey-case">Falsey case</h3>
+<p>falseyのとき</p>
+<h4 id="there-are-no-key-in-environment-variables">There are no key in environment variables</h4>
+<p>環境変数のkey自体がなくなるパターン</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> <span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>]
+  <span class="co"># your code</span>
+<span class="kw">end</span></code></pre>
+<h4 id="environment-variables-value-is-empty-string">Environment variables' value is empty string</h4>
+<p>環境変数のvalueが空文字列のパターン</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> !<span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>].empty?
+  <span class="co"># your code</span>
+<span class="kw">end</span></code></pre>
+<h2 id="problems">Problems</h2>
+<p>問題</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part1">That moment when you use environment variables. part1</h3>
+<p>あるある1</p>
+<p>結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、 こういう値を取りうる、という記述が欠けていることが多い。</p>
+<p>しかも、(当然だけど)CI環境間で統一されていない。 さらに、同じCI環境内でも、keyによって違うことがある。</p>
+<p>&quot;patch welcome!&quot; って言われるんだけど、それはツライ。</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part2">That moment when you use environment variables. part2</h3>
+<p>あるある2</p>
+<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part3">That moment when you use environment variables. part3</h3>
+<p>あるある3</p>
+<p>Travis CI決め打ちで作って、CircleCIで使いたくなる よくある</p>
+<h3 id="that-moment-when-you-use-environment-variables.-part4">That moment when you use environment variables. part4</h3>
+<p>あるある4</p>
+<p>テストでいちいち考えなくちゃいけないことが増える。 pull requestやテスト自体がCI環境上で動くので、二重構造になる。 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。</p>
+<h2 id="env_branch"><a href="https://github.com/packsaddle/ruby-env_branch">env_branch</a></h2>
+<p>branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
+<h3 id="usage">Usage</h3>
+<pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_branch&#39;</span>
+
+env_branch = <span class="dt">EnvBranch</span>.new
+env_branch.branch? <span class="co">#=&gt; true</span>
+env_branch.branch_name <span class="co">#=&gt; &#39;your-branch-name&#39;</span></code></pre>
+<h3 id="question">Question</h3>
+<p>Q. branch名って<code>git branch</code>コマンドで取れるのでは?</p>
+<p>A. CI環境によって違う</p>
+<p>Travis-CIだと、環境変数から取るのが良い。</p>
+<p>pull requestのtestをするときに、</p>
+<pre><code>$ git clone --depth=50 https://github.com/packsaddle/rubocop-select.git packsaddle/rubocop-select
+$ cd packsaddle/rubocop-select
+$ git fetch origin +refs/pull/58/merge:
+$ git checkout -qf FETCH_HEAD
+
+$ git branch
+* (detached from FETCH_HEAD)
+  master</code></pre>
+<p>branchのpushのtestをするときに、</p>
+<pre><code>git clone --depth=50 --branch=sanemat-patch-1 https://github.com/packsaddle/ruby-parse_gemspec.git packsaddle/ruby-parse_gemspec
+$ cd packsaddle/ruby-parse_gemspec
+$ git checkout -qf 1e185190162d8a3b021bbb27aa422c4b00272117
+
+$ git branch
+* (detached from 1e18519)
+  sanemat-patch-1</code></pre>
+<p>なので、<code>git branch</code>してもcurrent branchにbranch名はない。</p>
+<h3 id="helper">helper</h3>
+<pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_branch/test_helper&#39;</span>
+
+<span class="kw">class</span> <span class="dt">TestExample</span> &lt; <span class="dt">Test</span>::<span class="dt">Unit</span>::<span class="dt">TestCase</span>
+  extend ::<span class="dt">EnvBranch</span>::<span class="dt">TestHelper</span>
+
+  <span class="kw">def</span> <span class="dv">self</span>.startup
+    stash_env_branch
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="dv">self</span>.shutdown
+    restore_env_branch
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+<p>各CI環境でのbranchに関する環境変数を、いったん退避して、最後書き戻す。便利。</p>
+<h2 id="env_pull_request"><a href="https://github.com/packsaddle/ruby-env_pull_request">env_pull_request</a></h2>
+<p>pull request idを取り出したい。 <code>https://github.com/sanemat/node-boolify-string/pull/16</code>だとしたら、'16'これ。 GitHubのpull requestに対してhookなりで何かをしたい場合、これを使ってリクエストする必要がある。</p>
+<p>pull_request番号を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_pull_request&#39;</span>
+
+env_pull = <span class="dt">EnvPullRequest</span>.new
+env_pull.pull_request? <span class="co">#=&gt; true</span>
+env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
+<pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_pull_request/test_helper&#39;</span>
+
+<span class="kw">class</span> <span class="dt">TestExample</span> &lt; <span class="dt">Test</span>::<span class="dt">Unit</span>::<span class="dt">TestCase</span>
+  extend ::<span class="dt">EnvPullRequest</span>::<span class="dt">TestHelper</span>
+
+  <span class="kw">def</span> <span class="dv">self</span>.startup
+    stash_env_pull_request
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="dv">self</span>.shutdown
+    restore_env_pull_request
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+<p>便利なので使ってください</p>
+<h2 id="supported-ci-env">Supported CI env</h2>
+<p>対応しているCI環境</p>
+<ul>
+<li>env_branch
+<ul>
+<li>Travis-ci</li>
+<li>CircleCI</li>
+</ul></li>
+<li>env_pull_request
+<ul>
+<li>Travis-ci</li>
+<li>CircleCI</li>
+<li>Jenkins GitHub pull request builder plugin</li>
+</ul></li>
+</ul>
+<h2 id="余談">余談</h2>
+<h3 id="pull-request">pull request</h3>
+<p>falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
+<p>引用</p>
+<blockquote>
+<p>TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request, “false” if it’s not a pull request.</p>
+</blockquote>
+<p>!???</p>
+<p>CI環境の環境変数、基本的には</p>
+<ul>
+<li>truthyのとき
+<ul>
+<li>何か文字列が入る</li>
+</ul></li>
+<li>falseyのとき
+<ul>
+<li>環境変数のkey自体がなくなるパターン</li>
+<li>環境変数のvalueが空文字列のパターン</li>
+<li>環境変数のvalueが&quot;false&quot;のパターン</li>
+</ul></li>
+</ul>
+<p>そういうのにもenv_branchやenv_pull_requestは対応済みです。 なのでぜひ使って。 その他ci環境はpull requestください。droneやwerckerなど。 使う人が対応しようってことで。</p>
+<p>楽しい環境変数プログラミングを。</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151208-environmental-variable-programming%2F&amp;t=env_branch%20and%20env_pull_request%20-%20Environmental%20Variable%20Programming" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
