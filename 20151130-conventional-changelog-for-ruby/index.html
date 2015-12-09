@@ -132,14 +132,24 @@ module.exports = {
 <p>はじめだけちょっと頑張ると、あとはツールの流れに乗れるのでよいですね。</p>
 <h3 id="ruby-moduleからconventional-changelogを使う-part2">Ruby moduleからconventional-changelogを使う part2</h3>
 <p>とはいえ、moduleごとに違う場所にあるversionのファイル探して、requireして printするのツライ。 homepageもgemspecと二重管理になるのでツライ。version同様定数に持たせてもいいけど、あんまり。</p>
-<p>そこで、.gemspecをparseしていい感じにする parse_gemspec と、そのcliのparse_gemspec-cli を使う。</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="co"># coding: utf-8</span>
+lib = <span class="dt">File</span>.expand_path(<span class="st">&#39;../lib&#39;</span>, <span class="dv">__FILE__</span>)
+<span class="dt">$LOAD_PATH</span>.unshift(lib) <span class="kw">unless</span> <span class="dt">$LOAD_PATH</span>.include?(lib)
+require <span class="st">&#39;rubocop/select/version&#39;</span>
+
+<span class="dt">Gem</span>::<span class="dt">Specification</span>.new <span class="kw">do</span> |spec|
+  spec.name          = <span class="st">&#39;rubocop-select&#39;</span>
+  spec.version       = <span class="dt">RuboCop</span>::<span class="dt">Select</span>::<span class="dt">VERSION</span>
+  spec.homepage      = <span class="st">&#39;https://github.com/packsaddle/rubocop-select&#39;</span>
+(snip)</code></pre>
+<p>そこで、だいたいこうなっている.gemspecをparseしていい感じのpure ruby hashにする parse_gemspec と、そのcliのparse_gemspec-cli を使う。</p>
 <pre><code>$ parse-gemspec-cli checkstyle_filter-git.gemspec | jq .
 {
   &quot;name&quot;: &quot;checkstyle_filter-git&quot;,
   &quot;version&quot;: &quot;1.0.3.pre.beta&quot;,
   &quot;homepage&quot;: &quot;https://github.com/packsaddle/ruby-checkstyle_filter-git&quot;
 }</code></pre>
-<p>JSONとしてoutputするので、あとは言語中立。</p>
+<p>cliは、JSONとしてoutputするので、あとは言語中立。</p>
 <pre><code>&#39;use strict&#39;;
 var execSync = require(&#39;child_process&#39;).execSync;
 var gemspec = JSON.parse(execSync(&#39;bundle exec parse-gemspec-cli parse_gemspec-cli.gemspec&#39;));
