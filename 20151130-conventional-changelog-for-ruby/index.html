@@ -61,7 +61,7 @@
 <p>重要なのは、package moduleする前に、changelogを書きたいということ。 そして、package moduleとgit tagはほぼ同時(になってしまう)こと。</p>
 <h2 id="changelog-toolchain">Changelog toolchain</h2>
 <p>各言語でchangelogツールチェーンの取り組みはいくつもあって選びにくいが E.g <a href="http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く">社内gemとOSSのgemのメンテについて - くりにっき</a></p>
-<p>手を入れやすくてよく出来ているもの、私見では<code>conventional-changelog</code>。</p>
+<p>手を入れやすくてよく出来ているもの、パッケージングの順番も考慮でき、gem packageにふくめやすいもの。 私見では<code>conventional-changelog</code>。</p>
 <h3 id="conventional-changelog">conventional-changelog</h3>
 <p>TDDのt_wadaさんおすすめ。 <a href="http://www.slideshare.net/t_wada/javajaoss/42">OSS についてあれこれ</a> jser.infoのazuさんおすすめ。 <a href="http://azu.github.io/slide/cto/changelog.html">われわれは、いかにして変更点を追うか</a></p>
 <pre class="text"><code>                       component        commit title
@@ -75,9 +75,15 @@
 
  referenced  -&gt;  Closes #8453
  issues          Closes #8454</code></pre>
-<p>規約に従ってコミットログを書くと、そこからchangelogを生成する。 規約は自分で決められるが、presetとしてangularjsやjqueryのものがある。 おすすめはangularjs。</p>
+<p>規約に従ってコミットログを書くと、そこからchangelogを生成する。 細かい変更はchangelogに載せない、など。 規約は自分で決められるが、presetとしてangularjsやjqueryのものがある。 <a href="https://github.com/ajoslin/conventional-changelog/tree/893d764f2396ff9f70d1e8f38051f2e847bbafca/conventions">conventions</a> おすすめはangularjs。 一部抜粋すると</p>
+<blockquote>
+<p>Type</p>
+<p>If the prefix is feat, fix or perf, it will always appear in the changelog.</p>
+<p>Other prefixes are up to your discretion. Suggested prefixes are docs, chore, style, refactor, and test for non-changelog related tasks.</p>
+</blockquote>
+<p>これで、typeごとにまとまったchangelogが出来る。</p>
 <p>これいいじゃん!</p>
-<p>でもnodejsなんだよねー</p>
+<p>でもNode.jsなんだよねー</p>
 <h4 id="私見">私見</h4>
 <p>こういう細かいツールチェーンはnodejsに乗ればよくない？</p>
 <p>ちょっと前は、同じ機能のもの後から車輪の再発明しおって!(rakeとかsassとか)と若干思ってたけど 最近はgolangやnodejsで書いて、shellやcmd.exeからどう使うか考えればいいのでは、という方にマインドが傾いている。</p>

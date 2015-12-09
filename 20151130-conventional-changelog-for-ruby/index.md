@@ -79,7 +79,8 @@ GitHubはProgressive Enhancement 的な
 各言語でchangelogツールチェーンの取り組みはいくつもあって選びにくいが
 E.g [社内gemとOSSのgemのメンテについて - くりにっき](http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く)
 
-手を入れやすくてよく出来ているもの、私見では`conventional-changelog`。
+手を入れやすくてよく出来ているもの、パッケージングの順番も考慮でき、gem packageにふくめやすいもの。
+私見では`conventional-changelog`。
 
 
 ### conventional-changelog
@@ -105,13 +106,23 @@ jser.infoのazuさんおすすめ。
 ```
 
 規約に従ってコミットログを書くと、そこからchangelogを生成する。
+細かい変更はchangelogに載せない、など。
 規約は自分で決められるが、presetとしてangularjsやjqueryのものがある。
+[conventions](https://github.com/ajoslin/conventional-changelog/tree/893d764f2396ff9f70d1e8f38051f2e847bbafca/conventions)
 おすすめはangularjs。
+一部抜粋すると
 
+> Type
+>
+>If the prefix is feat, fix or perf, it will always appear in the changelog.
+>
+>Other prefixes are up to your discretion. Suggested prefixes are docs, chore, style, refactor, and test for non-changelog related tasks.
+
+これで、typeごとにまとまったchangelogが出来る。
 
 これいいじゃん!
 
-でもnodejsなんだよねー
+でもNode.jsなんだよねー
 
 
 #### 私見
