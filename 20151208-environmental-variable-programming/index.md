@@ -82,12 +82,12 @@ For example, `CI=true`. Some tool sends code coverage to "Coveralls" if `CI=true
 `CI=true`など。ツールによっては、`CI=true`だとカバレッジをcoverallsに送る、など。
 
 
-## Feel
+## Rules (Feeling)
 
 なんとなく感じ取ったルール
 
 
-### Truethy case
+### Truthy case
 
 truthyのとき
 
@@ -96,9 +96,9 @@ truthyのとき
 何か文字列が入る
 
 
-### Falsey case
+### Falsy case
 
-falseyのとき
+falsyのとき
 
 
 #### There are no key in environment variables
@@ -132,25 +132,39 @@ end
 
 あるある1
 
+Some CI env has a document which shows the truthy examples of keys and values.
+But they does not show falsy one. "not provide the key" or "empty string" or else.
+
 結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、
 こういう値を取りうる、という記述が欠けていることが多い。
+
+And keys and values does not share between CI envs, of course.
+And they have different behavior between keys on same CI env!
 
 しかも、(当然だけど)CI環境間で統一されていない。
 さらに、同じCI環境内でも、keyによって違うことがある。
 
-"patch welcome!" って言われるんだけど、それはツライ。
+They say "document patch welcome!", yes I know, but...
+
+"document patch welcome!" って言われるんだけど、それはツライ。
 
 
 ### That moment when you use environment variables. part2
 
 あるある2
 
+Ruby specific problem, The empty string means falsy in many CI envs,
+but the empty string means truthy in Ruby.
+
 Ruby固有のメンドイこととしては、
-CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy
+CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruthy
 
 ### That moment when you use environment variables. part3
 
 あるある3
+
+First I made the module with Travis-CI hard-coded, but after I want to use this with CircleCi.
+Many many times.
 
 Travis CI決め打ちで作って、CircleCIで使いたくなる
 よくある
@@ -160,12 +174,18 @@ Travis CI決め打ちで作って、CircleCIで使いたくなる
 
 あるある4
 
+The more CI envs, the more complexity in test.
+Test became a nested structure, because test and pull request themselves run on CI env.
+Sometimes I forget deleting related environment variables, restoring them.
+
 テストでいちいち考えなくちゃいけないことが増える。
 pull requestやテスト自体がCI環境上で動くので、二重構造になる。
 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。
 
 
 ## [env_branch](https://github.com/packsaddle/ruby-env_branch)
+
+I build gem which get branch information from environment variables.
 
 branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。
 
@@ -186,7 +206,9 @@ Q. branch名って`git branch`コマンドで取れるのでは?
 
 A. CI環境によって違う
 
-Travis-CIだと、環境変数から取るのが良い。
+取れるCI環境も有る。Travis-CIだと、環境変数から取るのが良い。
+
+何も設定せずに、リポジトリの中でブランチ作って、pull requestを送るとテストが2本走る。
 
 pull requestのtestをするときに、
 
@@ -288,27 +310,36 @@ end
 
 ### pull request
 
-falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
+falsyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
 
 引用
 
 > TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request,
 > “false” if it’s not a pull request.
 
+"false"
+
 !???
 
 CI環境の環境変数、基本的には
 
+* Truthy case
+    * Some string
+* Falsy case
+    * There are no key in environment variables
+    * Environment variables' value is empty string
+    * Environment variables' value is string "false"
+
 * truthyのとき
     * 何か文字列が入る
-* falseyのとき
+* falsyのとき
     * 環境変数のkey自体がなくなるパターン
     * 環境変数のvalueが空文字列のパターン
     * 環境変数のvalueが"false"のパターン
 
 
 そういうのにもenv_branchやenv_pull_requestは対応済みです。
-なのでぜひ使って。
+なのでぜひ使って。コレを使うと、余計なことに悩まされなくて良い。
 その他ci環境はpull requestください。droneやwerckerなど。
 使う人が対応しようってことで。
 

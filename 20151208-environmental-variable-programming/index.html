@@ -63,16 +63,16 @@ CIRCLE_BRANCH=master
 <p>結構なんとなく似通ったいろいろ。</p>
 <p>For example, <code>CI=true</code>. Some tool sends code coverage to &quot;Coveralls&quot; if <code>CI=true</code>.</p>
 <p><code>CI=true</code>など。ツールによっては、<code>CI=true</code>だとカバレッジをcoverallsに送る、など。</p>
-<h2 id="feel">Feel</h2>
+<h2 id="rules-feeling">Rules (Feeling)</h2>
 <p>なんとなく感じ取ったルール</p>
-<h3 id="truethy-case">Truethy case</h3>
+<h3 id="truthy-case">Truthy case</h3>
 <p>truthyのとき</p>
 <ul>
 <li>Some string</li>
 </ul>
 <p>何か文字列が入る</p>
-<h3 id="falsey-case">Falsey case</h3>
-<p>falseyのとき</p>
+<h3 id="falsy-case">Falsy case</h3>
+<p>falsyのとき</p>
 <h4 id="there-are-no-key-in-environment-variables">There are no key in environment variables</h4>
 <p>環境変数のkey自体がなくなるパターン</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> <span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>]
@@ -87,19 +87,26 @@ CIRCLE_BRANCH=master
 <p>問題</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part1">That moment when you use environment variables. part1</h3>
 <p>あるある1</p>
+<p>Some CI env has a document which shows the truthy examples of keys and values. But they does not show falsy one. &quot;not provide the key&quot; or &quot;empty string&quot; or else.</p>
 <p>結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、 こういう値を取りうる、という記述が欠けていることが多い。</p>
+<p>And keys and values does not share between CI envs, of course. And they have different behavior between keys on same CI env!</p>
 <p>しかも、(当然だけど)CI環境間で統一されていない。 さらに、同じCI環境内でも、keyによって違うことがある。</p>
-<p>&quot;patch welcome!&quot; って言われるんだけど、それはツライ。</p>
+<p>They say &quot;document patch welcome!&quot;, yes I know, but...</p>
+<p>&quot;document patch welcome!&quot; って言われるんだけど、それはツライ。</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part2">That moment when you use environment variables. part2</h3>
 <p>あるある2</p>
-<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy</p>
+<p>Ruby specific problem, The empty string means falsy in many CI envs, but the empty string means truthy in Ruby.</p>
+<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruthy</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part3">That moment when you use environment variables. part3</h3>
 <p>あるある3</p>
+<p>First I made the module with Travis-CI hard-coded, but after I want to use this with CircleCi. Many many times.</p>
 <p>Travis CI決め打ちで作って、CircleCIで使いたくなる よくある</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part4">That moment when you use environment variables. part4</h3>
 <p>あるある4</p>
+<p>The more CI envs, the more complexity in test. Test became a nested structure, because test and pull request themselves run on CI env. Sometimes I forget deleting related environment variables, restoring them.</p>
 <p>テストでいちいち考えなくちゃいけないことが増える。 pull requestやテスト自体がCI環境上で動くので、二重構造になる。 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。</p>
 <h2 id="env_branch"><a href="https://github.com/packsaddle/ruby-env_branch">env_branch</a></h2>
+<p>I build gem which get branch information from environment variables.</p>
 <p>branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
 <h3 id="usage">Usage</h3>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">require <span class="st">&#39;env_branch&#39;</span>
@@ -110,7 +117,8 @@ env_branch.branch_name <span class="co">#=&gt; &#39;your-branch-name&#39;</span>
 <h3 id="question">Question</h3>
 <p>Q. branch名って<code>git branch</code>コマンドで取れるのでは?</p>
 <p>A. CI環境によって違う</p>
-<p>Travis-CIだと、環境変数から取るのが良い。</p>
+<p>取れるCI環境も有る。Travis-CIだと、環境変数から取るのが良い。</p>
+<p>何も設定せずに、リポジトリの中でブランチ作って、pull requestを送るとテストが2本走る。</p>
 <p>pull requestのtestをするときに、</p>
 <pre><code>$ git clone --depth=50 https://github.com/packsaddle/rubocop-select.git packsaddle/rubocop-select
 $ cd packsaddle/rubocop-select
@@ -183,26 +191,37 @@ env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
 </ul>
 <h2 id="余談">余談</h2>
 <h3 id="pull-request">pull request</h3>
-<p>falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
+<p>falsyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
 <p>引用</p>
 <blockquote>
 <p>TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request, “false” if it’s not a pull request.</p>
 </blockquote>
+<p>&quot;false&quot;</p>
 <p>!???</p>
 <p>CI環境の環境変数、基本的には</p>
 <ul>
+<li>Truthy case
+<ul>
+<li>Some string</li>
+</ul></li>
+<li>Falsy case
+<ul>
+<li>There are no key in environment variables</li>
+<li>Environment variables' value is empty string</li>
+<li>Environment variables' value is string &quot;false&quot;</li>
+</ul></li>
 <li>truthyのとき
 <ul>
 <li>何か文字列が入る</li>
 </ul></li>
-<li>falseyのとき
+<li>falsyのとき
 <ul>
 <li>環境変数のkey自体がなくなるパターン</li>
 <li>環境変数のvalueが空文字列のパターン</li>
 <li>環境変数のvalueが&quot;false&quot;のパターン</li>
 </ul></li>
 </ul>
-<p>そういうのにもenv_branchやenv_pull_requestは対応済みです。 なのでぜひ使って。 その他ci環境はpull requestください。droneやwerckerなど。 使う人が対応しようってことで。</p>
+<p>そういうのにもenv_branchやenv_pull_requestは対応済みです。 なのでぜひ使って。コレを使うと、余計なことに悩まされなくて良い。 その他ci環境はpull requestください。droneやwerckerなど。 使う人が対応しようってことで。</p>
 <p>楽しい環境変数プログラミングを。</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151208-environmental-variable-programming%2F&amp;t=env_branch%20and%20env_pull_request%20-%20Environmental%20Variable%20Programming" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
