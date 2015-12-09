@@ -71,8 +71,8 @@ CIRCLE_BRANCH=master
 <li>Some string</li>
 </ul>
 <p>何か文字列が入る</p>
-<h3 id="falsey-case">Falsey case</h3>
-<p>falseyのとき</p>
+<h3 id="falsy-case">Falsy case</h3>
+<p>falsyのとき</p>
 <h4 id="there-are-no-key-in-environment-variables">There are no key in environment variables</h4>
 <p>環境変数のkey自体がなくなるパターン</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="kw">if</span> <span class="dt">ENV</span>[<span class="st">&#39;SOME_VALUE&#39;</span>]
@@ -87,17 +87,23 @@ CIRCLE_BRANCH=master
 <p>問題</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part1">That moment when you use environment variables. part1</h3>
 <p>あるある1</p>
+<p>Some CI env has a document which shows the truthy examples of keys and values. But they does not show falsy one. &quot;not provide the key&quot; or &quot;empty string&quot; or else.</p>
 <p>結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、 こういう値を取りうる、という記述が欠けていることが多い。</p>
+<p>And keys and values does not share between CI envs, of course. And they have different behavior between keys on same CI env!</p>
 <p>しかも、(当然だけど)CI環境間で統一されていない。 さらに、同じCI環境内でも、keyによって違うことがある。</p>
+<p>They say &quot;patch welcome!&quot;, yes I know, but...</p>
 <p>&quot;patch welcome!&quot; って言われるんだけど、それはツライ。</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part2">That moment when you use environment variables. part2</h3>
 <p>あるある2</p>
-<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy</p>
+<p>Ruby specific problem, The empty string means falsy in many CI envs, but the empty string means truethy in Ruby.</p>
+<p>Ruby固有のメンドイこととしては、 CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruethy</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part3">That moment when you use environment variables. part3</h3>
 <p>あるある3</p>
+<p>First I made the module with Travis-CI hard-coded, but after I want to use this with CircleCi. Many many times.</p>
 <p>Travis CI決め打ちで作って、CircleCIで使いたくなる よくある</p>
 <h3 id="that-moment-when-you-use-environment-variables.-part4">That moment when you use environment variables. part4</h3>
 <p>あるある4</p>
+<p>The more CI envs, the more complexity in test. Test became a nested structure, because test and pull request themselves run on CI env. Sometimes I forget deleting related environment variables, restoring them.</p>
 <p>テストでいちいち考えなくちゃいけないことが増える。 pull requestやテスト自体がCI環境上で動くので、二重構造になる。 環境変数消し漏れたり、戻し漏れたり、で動かないはずのものが動く分岐の方に行ってしまったり。</p>
 <h2 id="env_branch"><a href="https://github.com/packsaddle/ruby-env_branch">env_branch</a></h2>
 <p>branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。</p>
@@ -183,11 +189,12 @@ env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
 </ul>
 <h2 id="余談">余談</h2>
 <h3 id="pull-request">pull request</h3>
-<p>falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
+<p>falsyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。</p>
 <p>引用</p>
 <blockquote>
 <p>TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request, “false” if it’s not a pull request.</p>
 </blockquote>
+<p>&quot;false&quot;</p>
 <p>!???</p>
 <p>CI環境の環境変数、基本的には</p>
 <ul>
@@ -195,7 +202,7 @@ env_pull.pull_request_id <span class="co">#=&gt; 800</span></code></pre>
 <ul>
 <li>何か文字列が入る</li>
 </ul></li>
-<li>falseyのとき
+<li>falsyのとき
 <ul>
 <li>環境変数のkey自体がなくなるパターン</li>
 <li>環境変数のvalueが空文字列のパターン</li>

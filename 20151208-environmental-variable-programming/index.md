@@ -96,9 +96,9 @@ truthyのとき
 何か文字列が入る
 
 
-### Falsey case
+### Falsy case
 
-falseyのとき
+falsyのとき
 
 
 #### There are no key in environment variables
@@ -132,11 +132,19 @@ end
 
 あるある1
 
+Some CI env has a document which shows the truthy examples of keys and values.
+But they does not show falsy one. "not provide the key" or "empty string" or else.
+
 結構こういう、このキーである、という情報はどうにかドキュメント有るのだが、
 こういう値を取りうる、という記述が欠けていることが多い。
 
+And keys and values does not share between CI envs, of course.
+And they have different behavior between keys on same CI env!
+
 しかも、(当然だけど)CI環境間で統一されていない。
 さらに、同じCI環境内でも、keyによって違うことがある。
+
+They say "patch welcome!", yes I know, but...
 
 "patch welcome!" って言われるんだけど、それはツライ。
 
@@ -145,12 +153,18 @@ end
 
 あるある2
 
+Ruby specific problem, The empty string means falsy in many CI envs,
+but the empty string means truethy in Ruby.
+
 Ruby固有のメンドイこととしては、
-CI環境的には空文字列はfalseyだけど、Ruby的には空文字列はtruethy
+CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruethy
 
 ### That moment when you use environment variables. part3
 
 あるある3
+
+First I made the module with Travis-CI hard-coded, but after I want to use this with CircleCi.
+Many many times.
 
 Travis CI決め打ちで作って、CircleCIで使いたくなる
 よくある
@@ -159,6 +173,10 @@ Travis CI決め打ちで作って、CircleCIで使いたくなる
 ### That moment when you use environment variables. part4
 
 あるある4
+
+The more CI envs, the more complexity in test.
+Test became a nested structure, because test and pull request themselves run on CI env.
+Sometimes I forget deleting related environment variables, restoring them.
 
 テストでいちいち考えなくちゃいけないことが増える。
 pull requestやテスト自体がCI環境上で動くので、二重構造になる。
@@ -288,12 +306,14 @@ end
 
 ### pull request
 
-falseyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
+falsyのとき、環境変数のkey自体がない場合と、valueが空文字列の場合があるといった。
 
 引用
 
 > TRAVIS_PULL_REQUEST: The pull request number if the current job is a pull request,
 > “false” if it’s not a pull request.
+
+"false"
 
 !???
 
@@ -301,7 +321,7 @@ CI環境の環境変数、基本的には
 
 * truthyのとき
     * 何か文字列が入る
-* falseyのとき
+* falsyのとき
     * 環境変数のkey自体がなくなるパターン
     * 環境変数のvalueが空文字列のパターン
     * 環境変数のvalueが"false"のパターン
