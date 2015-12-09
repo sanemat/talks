@@ -125,6 +125,23 @@ jser.infoのazuさんおすすめ。
 でもNode.jsなんだよねー
 
 
+#### conventional-changelogへの疑問
+
+commit commentの書式強制ってOSSできつくない?
+
+きついとおもう。
+
+commit comment強制するぐらいなら、changelog書かせてもいいのでは?
+
+そうかもしれない。
+
+committerが取り込むときに手で修正するのは不毛すぎるし、ミスもありそう。
+
+せやな。
+
+jqueryとかangularjsとかどうしてるんだろう?
+
+
 #### 私見
 
 こういう細かいツールチェーンはnodejsに乗ればよくない？
@@ -305,6 +322,7 @@ module.exports = {
 
 changelog半自動生成のツールを使って、楽にchangelogを書こう。
 おすすめは`conventional-changelog`です。
+
 
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151130-conventional-changelog-for-ruby%2F&t=Changelog%20for%20Ruby%20Module%20%2F%20Lightning%20Talks" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
