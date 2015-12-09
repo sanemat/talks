@@ -61,16 +61,19 @@ CIRCLE_BRANCH=master
 <p>ちょっと後で聞いてみたいけど。</p>
 <p>But there are similar rules.</p>
 <p>結構なんとなく似通ったいろいろ。</p>
-<p>For example, <code>CI=true</code>. Some tool sends code coverage to &quot;Coveralls&quot; if <code>CI=true</code>.</p>
-<p><code>CI=true</code>など。ツールによっては、<code>CI=true</code>だとカバレッジをcoverallsに送る、など。</p>
+<p>For example, <code>CI=true</code>. Some tool sends code coverage to &quot;Coveralls&quot; if <code>CI=true</code>. I'll talk about troubles I met, tools I build.</p>
+<p><code>CI=true</code>など。ツールによっては、<code>CI=true</code>だとカバレッジをcoverallsに送る、など。 この分野で、ハマったことや作ったモジュール、もう他の人がはまらなくていいようにをまとめました。</p>
 <h2 id="rules-feeling">Rules (Feeling)</h2>
 <p>なんとなく感じ取ったルール</p>
 <h3 id="truthy-case">Truthy case</h3>
 <p>truthyのとき</p>
 <ul>
-<li>Some string</li>
+<li>Some string
+<ul>
+<li>e.g. <code>CI=true</code></li>
+</ul></li>
 </ul>
-<p>何か文字列が入る</p>
+<p>何か文字列が入る たとえば <code>CI=true</code></p>
 <h3 id="falsy-case">Falsy case</h3>
 <p>falsyのとき</p>
 <h4 id="there-are-no-key-in-environment-variables">There are no key in environment variables</h4>

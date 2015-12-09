@@ -78,9 +78,10 @@ But there are similar rules.
 結構なんとなく似通ったいろいろ。
 
 For example, `CI=true`. Some tool sends code coverage to "Coveralls" if `CI=true`.
+I'll talk about troubles I met, tools I build.
 
 `CI=true`など。ツールによっては、`CI=true`だとカバレッジをcoverallsに送る、など。
-
+この分野で、ハマったことや作ったモジュール、もう他の人がはまらなくていいようにをまとめました。
 
 ## Rules (Feeling)
 
@@ -92,9 +93,10 @@ For example, `CI=true`. Some tool sends code coverage to "Coveralls" if `CI=true
 truthyのとき
 
 * Some string
+    * e.g. `CI=true`
 
 何か文字列が入る
-
+たとえば `CI=true`
 
 ### Falsy case
 
