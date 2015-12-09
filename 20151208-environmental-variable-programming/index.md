@@ -82,12 +82,12 @@ For example, `CI=true`. Some tool sends code coverage to "Coveralls" if `CI=true
 `CI=true`など。ツールによっては、`CI=true`だとカバレッジをcoverallsに送る、など。
 
 
-## Feel
+## Rules (Feeling)
 
 なんとなく感じ取ったルール
 
 
-### Truethy case
+### Truthy case
 
 truthyのとき
 
@@ -144,9 +144,9 @@ And they have different behavior between keys on same CI env!
 しかも、(当然だけど)CI環境間で統一されていない。
 さらに、同じCI環境内でも、keyによって違うことがある。
 
-They say "patch welcome!", yes I know, but...
+They say "document patch welcome!", yes I know, but...
 
-"patch welcome!" って言われるんだけど、それはツライ。
+"document patch welcome!" って言われるんだけど、それはツライ。
 
 
 ### That moment when you use environment variables. part2
@@ -154,10 +154,10 @@ They say "patch welcome!", yes I know, but...
 あるある2
 
 Ruby specific problem, The empty string means falsy in many CI envs,
-but the empty string means truethy in Ruby.
+but the empty string means truthy in Ruby.
 
 Ruby固有のメンドイこととしては、
-CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruethy
+CI環境的には空文字列はfalsyだけど、Ruby的には空文字列はtruthy
 
 ### That moment when you use environment variables. part3
 
@@ -185,6 +185,8 @@ pull requestやテスト自体がCI環境上で動くので、二重構造にな
 
 ## [env_branch](https://github.com/packsaddle/ruby-env_branch)
 
+I build gem which get branch information from environment variables.
+
 branch情報を取り出したいことがよくあって、環境変数から取り出す部分をgemに切り出した。
 
 
@@ -204,7 +206,9 @@ Q. branch名って`git branch`コマンドで取れるのでは?
 
 A. CI環境によって違う
 
-Travis-CIだと、環境変数から取るのが良い。
+取れるCI環境も有る。Travis-CIだと、環境変数から取るのが良い。
+
+何も設定せずに、リポジトリの中でブランチ作って、pull requestを送るとテストが2本走る。
 
 pull requestのtestをするときに、
 
@@ -319,6 +323,13 @@ falsyのとき、環境変数のkey自体がない場合と、valueが空文字�
 
 CI環境の環境変数、基本的には
 
+* Truthy case
+    * Some string
+* Falsy case
+    * There are no key in environment variables
+    * Environment variables' value is empty string
+    * Environment variables' value is string "false"
+
 * truthyのとき
     * 何か文字列が入る
 * falsyのとき
@@ -328,7 +339,7 @@ CI環境の環境変数、基本的には
 
 
 そういうのにもenv_branchやenv_pull_requestは対応済みです。
-なのでぜひ使って。
+なのでぜひ使って。コレを使うと、余計なことに悩まされなくて良い。
 その他ci環境はpull requestください。droneやwerckerなど。
 使う人が対応しようってことで。
 
