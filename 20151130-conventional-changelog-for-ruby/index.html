@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="description" content="Changelog for Ruby Module / Lightning Talks" />
   <meta property="og:type" content="article" />
-  <title>Saddler - better pronto</title>
+  <title>Changelog for Ruby Module</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -25,12 +25,27 @@
 <h1 id="changelog-for-ruby-module">Changelog for Ruby Module</h1>
 <p>sanemat {AT} tachikoma.io</p>
 <h2 id="changelog-読んでる">changelog 読んでる?</h2>
-<p>changelog 読んでる?</p>
+<ul>
+<li>gemを使うときにreadme見る人</li>
+<li>gemを使いはじめるときにchangelog見る人
 <ul>
 <li><code>changelog.md</code></li>
 <li><code>github.com/{:repos}/releases</code></li>
 <li><code>github.com/{:repos}/compare/{:base}...{:head}</code></li>
+</ul></li>
+<li>gemのバージョンアップするときにchangelog見る人</li>
+<li>changelogのないgemのバージョンアップしなくちゃで、バカかな? とおもうけど、自分の書いたモジュールにはチェンジログない人?</li>
+<li>semvarって聞いたことある人?</li>
+<li>gemのpre-releaseのフォーマットがsemvarじゃなくって、あれ。。？ってなったことある人
+<ul>
+<li>semvar: 2.3.4-alpha1</li>
+<li>gem pre-release: 2.3.4.alpha1</li>
+</ul></li>
 </ul>
+<p>結論として、ユーザーは見てるし、changelog補助のツールもあるのでいろいろ使いましょう</p>
+<h2 id="changelog補助のツール-gemとは">changelog補助のツール, gemとは?</h2>
+<p>日本語、gem, changelog, の組み合わせだとこれが参考になる。 <a href="http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く">社内gemとOSSのgemのメンテについて - くりにっき</a></p>
+<p>github-changelog-generatorにwikiページがあり、そこに比較がある。 <a href="https://github.com/skywinder/Github-Changelog-Generator/wiki/Alternatives">Alternatives · skywinder/github-changelog-generator Wiki</a> 比較自体はちょっと古い気もする(conventional-changelogがgithub integrationなしになってる)けど。</p>
 <h2 id="ブラウザから読みやすい-vs-gem-packageに含まれている">ブラウザから読みやすい VS gem packageに含まれている</h2>
 <p>ブラウザから読みやすい VS gem packageに含まれている</p>
 <p>確かに一番読みやすいのはキチンと書かれた GitHub releases</p>
@@ -42,7 +57,7 @@
 <p>重要なのは、package moduleする前に、changelogを書きたいということ。 そして、package moduleとgit tagはほぼ同時(になってしまう)こと。</p>
 <h2 id="changelog-toolchain">Changelog toolchain</h2>
 <p>各言語でchangelogツールチェーンの取り組みはいくつもあって選びにくいが E.g <a href="http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く">社内gemとOSSのgemのメンテについて - くりにっき</a></p>
-<p>手を入れやすくてよく出来ているもの、私見ではconventional-changelog。</p>
+<p>手を入れやすくてよく出来ているもの、私見では<code>conventional-changelog</code>。</p>
 <h3 id="conventional-changelog">conventional-changelog</h3>
 <p>TDDのt_wadaさんおすすめ。 <a href="http://www.slideshare.net/t_wada/javajaoss/42">OSS についてあれこれ</a> jser.infoのazuさんおすすめ。 <a href="http://azu.github.io/slide/cto/changelog.html">われわれは、いかにして変更点を追うか</a></p>
 <pre class="text"><code>                       component        commit title
@@ -159,6 +174,8 @@ module.exports = {
 <p>となり、</p>
 <p>バージョンアップの準備が整う -&gt; バージョン番号インクリメント, changelog書く(<code>$ npm run changelog</code>) (順不同) -&gt; bundle exec rake release</p>
 <p>これが実現できる。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>changelog半自動生成のツールを使って、楽にchangelogを書こう。 おすすめは<code>conventional-changelog</code>です。</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151130-conventional-changelog-for-ruby%2F&amp;t=Changelog%20for%20Ruby%20Module%20%2F%20Lightning%20Talks" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>

@@ -21,11 +21,28 @@ sanemat {AT} tachikoma.io
 
 ## changelog 読んでる?
 
-changelog 読んでる?
+* gemを使うときにreadme見る人
+* gemを使いはじめるときにchangelog見る人
+    * `changelog.md`
+    * `github.com/{:repos}/releases`
+    * `github.com/{:repos}/compare/{:base}...{:head}`
+* gemのバージョンアップするときにchangelog見る人
+* changelogのないgemのバージョンアップしなくちゃで、バカかな? とおもうけど、自分の書いたモジュールにはチェンジログない人?
+* semvarって聞いたことある人?
+* gemのpre-releaseのフォーマットがsemvarじゃなくって、あれ。。？ってなったことある人
+    * semvar: 2.3.4-alpha1
+    * gem pre-release: 2.3.4.alpha1
 
-* `changelog.md`
-* `github.com/{:repos}/releases`
-* `github.com/{:repos}/compare/{:base}...{:head}`
+結論として、ユーザーは見てるし、changelog補助のツールもあるのでいろいろ使いましょう
+
+## changelog補助のツール, gemとは?
+
+日本語、gem, changelog, の組み合わせだとこれが参考になる。
+[社内gemとOSSのgemのメンテについて - くりにっき](http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く)
+
+github-changelog-generatorにwikiページがあり、そこに比較がある。
+[Alternatives · skywinder/github-changelog-generator Wiki](https://github.com/skywinder/Github-Changelog-Generator/wiki/Alternatives)
+比較自体はちょっと古い気もする(conventional-changelogがgithub integrationなしになってる)けど。
 
 
 ## ブラウザから読みやすい VS gem packageに含まれている
@@ -57,7 +74,7 @@ GitHubはProgressive Enhancement 的な
 各言語でchangelogツールチェーンの取り組みはいくつもあって選びにくいが
 E.g [社内gemとOSSのgemのメンテについて - くりにっき](http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く)
 
-手を入れやすくてよく出来ているもの、私見ではconventional-changelog。
+手を入れやすくてよく出来ているもの、私見では`conventional-changelog`。
 
 
 ### conventional-changelog
@@ -93,6 +110,7 @@ jser.infoのazuさんおすすめ。
 
 
 #### 私見
+
 こういう細かいツールチェーンはnodejsに乗ればよくない？
 
 ちょっと前は、同じ機能のもの後から車輪の再発明しおって!(rakeとかsassとか)と若干思ってたけど
@@ -240,27 +258,10 @@ module.exports = {
 
 これが実現できる。
 
+## まとめ
 
-gemを使うときにreadme見る人
-gemを使いはじめるときにchangelog見る人
-gemのバージョンアップするときにchangelog見る人
-
-changelogのないgemのバージョンアップしなくちゃで、バカかな? とおもうけど自分の書いたモジュールにチェンジログない人?
-semvarって聞いたことある人?
-gemのpre-releaseのフォーマットがsemvarじゃなくって、あれ。。？ってなったことある人
-semvar: 2.3.4-alpha1
-gem pre-release: 2.3.4.alpha1
-
-結論として、ユーザーは見てるし、changelog補助のツールもあるのでいろいろ使いましょう
-
-changelog補助のツール, gemとは?
-
-日本語、gem, changelog, の組み合わせだとこれが参考になる。
-[社内gemとOSSのgemのメンテについて - くりにっき](http://sue445.hatenablog.com/entry/2015/12/01/000000#CHANGELOG更新履歴を書く)
-
-github-changelog-generatorにwikiページがあり、そこに比較がある。
-[Alternatives · skywinder/github-changelog-generator Wiki](https://github.com/skywinder/Github-Changelog-Generator/wiki/Alternatives)
-比較自体はちょっと古い気もする(conventional-changelogがgithub integrationなしになってる)けど。
+changelog半自動生成のツールを使って、楽にchangelogを書こう。
+おすすめは`conventional-changelog`です。
 
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151130-conventional-changelog-for-ruby%2F&t=Changelog%20for%20Ruby%20Module%20%2F%20Lightning%20Talks" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
