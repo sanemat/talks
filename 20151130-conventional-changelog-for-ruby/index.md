@@ -45,6 +45,19 @@ github-changelog-generatorにwikiページがあり、そこに比較がある�
 比較自体はちょっと古い気もする(conventional-changelogがgithub integrationなしになってる)けど。
 
 
+### star数上位比較
+
+* https://github.com/skywinder/Github-Changelog-Generator
+    * stars: 1655
+    * last modified: 2015-11-22
+* https://github.com/ajoslin/conventional-changelog
+    * stars: 565
+    * last modified: 2015-10-30
+* https://github.com/lalitkapoor/github-changes
+    * stars: 450
+    * last modified: 2015-04-12
+
+
 ## ブラウザから読みやすい VS gem packageに含まれている
 
 ブラウザから読みやすい VS gem packageに含まれている
@@ -141,8 +154,7 @@ committerが取り込むときに手で修正するのは不毛すぎるし、�
 
 jqueryとかangularjsとかどうしてるんだろう?
 
-eslintは規約に従わないcommitはテストで落ちるようにしている。
-https://github.com/eslint/eslint/blob/87caa64bfcc76639f71c45bcb832e53237b07f2d/Makefile.js#L927-L987
+[eslint](https://github.com/eslint/eslint/blob/87caa64bfcc76639f71c45bcb832e53237b07f2d/Makefile.js#L927-L987)は規約に従わないcommitはテストで落ちるようにしている。
 
 な、なるほどー
 
