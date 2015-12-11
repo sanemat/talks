@@ -30,54 +30,75 @@
 <h3 id="kenichi-murahashi-sanemat">2013-06-23 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
 <p><a href="https://rubygems.org/gems/tachikoma">Tachikoma gem first version v2.0.0 (not published)</a> <a href="https://github.com/sanemat/tachikoma/commit/a813fc718d43139820d36a20dfd8595958f6b4e8">commit</a></p>
 <h3 id="kenichi-murahashi-sanemat-1">2014-09-17 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
-<p><a href="http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/">When was the build passing? / Travis CI Meetup 2014-09-17</a></p>
+<p><a href="http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/">Release announce about tachikoma.io</a></p>
 <h2 id="motivation">Motivation</h2>
 <ul>
+<li>Writing shell script is hard</li>
+<li><p>Many products / projects have almost same script</p></li>
 <li>shell scriptで書くのがそもそもツライ</li>
-<li>ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ</li>
+<li><p>ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ</p></li>
 </ul>
 <h2 id="tachikoma-gem">Tachikoma gem</h2>
 <h3 id="pros">pros</h3>
 <ul>
+<li>write yaml, we can run command line with gems.</li>
 <li>yamlの設定を置くと、gemとコマンドラインで完結する</li>
 </ul>
 <h3 id="cons">cons</h3>
 <ul>
+<li>Not customizable enough</li>
+<li>Build your own execute environment</li>
+<li>First I image that I run this in own jenkins
+<ul>
+<li>CI as a service advances rapidly</li>
+</ul></li>
 <li>カスタマイズ性低い</li>
 <li>実行環境は自分で作成する必要がある</li>
 <li>設計思想として、自前jenkinsで動かすのを第一に考えていた
 <ul>
-<li>CI as a web serviceの発展</li>
+<li>CI as a serviceの発展</li>
 </ul></li>
 </ul>
 <h2 id="tachikoma.io">tachikoma.io</h2>
 <h3 id="pros-1">pros</h3>
 <ul>
-<li>github oAuthで連携, toggle一発</li>
+<li>Easy to use with GitHub oAuth, and toggle from webUI</li>
+<li>Configure by .tachikoma.yml</li>
+<li>GitHub oAuthで連携, webUIからtoggle一発</li>
 <li>.tachikoma.ymlで設定</li>
 </ul>
 <h3 id="cons-1">cons</h3>
 <ul>
+<li>Too hard to get user's permission about reading/writing on public/private repo</li>
+<li>In public version, user can choose permitting &quot;public write&quot;, only I use this feature (user count is over 300)</li>
+<li>Choose &quot;public write&quot; is very useful because I can stack my commit above bot commit.</li>
+<li><p>Not customizable enough</p></li>
 <li>リポジトリの読み書き権限もらうのが非常に苦戦</li>
 <li>public版も、ユーザー権限でpush出来るようにするものはあるが、300+のユーザー中利用者1(自分のみ)</li>
 <li>ユーザー権限でpushできると、botのcommitの上に自分のコミット詰めるので、すごい便利なのだが…</li>
-<li>カスタマイズ性低い</li>
+<li><p>カスタマイズ性低い</p></li>
 </ul>
-<h2 id="揺り戻し">揺り戻し</h2>
+<h2 id="swinging-back">Swinging back</h2>
+<p>揺り戻し</p>
 <ul>
+<li>shell script and ruby script is enough</li>
 <li>shell scriptやruby scriptで書けばいいじゃん</li>
 </ul>
+<p>But</p>
 <p>しかし</p>
+<p>Still hard</p>
 <p>やっぱりつらい</p>
+<p>Why? I know I can use Octokit.rb and use GitHub API. But...</p>
 <p>shell script or Ruby scriptで書くの何がツライのか 直にOctokit使えばいいだけなのわかるけど、いちいちAPI調べてとかダルい</p>
-<h2 id="対象を絞ってより使いやすくするアプローチ">対象を絞ってより使いやすくするアプローチ</h2>
-<h3 id="ruby-gemの場合">Ruby gemの場合</h3>
+<h2 id="improve-usability-concentrate-on-issue">Improve usability, concentrate on issue</h2>
+<p>対象を絞ってより使いやすくするアプローチ</p>
+<h3 id="ruby-gem-case">Ruby gem case</h3>
 <ul>
 <li><a href="https://www.deppbot.com/">deppbot</a></li>
 <li><a href="https://rubygems.org/gems/circleci-bundle-update-pr">circleci-bundle-update-pr</a></li>
 <li><a href="https://rubygems.org/gems/ci-bundle-update">ci-bundle-update</a></li>
 </ul>
-<h3 id="node.js-npmの場合">Node.js npmの場合</h3>
+<h3 id="node.js-npm-case">Node.js npm case</h3>
 <ul>
 <li><a href="http://greenkeeper.io/">greenkeeper</a></li>
 </ul>

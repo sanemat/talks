@@ -32,9 +32,12 @@ sanemat {AT} tachikoma.io
 
 ### 2014-09-17 - Kenichi Murahashi @sanemat
 
-[When was the build passing? / Travis CI Meetup 2014-09-17](http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/)
+[Release announce about tachikoma.io](http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/)
 
 ## Motivation
+
+* Writing shell script is hard
+* Many products / projects have almost same script
 
 * shell scriptで書くのがそもそもツライ
 * ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ
@@ -43,24 +46,37 @@ sanemat {AT} tachikoma.io
 
 ### pros
 
+* write yaml, we can run command line with gems.
 * yamlの設定を置くと、gemとコマンドラインで完結する
 
 ### cons
 
+* Not customizable enough
+* Build your own execute environment
+* First I image that I run this in own jenkins
+    * CI as a service advances rapidly
+
 * カスタマイズ性低い
 * 実行環境は自分で作成する必要がある
 * 設計思想として、自前jenkinsで動かすのを第一に考えていた
-    * CI as a web serviceの発展
+    * CI as a serviceの発展
 
 
 ## tachikoma.io
 
 ### pros
 
-* github oAuthで連携, toggle一発
+* Easy to use with GitHub oAuth, and toggle from webUI
+* Configure by .tachikoma.yml
+* GitHub oAuthで連携, webUIからtoggle一発
 * .tachikoma.ymlで設定
 
 ### cons
+
+* Too hard to get user's permission about reading/writing on public/private repo
+* In public version, user can choose permitting "public write", only I use this feature (user count is over 300)
+* Choose "public write" is very useful because I can stack my commit above bot commit.
+* Not customizable enough
 
 * リポジトリの読み書き権限もらうのが非常に苦戦
 * public版も、ユーザー権限でpush出来るようにするものはあるが、300+のユーザー中利用者1(自分のみ)
@@ -68,28 +84,39 @@ sanemat {AT} tachikoma.io
 * カスタマイズ性低い
 
 
-## 揺り戻し
+## Swinging back
 
+揺り戻し
+
+* shell script and ruby script is enough
 * shell scriptやruby scriptで書けばいいじゃん
+
+But
 
 しかし
 
+Still hard
+
 やっぱりつらい
+
+Why? I know I can use Octokit.rb and use GitHub API. But...
 
 shell script or Ruby scriptで書くの何がツライのか
 直にOctokit使えばいいだけなのわかるけど、いちいちAPI調べてとかダルい
 
 
-## 対象を絞ってより使いやすくするアプローチ
+## Improve usability, concentrate on issue
 
-### Ruby gemの場合
+対象を絞ってより使いやすくするアプローチ
+
+### Ruby gem case
 
 * [deppbot](https://www.deppbot.com/)
 * [circleci-bundle-update-pr](https://rubygems.org/gems/circleci-bundle-update-pr)
 * [ci-bundle-update](https://rubygems.org/gems/ci-bundle-update)
 
 
-### Node.js npmの場合
+### Node.js npm case
 
 * [greenkeeper](http://greenkeeper.io/)
 
