@@ -288,7 +288,7 @@ golangだとインストールがcurlとかになるのでそれはそれでど�
 おわり
 
 
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&t=Tachikoma%20next" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
 
 [tachikoma-io]:http://tachikoma.io/?utm_source=talk&utm_medium=slide&utm_campaign=20151210-tachikoma-next
