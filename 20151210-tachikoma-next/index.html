@@ -144,6 +144,20 @@
 <p><code>cd bundle-update &amp;&amp; bundle exec bin/bundle-update.rb &amp;&amp; cd ..</code></p>
 <h4 id="example">Example</h4>
 <p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
+<h4 id="細かいのいろいろ作ったので検討してくれ">細かいのいろいろ作ったので検討してくれ</h4>
+<ul>
+<li>https://rubygems.org/gems/compare_linker_wrapper</li>
+<li>https://rubygems.org/gems/saddler</li>
+<li>https://rubygems.org/gems/env_branch</li>
+<li>https://rubygems.org/gems/parse_gemspec-cli</li>
+<li>https://rubygems.org/gems/parse_gemspec</li>
+<li>https://rubygems.org/gems/github_status_notifier</li>
+<li>https://rubygems.org/gems/env_pull_request</li>
+<li>https://rubygems.org/gems/restore_bundled_with</li>
+<li>https://rubygems.org/gems/git_httpsable-push</li>
+<li>https://rubygems.org/gems/pull_request-create</li>
+<li>https://rubygems.org/gems/cron_for_github</li>
+</ul>
 <h2 id="compare-linker">compare-linker</h2>
 <p>最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem</p>
 <p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した compare-linker-wrapperと<code>bin/compare-linker.sh</code>。あとsaddlerも使っている。 compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。</p>
