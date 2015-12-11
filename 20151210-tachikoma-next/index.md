@@ -85,8 +85,9 @@ shell script or Ruby scriptで書くの何がツライのか
 ### Ruby gemの場合
 
 * [deppbot](https://www.deppbot.com/)
-* circleci-bundle-update-pr
-* ci-bundle-update
+* [circleci-bundle-update-pr](https://rubygems.org/gems/circleci-bundle-update-pr)
+* [ci-bundle-update](https://rubygems.org/gems/ci-bundle-update)
+
 
 ### Node.js npmの場合
 
@@ -189,20 +190,21 @@ exit 0
 
 #### 細かいのいろいろ作ったので検討してくれ
 
-* https://rubygems.org/gems/compare_linker_wrapper
-* https://rubygems.org/gems/saddler
-* https://rubygems.org/gems/env_branch
-* https://rubygems.org/gems/parse_gemspec-cli
-* https://rubygems.org/gems/parse_gemspec
-* https://rubygems.org/gems/github_status_notifier
-* https://rubygems.org/gems/env_pull_request
-* https://rubygems.org/gems/restore_bundled_with
-* https://rubygems.org/gems/git_httpsable-push
-* https://rubygems.org/gems/pull_request-create
-* https://rubygems.org/gems/cron_for_github
+* [compare_linker_wrapper](https://rubygems.org/gems/compare_linker_wrapper)
+* [saddler](https://rubygems.org/gems/saddler)
+* [env_branch](https://rubygems.org/gems/env_branch)
+* [parse_gemspec-cli](https://rubygems.org/gems/parse_gemspec-cli)
+* [parse_gemspec](https://rubygems.org/gems/parse_gemspec)
+* [github_status_notifier](https://rubygems.org/gems/github_status_notifier)
+* [env_pull_request](https://rubygems.org/gems/env_pull_request)
+* [restore_bundled_with](https://rubygems.org/gems/restore_bundled_with)
+* [git_httpsable-push](https://rubygems.org/gems/git_httpsable-push)
+* [pull_request-create](https://rubygems.org/gems/pull_request-create)
+* [cron_for_github](https://rubygems.org/gems/cron_for_github)
+* [git_diff_parser](https://rubygems.org/gems/git_diff_parser)
 
 
-## compare-linker
+## [compare_linker](https://rubygems.org/gems/https://rubygems.org/gems/compare_linker)
 
 最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem
 
