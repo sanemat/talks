@@ -166,6 +166,8 @@ exit 0
 
 #### `bin/bundle-update.rb`
 
+あとでかく
+
 `bundle-udpate/Gemfile`
 
 ```ruby
@@ -186,21 +188,70 @@ exit 0
 
 ## compare-linker
 
+最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem
+
 webサービスなら同時にやってくれる方がいいかもだけど、
 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い
-あと、github api依存の部分を外した
+あと、github api依存の部分を外した compare-linker-wrapperと`bin/compare-linker.sh`。あとsaddlerも使っている。
+compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。
 
-アプリの依存に載せたくないが、.lockは取りたい、場合なども
-bundle install --gemfile=Gemfile.bundle-update
 
-にしておけばいいんじゃないですかね(試してない)
+```bash
+#!/usr/bin/env bash
+set -ev
+
+if [[ -n "${TRAVIS_PULL_REQUEST}" && "${TRAVIS_PULL_REQUEST}" != "false" ]]; then
+  # gem prepare
+  gem install --no-document saddler saddler-reporter-github \
+  compare_linker_wrapper text_to_checkstyle github_status_notifier
+
+  github-status-notifier notify --state pending --context saddler/compare_linker
+
+  git diff --name-only origin/master \
+   | grep ".*[gG]emfile.lock$" || RETURN_CODE=$?
+
+  case "$RETURN_CODE" in
+   "" ) echo "found" ;;
+   "1" )
+     echo "not found"
+     github-status-notifier notify --state success --context saddler/compare_linker
+     exit 0 ;;
+   * )
+     echo "Error"
+     github-status-notifier notify --state failure --context saddler/compare_linker
+     exit $RETURN_CODE ;;
+  esac
+
+  git diff --name-only origin/master \
+   | grep ".*[gG]emfile.lock$" \
+   | xargs compare-linker-wrapper --base origin/master \
+      --formatter CompareLinker::Formatter::Markdown \
+   | text-to-checkstyle \
+   | saddler report \
+      --require saddler/reporter/github \
+      --reporter Saddler::Reporter::Github::PullRequestComment
+
+  github-status-notifier notify --state success --context saddler/compare_linker
+fi
+
+exit 0
+```
+
+ruby版 あとでかく
+
+アプリの依存に載せたくないばあいも、`bundle-update/Gemfile`や`compare-linker/Gemfile`にしておけばいいんじゃないですかね(試してない)
 なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。
 (ように自分で書けば良い)
 
-compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せる
 
-課題
-[定期的にライブラリの依存関係をアップデートしてPull Requestする – Saddler - checkstyle to anywhere](http://packsaddle.org/articles/interval-pull-request-update-overview/)
+## npm-check-updates
+
+tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。
+最近微妙だけど…
+bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。
+
+
+## 課題
 
 gem installがコケて定期実行に失敗することがあるらしい
 travis_retry gem install xxx とすればよいのでは(travisなら)
@@ -210,24 +261,30 @@ tachikoma gemは発展的解消できたな
 はできないな
 やっぱtachikoma.io便利だな
 
-shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ
-群
+## 余談
+
+### パイプ最高期
+
+shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ群
 
 あれ、shell scriptって環境依存激しいし微妙に方言が有る
 windows? なにそれうまいの?
-ユーザー多いし、どうせなら多くの人に使ってもらわないと。
+windowsユーザー多いし、どうせなら多くの人に使ってもらいたい。
+
+### saddler toolchain
 
 このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける
 標準モジュールを使う
 nokogiriではなくrexml
-ビルドするの大変になるからrugged使わなかったけど、それではwindowsで動かなそ
-う、などなど
+ビルドするの大変になる& JRubyなどでもいけるように rugged使わなかったけど、それではwindowsで動かないので。。。
 
-golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりた
-い期
+### golangやりたい(やってない)期
+
+golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりたい期
 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ
 
 
+おわり
 
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>

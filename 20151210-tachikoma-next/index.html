@@ -136,6 +136,7 @@
 
 <span class="kw">exit</span> 0</code></pre>
 <h4 id="binbundle-update.rb"><code>bin/bundle-update.rb</code></h4>
+<p>あとでかく</p>
 <p><code>bundle-udpate/Gemfile</code></p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
 <p><code>bundle-udpate/bin/bundle-update.rb</code></p>
@@ -144,17 +145,62 @@
 <h4 id="example">Example</h4>
 <p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
 <h2 id="compare-linker">compare-linker</h2>
-<p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した</p>
-<p>アプリの依存に載せたくないが、.lockは取りたい、場合なども bundle install --gemfile=Gemfile.bundle-update</p>
-<p>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
-<p>compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せる</p>
-<p>課題 <a href="http://packsaddle.org/articles/interval-pull-request-update-overview/">定期的にライブラリの依存関係をアップデートしてPull Requestする – Saddler - checkstyle to anywhere</a></p>
+<p>最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem</p>
+<p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した compare-linker-wrapperと<code>bin/compare-linker.sh</code>。あとsaddlerも使っている。 compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
+<span class="kw">set</span> <span class="kw">-ev</span>
+
+<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;false&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span>
+  <span class="co"># gem prepare</span>
+  <span class="kw">gem</span> install --no-document saddler saddler-reporter-github \
+  <span class="kw">compare_linker_wrapper</span> text_to_checkstyle github_status_notifier
+
+  <span class="kw">github-status-notifier</span> notify --state pending --context saddler/compare_linker
+
+  <span class="kw">git</span> diff --name-only origin/master \
+   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> <span class="kw">||</span> <span class="ot">RETURN_CODE=$?</span>
+
+  <span class="kw">case</span> <span class="st">&quot;</span><span class="ot">$RETURN_CODE</span><span class="st">&quot;</span><span class="kw"> in</span>
+   <span class="st">&quot;&quot;</span> <span class="kw">)</span> <span class="kw">echo</span> <span class="st">&quot;found&quot;</span> <span class="kw">;;</span>
+   <span class="st">&quot;1&quot;</span> )
+     <span class="kw">echo</span> <span class="st">&quot;not found&quot;</span>
+     <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
+     <span class="kw">exit</span> 0 <span class="kw">;;</span>
+   <span class="kw">*</span> )
+     <span class="kw">echo</span> <span class="st">&quot;Error&quot;</span>
+     <span class="kw">github-status-notifier</span> notify --state failure --context saddler/compare_linker
+     <span class="kw">exit</span> <span class="ot">$RETURN_CODE</span> <span class="kw">;;</span>
+  <span class="kw">esac</span>
+
+  <span class="kw">git</span> diff --name-only origin/master \
+   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> \
+   <span class="kw">|</span> <span class="kw">xargs</span> compare-linker-wrapper --base origin/master \
+      <span class="kw">--formatter</span> CompareLinker::Formatter::Markdown \
+   <span class="kw">|</span> <span class="kw">text-to-checkstyle</span> \
+   <span class="kw">|</span> <span class="kw">saddler</span> report \
+      <span class="kw">--require</span> saddler/reporter/github \
+      <span class="kw">--reporter</span> Saddler::Reporter::Github::PullRequestComment
+
+  <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
+<span class="kw">fi</span>
+
+<span class="kw">exit</span> 0</code></pre>
+<p>ruby版 あとでかく</p>
+<p>アプリの依存に載せたくないばあいも、<code>bundle-update/Gemfile</code>や<code>compare-linker/Gemfile</code>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
+<h2 id="npm-check-updates">npm-check-updates</h2>
+<p>tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。 最近微妙だけど… bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。</p>
+<h2 id="課題">課題</h2>
 <p>gem installがコケて定期実行に失敗することがあるらしい travis_retry gem install xxx とすればよいのでは(travisなら)</p>
 <p>tachikoma gemは発展的解消できたな でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人 はできないな やっぱtachikoma.io便利だな</p>
-<p>shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ 群</p>
-<p>あれ、shell scriptって環境依存激しいし微妙に方言が有る windows? なにそれうまいの? ユーザー多いし、どうせなら多くの人に使ってもらわないと。</p>
-<p>このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける 標準モジュールを使う nokogiriではなくrexml ビルドするの大変になるからrugged使わなかったけど、それではwindowsで動かなそ う、などなど</p>
-<p>golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりた い期 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ</p>
+<h2 id="余談">余談</h2>
+<h3 id="パイプ最高期">パイプ最高期</h3>
+<p>shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ群</p>
+<p>あれ、shell scriptって環境依存激しいし微妙に方言が有る windows? なにそれうまいの? windowsユーザー多いし、どうせなら多くの人に使ってもらいたい。</p>
+<h3 id="saddler-toolchain">saddler toolchain</h3>
+<p>このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける 標準モジュールを使う nokogiriではなくrexml ビルドするの大変になる&amp; JRubyなどでもいけるように rugged使わなかったけど、それではwindowsで動かないので。。。</p>
+<h3 id="golangやりたいやってない期">golangやりたい(やってない)期</h3>
+<p>golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりたい期 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ</p>
+<p>おわり</p>
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>
