@@ -84,12 +84,13 @@ shell script or Ruby scriptで書くの何がツライのか
 
 ### Ruby gemの場合
 
-* https://www.deppbot.com/
+* [deppbot](https://www.deppbot.com/)
 * circleci-bundle-update-pr
 * ci-bundle-update
 
 ### Node.js npmの場合
-* http://greenkeeper.io/
+
+* [greenkeeper](http://greenkeeper.io/)
 
 
 ## ここから知見 + 私見 + 主張
