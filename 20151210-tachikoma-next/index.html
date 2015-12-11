@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Tachikoma next" />
+  <meta property="og:type" content="article" />
+  <title>Tachikoma next</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20151210-tachikoma-next/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="tachikoma-next">Tachikoma next</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="bundle-update-regularly-frequently">Bundle update regularly, frequently</h2>
+<h3 id="kensuke-nagae-kyanny">2013-05-31 - Kensuke Nagae <span class="citation" data-cites="kyanny">@kyanny</span></h3>
+<p><a href="https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request">Continuous gem dependency updating with Jenkins and Pull Request</a></p>
+<h3 id="kenichi-murahashi-sanemat">2013-06-23 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
+<p><a href="https://rubygems.org/gems/tachikoma">Tachikoma gem first version v2.0.0 (not published)</a> <a href="https://github.com/sanemat/tachikoma/commit/a813fc718d43139820d36a20dfd8595958f6b4e8">commit</a></p>
+<h3 id="kenichi-murahashi-sanemat-1">2014-09-17 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
+<p><a href="http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/">When was the build passing? / Travis CI Meetup 2014-09-17</a></p>
+<h2 id="motivation">Motivation</h2>
+<ul>
+<li>shell scriptで書くのがそもそもツライ</li>
+<li>ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ</li>
+</ul>
+<h2 id="tachikoma-gem">Tachikoma gem</h2>
+<h3 id="pros">pros</h3>
+<ul>
+<li>yamlの設定を置くと、gemとコマンドラインで完結する</li>
+</ul>
+<h3 id="cons">cons</h3>
+<ul>
+<li>カスタマイズ性低い</li>
+<li>実行環境は自分で作成する必要がある</li>
+<li>設計思想として、自前jenkinsで動かすのを第一に考えていた
+<ul>
+<li>CI as a web serviceの発展</li>
+</ul></li>
+</ul>
+<h2 id="tachikoma.io">tachikoma.io</h2>
+<h3 id="pros-1">pros</h3>
+<ul>
+<li>github oAuthで連携, toggle一発</li>
+<li>.tachikoma.ymlで設定</li>
+</ul>
+<h3 id="cons-1">cons</h3>
+<ul>
+<li>リポジトリの読み書き権限もらうのが非常に苦戦</li>
+<li>public版も、ユーザー権限でpush出来るようにするものはあるが、300+のユーザー中利用者1(自分のみ)</li>
+<li>ユーザー権限でpushできると、botのcommitの上に自分のコミット詰めるので、すごい便利なのだが…</li>
+<li>カスタマイズ性低い</li>
+</ul>
+<h2 id="揺り戻し">揺り戻し</h2>
+<ul>
+<li>shell scriptやruby scriptで書けばいいじゃん</li>
+</ul>
+<p>しかし</p>
+<p>やっぱりつらい</p>
+<p>shell script or Ruby scriptで書くの何がツライのか 直にOctokit使えばいいだけなのわかるけど、いちいちAPI調べてとかダルい</p>
+<h2 id="対象を絞ってより使いやすくするアプローチ">対象を絞ってより使いやすくするアプローチ</h2>
+<h3 id="ruby-gemの場合">Ruby gemの場合</h3>
+<ul>
+<li>https://www.deppbot.com/</li>
+<li>circleci-bundle-update-pr</li>
+<li>ci-bundle-update</li>
+</ul>
+<h3 id="node.js-npmの場合">Node.js npmの場合</h3>
+<ul>
+<li>http://greenkeeper.io/</li>
+</ul>
+<h2 id="ここから知見-私見-主張">ここから知見 + 私見 + 主張</h2>
+<p>カスタマイズ欲求がプロジェクト・プロダクトの特性によって無限に出てくる(はず)</p>
+<ul>
+<li>mongodb使いたい</li>
+<li>mecab使いたい</li>
+<li>頻度は平日の朝に来て欲しい</li>
+<li>プロジェクト構成が、トップレベルにRubyやRails来てない</li>
+<li>複数Rubyプロジェクトが入っている</li>
+<li>Node.js npmもやりたい</li>
+</ul>
+<p>これは、travis-ci, CircleCIを再発明することになるのでは??</p>
+<p>CI nativeのアプリケーションへ</p>
+<p>CI上で動けばいいじゃん</p>
+<h3 id="先回り-ではbundle-update-as-a-serviceは不要">先回り では、bundle update as a serviceは不要?</h3>
+<p>では、tachikoma.ioやdeppbotは不要なのか? tachikoma.io止めちゃうの?</p>
+<p>やっぱり、スクリプト書くのめんどい… 設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人はたぶんできないな やっぱtachikoma.io便利だな</p>
+<p>自分には必要!</p>
+<h3 id="結論">結論</h3>
+<p><code>bin/bundle-update.sh</code>あるいは<code>bin/bundle-update.rb</code>を<a href="http://packsaddle.org/articles/cron-for-github-app-overview/">Cron for GitHub</a> あるいは<a href="https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html">AWS Lambda Scheduled Event</a>でkickする。</p>
+<h4 id="binbundle-update.sh"><code>bin/bundle-update.sh</code></h4>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
+<span class="kw">set</span> <span class="kw">-ev</span>
+
+<span class="co"># only sunday</span>
+<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;false&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span> =~ ^cron_for_tachikoma/.* &amp;&amp; <span class="ot">$(</span><span class="kw">date</span> +%w<span class="ot">)</span> <span class="ot">-eq</span> 0<span class="kw"> ]]</span>; <span class="kw">then</span>
+  <span class="co"># gem prepare</span>
+  <span class="kw">gem</span> install --no-document git_httpsable-push pull_request-create
+
+  <span class="co"># git prepare</span>
+  <span class="kw">git</span> config user.name sanemat
+  <span class="kw">git</span> config user.email foo@example.com
+  <span class="ot">HEAD_DATE=$(</span><span class="kw">date</span> +%Y%m%d_%H-%M-%S<span class="ot">)</span>
+  <span class="ot">HEAD=</span><span class="st">&quot;tachikoma/update-</span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
+
+  <span class="co"># checkout (for TravisCI)</span>
+  <span class="kw">git</span> checkout -b <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span>
+
+  <span class="co"># bundle install</span>
+  <span class="kw">bundle</span> --no-deployment --without nothing --jobs 4
+
+  <span class="co"># bundle update</span>
+  <span class="kw">bundle</span> update
+
+  <span class="kw">git</span> add Gemfile.lock
+  <span class="kw">git</span> commit -m <span class="st">&quot;Bundle update </span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
+
+  <span class="co"># git push</span>
+  <span class="kw">git</span> httpsable-push origin <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span>
+
+  <span class="co"># pull request</span>
+  <span class="kw">pull-request-create</span>
+<span class="kw">fi</span>
+
+<span class="kw">exit</span> 0</code></pre>
+<h4 id="binbundle-update.rb"><code>bin/bundle-update.rb</code></h4>
+<p>あとでかく</p>
+<p><code>bundle-udpate/Gemfile</code></p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
+<p><code>bundle-udpate/bin/bundle-update.rb</code></p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
+<p><code>cd bundle-update &amp;&amp; bundle exec bin/bundle-update.rb &amp;&amp; cd ..</code></p>
+<h4 id="example">Example</h4>
+<p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
+<h2 id="compare-linker">compare-linker</h2>
+<p>最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem</p>
+<p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した compare-linker-wrapperと<code>bin/compare-linker.sh</code>。あとsaddlerも使っている。 compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
+<span class="kw">set</span> <span class="kw">-ev</span>
+
+<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;false&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span>
+  <span class="co"># gem prepare</span>
+  <span class="kw">gem</span> install --no-document saddler saddler-reporter-github \
+  <span class="kw">compare_linker_wrapper</span> text_to_checkstyle github_status_notifier
+
+  <span class="kw">github-status-notifier</span> notify --state pending --context saddler/compare_linker
+
+  <span class="kw">git</span> diff --name-only origin/master \
+   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> <span class="kw">||</span> <span class="ot">RETURN_CODE=$?</span>
+
+  <span class="kw">case</span> <span class="st">&quot;</span><span class="ot">$RETURN_CODE</span><span class="st">&quot;</span><span class="kw"> in</span>
+   <span class="st">&quot;&quot;</span> <span class="kw">)</span> <span class="kw">echo</span> <span class="st">&quot;found&quot;</span> <span class="kw">;;</span>
+   <span class="st">&quot;1&quot;</span> )
+     <span class="kw">echo</span> <span class="st">&quot;not found&quot;</span>
+     <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
+     <span class="kw">exit</span> 0 <span class="kw">;;</span>
+   <span class="kw">*</span> )
+     <span class="kw">echo</span> <span class="st">&quot;Error&quot;</span>
+     <span class="kw">github-status-notifier</span> notify --state failure --context saddler/compare_linker
+     <span class="kw">exit</span> <span class="ot">$RETURN_CODE</span> <span class="kw">;;</span>
+  <span class="kw">esac</span>
+
+  <span class="kw">git</span> diff --name-only origin/master \
+   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> \
+   <span class="kw">|</span> <span class="kw">xargs</span> compare-linker-wrapper --base origin/master \
+      <span class="kw">--formatter</span> CompareLinker::Formatter::Markdown \
+   <span class="kw">|</span> <span class="kw">text-to-checkstyle</span> \
+   <span class="kw">|</span> <span class="kw">saddler</span> report \
+      <span class="kw">--require</span> saddler/reporter/github \
+      <span class="kw">--reporter</span> Saddler::Reporter::Github::PullRequestComment
+
+  <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
+<span class="kw">fi</span>
+
+<span class="kw">exit</span> 0</code></pre>
+<p>ruby版 あとでかく</p>
+<p>アプリの依存に載せたくないばあいも、<code>bundle-update/Gemfile</code>や<code>compare-linker/Gemfile</code>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
+<h2 id="npm-check-updates">npm-check-updates</h2>
+<p>tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。 最近微妙だけど… bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。</p>
+<h2 id="課題">課題</h2>
+<p>gem installがコケて定期実行に失敗することがあるらしい travis_retry gem install xxx とすればよいのでは(travisなら)</p>
+<p>tachikoma gemは発展的解消できたな でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人 はできないな やっぱtachikoma.io便利だな</p>
+<h2 id="余談">余談</h2>
+<h3 id="パイプ最高期">パイプ最高期</h3>
+<p>shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ群</p>
+<p>あれ、shell scriptって環境依存激しいし微妙に方言が有る windows? なにそれうまいの? windowsユーザー多いし、どうせなら多くの人に使ってもらいたい。</p>
+<h3 id="saddler-toolchain">saddler toolchain</h3>
+<p>このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける 標準モジュールを使う nokogiriではなくrexml ビルドするの大変になる&amp; JRubyなどでもいけるように rugged使わなかったけど、それではwindowsで動かないので。。。</p>
+<h3 id="golangやりたいやってない期">golangやりたい(やってない)期</h3>
+<p>golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりたい期 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ</p>
+<p>おわり</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
