@@ -74,8 +74,8 @@
 <h3 id="ruby-gemの場合">Ruby gemの場合</h3>
 <ul>
 <li><a href="https://www.deppbot.com/">deppbot</a></li>
-<li>circleci-bundle-update-pr</li>
-<li>ci-bundle-update</li>
+<li><a href="https://rubygems.org/gems/circleci-bundle-update-pr">circleci-bundle-update-pr</a></li>
+<li><a href="https://rubygems.org/gems/ci-bundle-update">ci-bundle-update</a></li>
 </ul>
 <h3 id="node.js-npmの場合">Node.js npmの場合</h3>
 <ul>
@@ -146,19 +146,20 @@
 <p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
 <h4 id="細かいのいろいろ作ったので検討してくれ">細かいのいろいろ作ったので検討してくれ</h4>
 <ul>
-<li>https://rubygems.org/gems/compare_linker_wrapper</li>
-<li>https://rubygems.org/gems/saddler</li>
-<li>https://rubygems.org/gems/env_branch</li>
-<li>https://rubygems.org/gems/parse_gemspec-cli</li>
-<li>https://rubygems.org/gems/parse_gemspec</li>
-<li>https://rubygems.org/gems/github_status_notifier</li>
-<li>https://rubygems.org/gems/env_pull_request</li>
-<li>https://rubygems.org/gems/restore_bundled_with</li>
-<li>https://rubygems.org/gems/git_httpsable-push</li>
-<li>https://rubygems.org/gems/pull_request-create</li>
-<li>https://rubygems.org/gems/cron_for_github</li>
+<li><a href="https://rubygems.org/gems/compare_linker_wrapper">compare_linker_wrapper</a></li>
+<li><a href="https://rubygems.org/gems/saddler">saddler</a></li>
+<li><a href="https://rubygems.org/gems/env_branch">env_branch</a></li>
+<li><a href="https://rubygems.org/gems/parse_gemspec-cli">parse_gemspec-cli</a></li>
+<li><a href="https://rubygems.org/gems/parse_gemspec">parse_gemspec</a></li>
+<li><a href="https://rubygems.org/gems/github_status_notifier">github_status_notifier</a></li>
+<li><a href="https://rubygems.org/gems/env_pull_request">env_pull_request</a></li>
+<li><a href="https://rubygems.org/gems/restore_bundled_with">restore_bundled_with</a></li>
+<li><a href="https://rubygems.org/gems/git_httpsable-push">git_httpsable-push</a></li>
+<li><a href="https://rubygems.org/gems/pull_request-create">pull_request-create</a></li>
+<li><a href="https://rubygems.org/gems/cron_for_github">cron_for_github</a></li>
+<li><a href="https://rubygems.org/gems/git_diff_parser">git_diff_parser</a></li>
 </ul>
-<h2 id="compare-linker">compare-linker</h2>
+<h2 id="compare_linker"><a href="https://rubygems.org/gems/https://rubygems.org/gems/compare_linker">compare_linker</a></h2>
 <p>最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem</p>
 <p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した compare-linker-wrapperと<code>bin/compare-linker.sh</code>。あとsaddlerも使っている。 compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
