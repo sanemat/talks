@@ -187,6 +187,21 @@ exit 0
 [sanemat/ruby-example-rails-banana](https://github.com/sanemat/ruby-example-rails-banana)
 
 
+#### 細かいのいろいろ作ったので検討してくれ
+
+* https://rubygems.org/gems/compare_linker_wrapper
+* https://rubygems.org/gems/saddler
+* https://rubygems.org/gems/env_branch
+* https://rubygems.org/gems/parse_gemspec-cli
+* https://rubygems.org/gems/parse_gemspec
+* https://rubygems.org/gems/github_status_notifier
+* https://rubygems.org/gems/env_pull_request
+* https://rubygems.org/gems/restore_bundled_with
+* https://rubygems.org/gems/git_httpsable-push
+* https://rubygems.org/gems/pull_request-create
+* https://rubygems.org/gems/cron_for_github
+
+
 ## compare-linker
 
 最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem
