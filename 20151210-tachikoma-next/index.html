@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Tachikoma next" />
+  <meta property="og:type" content="article" />
+  <title>Tachikoma next</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20151210-tachikoma-next/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="tachikoma-next">Tachikoma next</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="bundle-update-regularly-frequently">Bundle update regularly, frequently</h2>
+<h3 id="kensuke-nagae-kyanny">2013-05-31 - Kensuke Nagae <span class="citation" data-cites="kyanny">@kyanny</span></h3>
+<p><a href="https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request">Continuous gem dependency updating with Jenkins and Pull Request</a></p>
+<h3 id="kenichi-murahashi-sanemat">2013-06-23 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
+<p><a href="https://rubygems.org/gems/tachikoma">Tachikoma gem first version v2.0.0 (not published)</a> <a href="https://github.com/sanemat/tachikoma/commit/a813fc718d43139820d36a20dfd8595958f6b4e8">commit</a></p>
+<h3 id="kenichi-murahashi-sanemat-1">2014-09-17 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
+<p><a href="http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/">When was the build passing? / Travis CI Meetup 2014-09-17</a></p>
+<h2 id="motivation">Motivation</h2>
+<ul>
+<li>shell scriptで書くのがそもそもツライ</li>
+<li>ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ</li>
+</ul>
+<h2 id="tachikoma-gem">Tachikoma gem</h2>
+<h3 id="pros">pros</h3>
+<ul>
+<li>yamlの設定を置くと、gemとコマンドラインで完結する</li>
+</ul>
+<h3 id="cons">cons</h3>
+<ul>
+<li>カスタマイズ性低い</li>
+<li>実行環境は自分で作成する必要がある</li>
+<li>設計思想として、自前jenkinsで動かすのを第一に考えていた
+<ul>
+<li>CI as a web serviceの発展</li>
+</ul></li>
+</ul>
+<h2 id="tachikoma.io">tachikoma.io</h2>
+<h3 id="pros-1">pros</h3>
+<ul>
+<li>github oAuthで連携, toggle一発</li>
+<li>.tachikoma.ymlで設定</li>
+</ul>
+<h3 id="cons-1">cons</h3>
+<ul>
+<li>リポジトリの読み書き権限もらうのが非常に苦戦</li>
+<li>public版も、ユーザー権限でpush出来るようにするものはあるが、300+のユーザー中利用者1(自分のみ)</li>
+<li>ユーザー権限でpushできると、botのcommitの上に自分のコミット詰めるので、すごい便利なのだが…</li>
+<li>カスタマイズ性低い</li>
+</ul>
+<h2 id="揺り戻し">揺り戻し</h2>
+<ul>
+<li>shell scriptやruby scriptで書けばいいじゃん</li>
+</ul>
+<p>しかし</p>
+<p>やっぱりつらい</p>
+<p>shell script or Ruby scriptで書くの何がツライのか 直にOctokit使えばいいだけなのわかるけど、いちいちAPI調べてとかダルい</p>
+<h2 id="対象を絞ってより使いやすくするアプローチ">対象を絞ってより使いやすくするアプローチ</h2>
+<h3 id="ruby-gemの場合">Ruby gemの場合</h3>
+<ul>
+<li>https://www.deppbot.com/</li>
+<li>circleci-bundle-update-pr</li>
+<li>ci-bundle-update</li>
+</ul>
+<h3 id="node.js-npmの場合">Node.js npmの場合</h3>
+<ul>
+<li>http://greenkeeper.io/</li>
+</ul>
+<h2 id="ここから知見-私見-主張">ここから知見 + 私見 + 主張</h2>
+<p>カスタマイズ欲求がプロジェクト・プロダクトの特性によって無限に出てくる(はず)</p>
+<ul>
+<li>mongodb使いたい</li>
+<li>mecab使いたい</li>
+<li>頻度は平日の朝に来て欲しい</li>
+<li>プロジェクト構成が、トップレベルにRubyやRails来てない</li>
+<li>複数Rubyプロジェクトが入っている</li>
+<li>Node.js npmもやりたい</li>
+</ul>
+<p>これは、travis-ci, CircleCIを再発明することになるのでは??</p>
+<p>CI nativeのアプリケーションへ</p>
+<p>CI上で動けばいいじゃん</p>
+<h3 id="先回り-ではbundle-update-as-a-serviceは不要">先回り では、bundle update as a serviceは不要?</h3>
+<p>では、tachikoma.ioやdeppbotは不要なのか? tachikoma.io止めちゃうの?</p>
+<p>やっぱり、スクリプト書くのめんどい… 設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人はたぶんできないな やっぱtachikoma.io便利だな</p>
+<p>自分には必要!</p>
+<h3 id="結論">結論</h3>
+<p>compare-linker</p>
+<p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した</p>
+<p>アプリの依存に載せたくないが、.lockは取りたい、場合なども bundle install --gemfile=Gemfile.bundle-update</p>
+<p>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
+<p>compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せる</p>
+<p>課題 <a href="http://packsaddle.org/articles/interval-pull-request-update-overview/">定期的にライブラリの依存関係をアップデートしてPull Requestする – Saddler - checkstyle to anywhere</a></p>
+<p>gem installがコケて定期実行に失敗することがあるらしい travis_retry gem install xxx とすればよいのでは(travisなら)</p>
+<p>tachikoma gemは発展的解消できたな でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人 はできないな やっぱtachikoma.io便利だな</p>
+<p>shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ 群</p>
+<p>あれ、shell scriptって環境依存激しいし微妙に方言が有る windows? なにそれうまいの? ユーザー多いし、どうせなら多くの人に使ってもらわないと。</p>
+<p>このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける 標準モジュールを使う nokogiriではなくrexml ビルドするの大変になるからrugged使わなかったけど、それではwindowsで動かなそ う、などなど</p>
+<p>golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりた い期 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&amp;t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
