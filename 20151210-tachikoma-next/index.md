@@ -123,10 +123,68 @@ CI上で動けばいいじゃん
 
 ### 結論
 
+`bin/bundle-update.sh`あるいは`bin/bundle-update.rb`を[Cron for GitHub](http://packsaddle.org/articles/cron-for-github-app-overview/) あるいは[AWS Lambda Scheduled Event](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)でkickする。
+
+#### `bin/bundle-update.sh`
+
+```bash
+#!/usr/bin/env bash
+set -ev
+
+# only sunday
+if [[ -n "${TRAVIS_PULL_REQUEST}" && "${TRAVIS_PULL_REQUEST}" == "false" && "${TRAVIS_BRANCH}" =~ ^cron_for_tachikoma/.* && $(date +%w) -eq 0 ]]; then
+  # gem prepare
+  gem install --no-document git_httpsable-push pull_request-create
+
+  # git prepare
+  git config user.name sanemat
+  git config user.email foo@example.com
+  HEAD_DATE=$(date +%Y%m%d_%H-%M-%S)
+  HEAD="tachikoma/update-${HEAD_DATE}"
+
+  # checkout (for TravisCI)
+  git checkout -b "${HEAD}" "${TRAVIS_BRANCH}"
+
+  # bundle install
+  bundle --no-deployment --without nothing --jobs 4
+
+  # bundle update
+  bundle update
+
+  git add Gemfile.lock
+  git commit -m "Bundle update ${HEAD_DATE}"
+
+  # git push
+  git httpsable-push origin "${HEAD}"
+
+  # pull request
+  pull-request-create
+fi
+
+exit 0
+```
+
+#### `bin/bundle-update.rb`
+
+`bundle-udpate/Gemfile`
+
+```ruby
+```
+
+`bundle-udpate/bin/bundle-update.rb`
+
+```ruby
+```
+
+`cd bundle-update && bundle exec bin/bundle-update.rb && cd ..`
 
 
+#### Example
 
-compare-linker
+[sanemat/ruby-example-rails-banana](https://github.com/sanemat/ruby-example-rails-banana)
+
+
+## compare-linker
 
 webサービスなら同時にやってくれる方がいいかもだけど、
 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い

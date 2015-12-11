@@ -99,7 +99,51 @@
 <p>やっぱり、スクリプト書くのめんどい… 設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人はたぶんできないな やっぱtachikoma.io便利だな</p>
 <p>自分には必要!</p>
 <h3 id="結論">結論</h3>
-<p>compare-linker</p>
+<p><code>bin/bundle-update.sh</code>あるいは<code>bin/bundle-update.rb</code>を<a href="http://packsaddle.org/articles/cron-for-github-app-overview/">Cron for GitHub</a> あるいは<a href="https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html">AWS Lambda Scheduled Event</a>でkickする。</p>
+<h4 id="binbundle-update.sh"><code>bin/bundle-update.sh</code></h4>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
+<span class="kw">set</span> <span class="kw">-ev</span>
+
+<span class="co"># only sunday</span>
+<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;false&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span> =~ ^cron_for_tachikoma/.* &amp;&amp; <span class="ot">$(</span><span class="kw">date</span> +%w<span class="ot">)</span> <span class="ot">-eq</span> 0<span class="kw"> ]]</span>; <span class="kw">then</span>
+  <span class="co"># gem prepare</span>
+  <span class="kw">gem</span> install --no-document git_httpsable-push pull_request-create
+
+  <span class="co"># git prepare</span>
+  <span class="kw">git</span> config user.name sanemat
+  <span class="kw">git</span> config user.email foo@example.com
+  <span class="ot">HEAD_DATE=$(</span><span class="kw">date</span> +%Y%m%d_%H-%M-%S<span class="ot">)</span>
+  <span class="ot">HEAD=</span><span class="st">&quot;tachikoma/update-</span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
+
+  <span class="co"># checkout (for TravisCI)</span>
+  <span class="kw">git</span> checkout -b <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span>
+
+  <span class="co"># bundle install</span>
+  <span class="kw">bundle</span> --no-deployment --without nothing --jobs 4
+
+  <span class="co"># bundle update</span>
+  <span class="kw">bundle</span> update
+
+  <span class="kw">git</span> add Gemfile.lock
+  <span class="kw">git</span> commit -m <span class="st">&quot;Bundle update </span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
+
+  <span class="co"># git push</span>
+  <span class="kw">git</span> httpsable-push origin <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span>
+
+  <span class="co"># pull request</span>
+  <span class="kw">pull-request-create</span>
+<span class="kw">fi</span>
+
+<span class="kw">exit</span> 0</code></pre>
+<h4 id="binbundle-update.rb"><code>bin/bundle-update.rb</code></h4>
+<p><code>bundle-udpate/Gemfile</code></p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
+<p><code>bundle-udpate/bin/bundle-update.rb</code></p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
+<p><code>cd bundle-update &amp;&amp; bundle exec bin/bundle-update.rb &amp;&amp; cd ..</code></p>
+<h4 id="example">Example</h4>
+<p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
+<h2 id="compare-linker">compare-linker</h2>
 <p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した</p>
 <p>アプリの依存に載せたくないが、.lockは取りたい、場合なども bundle install --gemfile=Gemfile.bundle-update</p>
 <p>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
