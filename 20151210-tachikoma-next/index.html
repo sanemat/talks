@@ -182,7 +182,7 @@
 
 <span class="kw">exit</span> 0</code></pre>
 <h4 id="binbundle-update.rb"><code>bin/bundle-update.rb</code></h4>
-<p>あとでかく</p>
+<p>あとでかく TBD</p>
 <p><code>bundle-udpate/Gemfile</code></p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
 <p><code>bundle-udpate/bin/bundle-update.rb</code></p>
@@ -247,11 +247,15 @@
 <span class="kw">fi</span>
 
 <span class="kw">exit</span> 0</code></pre>
-<p>ruby版 あとでかく</p>
+<p>ruby版 あとでかく; for Ruby TBD</p>
+<p>If you don't want to add tools to app's dependency, it's ok with <code>bundle-update/Gemfile</code> or <code>compare-linker/Gemfile</code>. (I don't try this yet.) And this dependencies (bundle-update/Gemfile.lock) can <code>bundle update</code> regularly. (If you write so.)</p>
 <p>アプリの依存に載せたくないばあいも、<code>bundle-update/Gemfile</code>や<code>compare-linker/Gemfile</code>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
 <h2 id="npm-check-updates">npm-check-updates</h2>
+<p>tachikoma gem uses <code>david</code>, but I feel better about npm-check-updates. Recently, npm-check-updates becomes a bit fragile... (e.g. they got <code>bower update</code>)</p>
 <p>tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。 最近微妙だけど… bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。</p>
-<h2 id="課題">課題</h2>
+<h2 id="problems">Problems</h2>
+<p>課題</p>
+<p>Sometimes a execution regularly fails during <code>gem install</code>. I recommend <code>travis_retry gem install xxx</code>. (If you run this on travis-ci.)</p>
 <p>gem installがコケて定期実行に失敗することがあるらしい travis_retry gem install xxx とすればよいのでは(travisなら)</p>
 <p>tachikoma gemは発展的解消できたな でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人 はできないな やっぱtachikoma.io便利だな</p>
 <h2 id="余談">余談</h2>

@@ -238,7 +238,7 @@ exit 0
 
 #### `bin/bundle-update.rb`
 
-あとでかく
+あとでかく TBD
 
 `bundle-udpate/Gemfile`
 
@@ -327,7 +327,12 @@ fi
 exit 0
 ```
 
-ruby版 あとでかく
+ruby版 あとでかく; for Ruby TBD
+
+If you don't want to add tools to app's dependency, it's ok with `bundle-update/Gemfile` or `compare-linker/Gemfile`.
+(I don't try this yet.)
+And this dependencies (bundle-update/Gemfile.lock) can `bundle update` regularly.
+(If you write so.)
 
 アプリの依存に載せたくないばあいも、`bundle-update/Gemfile`や`compare-linker/Gemfile`にしておけばいいんじゃないですかね(試してない)
 なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。
@@ -336,15 +341,24 @@ ruby版 あとでかく
 
 ## npm-check-updates
 
+tachikoma gem uses `david`, but I feel better about npm-check-updates.
+Recently, npm-check-updates becomes a bit fragile... (e.g. they got `bower update`)
+
 tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。
 最近微妙だけど…
 bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。
 
 
-## 課題
+## Problems
+
+課題
+
+Sometimes a execution regularly fails during `gem install`.
+I recommend `travis_retry gem install xxx`. (If you run this on travis-ci.)
 
 gem installがコケて定期実行に失敗することがあるらしい
 travis_retry gem install xxx とすればよいのでは(travisなら)
+
 
 tachikoma gemは発展的解消できたな
 でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人
