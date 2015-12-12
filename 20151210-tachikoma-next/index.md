@@ -19,6 +19,11 @@ description: Tachikoma next
 
 sanemat {AT} tachikoma.io
 
+* Write shell script or ruby script. tachikoma gem is going to dead.
+* We got ready for essential tools.
+* tachikoma gemはしにつつあるのでshell scriptかruby scriptで書け
+* 必要なツールは用意した
+
 
 ## Bundle update regularly, frequently
 
@@ -111,19 +116,30 @@ shell script or Ruby scriptで書くの何がツライのか
 
 ### Ruby gem case
 
-* [deppbot](https://www.deppbot.com/)
-* [circleci-bundle-update-pr](https://rubygems.org/gems/circleci-bundle-update-pr)
-* [ci-bundle-update](https://rubygems.org/gems/ci-bundle-update)
+* [deppbot](https://www.deppbot.com/) webservice
+* [circleci-bundle-update-pr](https://rubygems.org/gems/circleci-bundle-update-pr) gem
+* [ci-bundle-update](https://rubygems.org/gems/ci-bundle-update) gem
 
 
 ### Node.js npm case
 
-* [greenkeeper](http://greenkeeper.io/)
+* [greenkeeper](http://greenkeeper.io/) webservice
 
 
-## ここから知見 + 私見 + 主張
+## Opinion & Experience
+
+ここから知見 + 私見 + 主張
+
+"I want to customize!" appears infinitely, depends on qualities of project and product.
 
 カスタマイズ欲求がプロジェクト・プロダクトの特性によって無限に出てくる(はず)
+
+* Use mongodb
+* Use mecab (additional libraries)
+* Only business day morning
+* No Ruby or Rails project on top level on project
+* Multi Ruby projects
+* Use npm with same way
 
 * mongodb使いたい
 * mecab使いたい
@@ -132,27 +148,54 @@ shell script or Ruby scriptで書くの何がツライのか
 * 複数Rubyプロジェクトが入っている
 * Node.js npmもやりたい
 
+* This is re-invent Travis-ci and CircleCI!?
 
 これは、travis-ci, CircleCIを再発明することになるのでは??
 
+Move to application of CI native
+
 CI nativeのアプリケーションへ
+
+Run on CI is enough.
 
 CI上で動けばいいじゃん
 
 
-### 先回り では、bundle update as a serviceは不要?
+### Going on ahead; Is "bundle update as a service" unnecessary?
+
+先回り では、bundle update as a serviceは不要?
+
+So tachikoma.io and deppbot are unnecessary? Are you shut down tachikoma.io?
 
 では、tachikoma.ioやdeppbotは不要なのか? tachikoma.io止めちゃうの?
+
+It is too hard to write scripts at all.
+The setting is difficult, even me.
+tachikoma.io is useful at all :)
 
 やっぱり、スクリプト書くのめんどい…
 設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人はたぶんできないな
 やっぱtachikoma.io便利だな
 
+I need tachikoma.io !
+
 自分には必要!
 
-### 結論
+Especially for small modules like gems and npms.
 
-`bin/bundle-update.sh`あるいは`bin/bundle-update.rb`を[Cron for GitHub](http://packsaddle.org/articles/cron-for-github-app-overview/) あるいは[AWS Lambda Scheduled Event](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)でkickする。
+とくに、gemやnpmのような小さいモジュールには。
+
+
+### a conclusion
+
+結論
+
+Kick `bin/bundle-update.sh` or `bundle-udpate/bin/bundle-update.rb`
+by [Cron for GitHub](http://packsaddle.org/articles/cron-for-github-app-overview/) or [AWS Lambda Scheduled Event](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html).
+
+`bin/bundle-update.sh`あるいは`bin/bundle-update.rb`を
+[Cron for GitHub](http://packsaddle.org/articles/cron-for-github-app-overview/) あるいは[AWS Lambda Scheduled Event](https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)でkickする。
+
 
 #### `bin/bundle-update.sh`
 
@@ -215,7 +258,9 @@ exit 0
 [sanemat/ruby-example-rails-banana](https://github.com/sanemat/ruby-example-rails-banana)
 
 
-#### 細かいのいろいろ作ったので検討してくれ
+#### We got ready for essential tools
+
+細かいのいろいろ作ったので検討してくれ
 
 * [compare_linker_wrapper](https://rubygems.org/gems/compare_linker_wrapper)
 * [saddler](https://rubygems.org/gems/saddler)
