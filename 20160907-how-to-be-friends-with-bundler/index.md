@@ -73,13 +73,7 @@ sh(*['ruby', '-i', '-pe', '$_.gsub! /^ruby/, "#ruby"', 'Gemfile'])
 https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L81
 
 
-## BUNDLED_WITH
-
-Bundler v1.10.0 (2015-05-28)
-
-After `bundle update`,
-
-In Gemfile.lock
+## Challenge 2: BUNDLED WITH
 
 ```
 GEM
@@ -97,8 +91,16 @@ BUNDLED WITH
    1.12.0
 ```
 
+You can store bundler version in Gemfile.lock after `bundle update`.
+
+### History
+
+Bundler v1.10.0 (2015-05-28)
+
 Bundler v1.9 always removes BUNDLED WITH block.
 Bundler v1.10 always adds BUNDLED WITH block.
+
+I use one bundler :(
 
 ### How to be friends with bundler
 
