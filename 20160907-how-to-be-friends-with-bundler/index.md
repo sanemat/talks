@@ -21,11 +21,12 @@ sanemat {AT} tachikoma.io
 
 ## What is "be friends with bundler"???
 
-## ruby DSL
+Slide: EN
+Talk: JA
 
-Bundler v1.2.0 (Aug 30, 2012)
+Money Forward, Inc.
 
-In Gemfile,
+## Challenge 1: ruby DSL
 
 ```
 ruby "2.3.0"
@@ -33,16 +34,27 @@ source "https://rubygems.org"
 gem "ecdsa"
 ```
 
-- add ruby to DSL, to specify version of ruby
-- error out if the ruby version doesn't match
+In Gemfile.
 
+- error out if the ruby version doesn't match
 
 ```
 $ bundle
 Your Ruby version is 2.3.1, but your Gemfile specified 2.3.0
+(exit code: 0)
 ```
 
+You may use this with heroku app.
+
+### History
+
+Bundler v1.2.0 (Aug 30, 2012)
+
+- add ruby to DSL, to specify version of ruby
+
 ### How to be friends with bundler
+
+
 
 Tachikoma, bundler updating gem, or bundle update as a Service
 
