@@ -155,6 +155,19 @@ This restores RUBY VERSION section from git repository.
 
 This does not publish yet ;(
 
+## Bundler v1.13
+
+Coming soon
+
+## Bundler v2.0
+
+Future :)
+
+- gems.rb
+- gems.locked
+
+To be continued...
+
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20160907-how-to-be-friends-with-bundler%2F&t=How%20to%20be%20friends%20with%20bundler" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
