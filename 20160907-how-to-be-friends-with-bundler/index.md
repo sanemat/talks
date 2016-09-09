@@ -97,8 +97,8 @@ You can store bundler version in Gemfile.lock after `bundle update`.
 
 Bundler v1.10.0 (2015-05-28)
 
-Bundler v1.9 always removes BUNDLED WITH block.
-Bundler v1.10 always adds BUNDLED WITH block.
+Bundler v1.9 always removes BUNDLED WITH section.
+Bundler v1.10 always adds BUNDLED WITH section.
 
 I use one bundler :(
 
@@ -108,9 +108,9 @@ https://github.com/packsaddle/ruby-restore_bundled_with
 
 $ restore-bundled-with
 
-This restores BUNDLED WITH block from git repository.
+This restores BUNDLED WITH section from git repository.
 
-## RUBY VERSION
+## Challenge 3: RUBY VERSION
 
 ```
 GEM
@@ -131,8 +131,29 @@ BUNDLED WITH
    1.12.5
 ```
 
-`bundle update` with v1.12.0, always add RUBY VERSION block.
+If you write `ruby "2.3.1"`, then lock ruby version in Gemfile.lock.
+This allows you can write `ruby "~> 2.3.0"`.
+Cool!
+
+### History
+
+Bundler v1.12.0 (2016-04-28)
+
+
+`bundle update` with v1.12.0, always add RUBY VERSION section.
 `bundle update` with v1.12.5, if creating Gemfile.lock, then adding RUBY VERSION, if not then don't write RUBY VERSION in Gemfile.lock.
+
+I use one ruby :)
+
+### How to be friends with bundler
+
+https://github.com/packsaddle/ruby-restore_ruby_version
+
+$ restore-ruby-version
+
+This restores RUBY VERSION section from git repository.
+
+This does not publish yet ;(
 
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20160907-how-to-be-friends-with-bundler%2F&t=How%20to%20be%20friends%20with%20bundler" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
