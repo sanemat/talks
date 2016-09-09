@@ -166,6 +166,25 @@ Future :)
 - gems.rb
 - gems.locked
 
+### How to be friends with bundler
+
+```
+if File.exist?('Gemfile')
+  @bundler_key_file = 'Gemfile'
+  @bundler_lock_file = 'Gemfile.lock'
+elsif File.exist?('gems.rb')
+  @bundler_key_file = 'gems.rb'
+  @bundler_lock_file = 'gems.locked'
+else
+  @bundler_key_file = 'Gemfile'
+  @bundler_lock_file = 'Gemfile.lock'
+end
+```
+
+oh
+
+https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L85-L94
+
 To be continued...
 
 
