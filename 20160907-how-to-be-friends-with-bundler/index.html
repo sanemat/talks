@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Tachikoma next" />
+  <meta name="description" content="How to be friends with bundler" />
   <meta property="og:type" content="article" />
-  <title>Tachikoma next</title>
+  <title>How to be friends with bundler</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="github-markdown.css">
   <link rel="stylesheet" href="page.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
-  <link rel="canonical" href="http://sanemat.github.io/talks/20151210-tachikoma-next/">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20160907-how-to-be-friends-with-bundler/">
 </head>
 <body>
 <article class="markdown-body">
@@ -22,252 +22,130 @@
   window.analytics.load("ig7q6np7c1");
   window.analytics.page();
 </script>
-<h1 id="tachikoma-next">Tachikoma next</h1>
+<h1 id="how-to-be-friends-with-bundler">How to be friends with bundler</h1>
 <p>sanemat {AT} tachikoma.io</p>
+<h2 id="what-is-be-friends-with-bundler">What is &quot;be friends with bundler&quot;???</h2>
 <ul>
-<li>Write shell script or ruby script. tachikoma gem is going to dead.</li>
-<li>We got ready for essential tools.</li>
-<li>tachikoma gemはしにつつあるのでshell scriptかruby scriptで書け</li>
-<li>必要なツールは用意した</li>
+<li>Slide: EN</li>
+<li>Talk: JA</li>
 </ul>
-<h2 id="bundle-update-regularly-frequently">Bundle update regularly, frequently</h2>
-<h3 id="kensuke-nagae-kyanny">2013-05-31 - Kensuke Nagae <span class="citation" data-cites="kyanny">@kyanny</span></h3>
-<p><a href="https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request">Continuous gem dependency updating with Jenkins and Pull Request</a></p>
-<h3 id="kenichi-murahashi-sanemat">2013-06-23 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
-<p><a href="https://rubygems.org/gems/tachikoma">Tachikoma gem first version v2.0.0 (not published)</a> <a href="https://github.com/sanemat/tachikoma/commit/a813fc718d43139820d36a20dfd8595958f6b4e8">commit</a></p>
-<h3 id="kenichi-murahashi-sanemat-1">2014-09-17 - Kenichi Murahashi <span class="citation" data-cites="sanemat">@sanemat</span></h3>
-<p><a href="http://sanemat.github.io/talks/20140917-travis-ci-meetup-tachikoma-io/">Release announce about tachikoma.io</a></p>
-<h2 id="motivation">Motivation</h2>
+<p>Money Forward, Inc.</p>
+<h2 id="challenge-1-ruby-dsl">Challenge 1: ruby DSL</h2>
+<pre><code>ruby &quot;2.3.0&quot;
+source &quot;https://rubygems.org&quot;
+gem &quot;ecdsa&quot;</code></pre>
+<p>In Gemfile.</p>
 <ul>
-<li>Writing shell script is hard</li>
-<li><p>Many products / projects have almost same script</p></li>
-<li>shell scriptで書くのがそもそもツライ</li>
-<li><p>ほぼ同じスクリプトがプロジェクトごとに散らばるのでツライ</p></li>
+<li>Error out if the ruby version doesn't match</li>
 </ul>
-<h2 id="tachikoma-gem">Tachikoma gem</h2>
-<h3 id="pros">pros</h3>
+<pre><code>$ bundle
+Your Ruby version is 2.3.1, but your Gemfile specified 2.3.0
+(exit code: 0)</code></pre>
+<p>You may use this with heroku app.</p>
+<h3 id="history">History</h3>
+<p>Bundler v1.2.0 (Aug 30, 2012)</p>
 <ul>
-<li>write yaml, we can run command line with gems.</li>
-<li>yamlの設定を置くと、gemとコマンドラインで完結する</li>
+<li>add ruby to DSL, to specify version of ruby</li>
 </ul>
-<h3 id="cons">cons</h3>
+<h3 id="bundle-update"><code>bundle update</code></h3>
 <ul>
-<li>Not customizable enough</li>
-<li>Build your own execute environment</li>
-<li>First I image that I run this in own jenkins
-<ul>
-<li>CI as a service advances rapidly</li>
-</ul></li>
-<li>カスタマイズ性低い</li>
-<li>実行環境は自分で作成する必要がある</li>
-<li>設計思想として、自前jenkinsで動かすのを第一に考えていた
-<ul>
-<li>CI as a serviceの発展</li>
-</ul></li>
+<li>Tachikoma is a gem which helps <code>bundle update</code> and sends pull request.</li>
+<li><a href="http://tachikoma.io">Tachikoma.io</a> is <code>Bundle Update as a Service</code>.</li>
+<li>I'm a founder of both tachikoma gem and tachikoma.io :)</li>
 </ul>
-<h2 id="tachikoma.io">tachikoma.io</h2>
-<h3 id="pros-1">pros</h3>
+<p>I use &quot;one&quot; ruby version, and run <code>bundle update</code> with Gemfile which has <code>ruby &quot;2.3.0&quot;</code>, <code>ruby &quot;2.3.1&quot;</code>, ...</p>
+<h3 id="how-to-be-friends-with-bundler-1">How to be friends with bundler</h3>
+<p>Run this before <code>bundle update</code>.</p>
+<pre><code>sh(*[&#39;ruby&#39;, &#39;-i&#39;, &#39;-pe&#39;, &#39;$_.gsub! /^ruby/, &quot;#ruby&quot;&#39;, &#39;Gemfile&#39;])</code></pre>
+<p>:-)</p>
+<p>https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L81</p>
+<h2 id="challenge-2-bundled-with">Challenge 2: BUNDLED WITH</h2>
+<pre><code>GEM
+  remote: https://rubygems.org/
+  specs:
+    ecdsa (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ecdsa
+
+BUNDLED WITH
+   1.12.0</code></pre>
+<p>You can store bundler version in Gemfile.lock after <code>bundle update</code>.</p>
+<h3 id="history-1">History</h3>
+<p>Bundler v1.10.0 (2015-05-28)</p>
 <ul>
-<li>Easy to use with GitHub oAuth, and toggle from webUI</li>
-<li>Configure by .tachikoma.yml</li>
-<li>GitHub oAuthで連携, webUIからtoggle一発</li>
-<li>.tachikoma.ymlで設定</li>
+<li>Bundler v1.9 always removes BUNDLED WITH section.</li>
+<li>Bundler v1.10 always adds BUNDLED WITH section.</li>
 </ul>
-<h3 id="cons-1">cons</h3>
+<p>I use one bundler :(</p>
+<h3 id="how-to-be-friends-with-bundler-2">How to be friends with bundler</h3>
+<p>https://github.com/packsaddle/ruby-restore_bundled_with</p>
+<p>$ restore-bundled-with</p>
+<p>This restores BUNDLED WITH section from git repository.</p>
+<h2 id="challenge-3-ruby-version">Challenge 3: RUBY VERSION</h2>
+<pre><code>GEM
+  remote: https://rubygems.org/
+  specs:
+    ecdsa (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ecdsa
+
+RUBY VERSION
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.12.5</code></pre>
 <ul>
-<li>Too hard to get user's permission about reading/writing on public/private repo</li>
-<li>In public version, user can choose permitting &quot;public write&quot;, only I use this feature (user count is over 300)</li>
-<li>Choose &quot;public write&quot; is very useful because I can stack my commit above bot commit.</li>
-<li><p>Not customizable enough</p></li>
-<li>リポジトリの読み書き権限もらうのが非常に苦戦</li>
-<li>public版も、ユーザー権限でpush出来るようにするものはあるが、300+のユーザー中利用者1(自分のみ)</li>
-<li>ユーザー権限でpushできると、botのcommitの上に自分のコミット詰めるので、すごい便利なのだが…</li>
-<li><p>カスタマイズ性低い</p></li>
+<li>If you write <code>ruby &quot;2.3.1&quot;</code>, then lock ruby version in Gemfile.lock.</li>
+<li>This allows you can write <code>ruby &quot;~&gt; 2.3.0&quot;</code>.</li>
+<li>Cool!</li>
 </ul>
-<h2 id="swinging-back">Swinging back</h2>
-<p>揺り戻し</p>
+<h3 id="history-2">History</h3>
+<p>Bundler v1.12.0 (2016-04-28)</p>
 <ul>
-<li>shell script and ruby script is enough</li>
-<li>shell scriptやruby scriptで書けばいいじゃん</li>
+<li><code>bundle update</code> with v1.12.0, always add RUBY VERSION section.</li>
+<li><code>bundle update</code> with v1.12.5, if creating Gemfile.lock, then adding RUBY VERSION, if not then don't write RUBY VERSION in Gemfile.lock.</li>
 </ul>
-<p>But</p>
-<p>しかし</p>
-<p>Still hard</p>
-<p>やっぱりつらい</p>
-<p>Why? I know I can use Octokit.rb and use GitHub API. But...</p>
-<p>shell script or Ruby scriptで書くの何がツライのか 直にOctokit使えばいいだけなのわかるけど、いちいちAPI調べてとかダルい</p>
-<h2 id="improve-usability-concentrate-on-issue">Improve usability, concentrate on issue</h2>
-<p>対象を絞ってより使いやすくするアプローチ</p>
-<h3 id="ruby-gem-case">Ruby gem case</h3>
+<p>I use one ruby :)</p>
+<h3 id="how-to-be-friends-with-bundler-3">How to be friends with bundler</h3>
+<p>https://github.com/packsaddle/ruby-restore_ruby_version</p>
+<p><code>$ restore-ruby-version</code></p>
+<p>This restores RUBY VERSION section from git repository.</p>
+<p>This does not publish yet ;(</p>
+<h2 id="bundler-v2.0">Bundler v2.0</h2>
+<p>Future :)</p>
 <ul>
-<li><a href="https://www.deppbot.com/">deppbot</a> webservice</li>
-<li><a href="https://rubygems.org/gems/circleci-bundle-update-pr">circleci-bundle-update-pr</a> gem</li>
-<li><a href="https://rubygems.org/gems/ci-bundle-update">ci-bundle-update</a> gem</li>
+<li>Gemfile -&gt; gems.rb</li>
+<li>Gemfile.lock -&gt; gems.locked</li>
 </ul>
-<h3 id="node.js-npm-case">Node.js npm case</h3>
-<ul>
-<li><a href="http://greenkeeper.io/">greenkeeper</a> webservice</li>
-</ul>
-<h2 id="opinion-experience">Opinion &amp; Experience</h2>
-<p>ここから知見 + 私見 + 主張</p>
-<p>&quot;I want to customize!&quot; appears infinitely, depends on qualities of project and product.</p>
-<p>カスタマイズ欲求がプロジェクト・プロダクトの特性によって無限に出てくる(はず)</p>
-<ul>
-<li>Use mongodb</li>
-<li>Use mecab (additional libraries)</li>
-<li>Only business day morning</li>
-<li>No Ruby or Rails project on top level on project</li>
-<li>Multi Ruby projects</li>
-<li><p>Use npm with same way</p></li>
-<li>mongodb使いたい</li>
-<li>mecab使いたい</li>
-<li>頻度は平日の朝に来て欲しい</li>
-<li>プロジェクト構成が、トップレベルにRubyやRails来てない</li>
-<li>複数Rubyプロジェクトが入っている</li>
-<li><p>Node.js npmもやりたい</p></li>
-<li><p>This is re-invent Travis-ci and CircleCI!?</p></li>
-</ul>
-<p>これは、travis-ci, CircleCIを再発明することになるのでは??</p>
-<p>Move to application of CI native</p>
-<p>CI nativeのアプリケーションへ</p>
-<p>Run on CI is enough.</p>
-<p>CI上で動けばいいじゃん</p>
-<h3 id="going-on-ahead-is-bundle-update-as-a-service-unnecessary">Going on ahead; Is &quot;bundle update as a service&quot; unnecessary?</h3>
-<p>先回り では、bundle update as a serviceは不要?</p>
-<p>So tachikoma.io and deppbot are unnecessary? Are you shut down tachikoma.io?</p>
-<p>では、tachikoma.ioやdeppbotは不要なのか? tachikoma.io止めちゃうの?</p>
-<p>It is too hard to write scripts at all. The setting is difficult, even me. tachikoma.io is useful at all :)</p>
-<p>やっぱり、スクリプト書くのめんどい… 設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人はたぶんできないな やっぱtachikoma.io便利だな</p>
-<p>I need tachikoma.io !</p>
-<p>自分には必要!</p>
-<p>Especially for small modules like gems and npms.</p>
-<p>とくに、gemやnpmのような小さいモジュールには。</p>
-<h3 id="a-conclusion">a conclusion</h3>
-<p>結論</p>
-<p>Kick <code>bin/bundle-update.sh</code> or <code>bundle-udpate/bin/bundle-update.rb</code> by <a href="http://packsaddle.org/articles/cron-for-github-app-overview/">Cron for GitHub</a> or <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html">AWS Lambda Scheduled Event</a>.</p>
-<p><code>bin/bundle-update.sh</code>あるいは<code>bin/bundle-update.rb</code>を <a href="http://packsaddle.org/articles/cron-for-github-app-overview/">Cron for GitHub</a> あるいは<a href="https://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html">AWS Lambda Scheduled Event</a>でkickする。</p>
-<h4 id="binbundle-update.sh"><code>bin/bundle-update.sh</code></h4>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
-<span class="kw">set</span> <span class="kw">-ev</span>
-
-<span class="co"># only sunday</span>
-<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;false&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span> =~ ^cron_for_tachikoma/.* &amp;&amp; <span class="ot">$(</span><span class="kw">date</span> +%w<span class="ot">)</span> <span class="ot">-eq</span> 0<span class="kw"> ]]</span>; <span class="kw">then</span>
-  <span class="co"># gem prepare</span>
-  <span class="kw">gem</span> install --no-document git_httpsable-push pull_request-create
-
-  <span class="co"># git prepare</span>
-  <span class="kw">git</span> config user.name sanemat
-  <span class="kw">git</span> config user.email foo@example.com
-  <span class="ot">HEAD_DATE=$(</span><span class="kw">date</span> +%Y%m%d_%H-%M-%S<span class="ot">)</span>
-  <span class="ot">HEAD=</span><span class="st">&quot;tachikoma/update-</span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
-
-  <span class="co"># checkout (for TravisCI)</span>
-  <span class="kw">git</span> checkout -b <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_BRANCH}</span><span class="st">&quot;</span>
-
-  <span class="co"># bundle install</span>
-  <span class="kw">bundle</span> --no-deployment --without nothing --jobs 4
-
-  <span class="co"># bundle update</span>
-  <span class="kw">bundle</span> update
-
-  <span class="kw">git</span> add Gemfile.lock
-  <span class="kw">git</span> commit -m <span class="st">&quot;Bundle update </span><span class="ot">${HEAD_DATE}</span><span class="st">&quot;</span>
-
-  <span class="co"># git push</span>
-  <span class="kw">git</span> httpsable-push origin <span class="st">&quot;</span><span class="ot">${HEAD}</span><span class="st">&quot;</span>
-
-  <span class="co"># pull request</span>
-  <span class="kw">pull-request-create</span>
-<span class="kw">fi</span>
-
-<span class="kw">exit</span> 0</code></pre>
-<h4 id="binbundle-update.rb"><code>bin/bundle-update.rb</code></h4>
-<p>あとでかく TBD</p>
-<p><code>bundle-udpate/Gemfile</code></p>
-<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
-<p><code>bundle-udpate/bin/bundle-update.rb</code></p>
-<pre class="sourceCode ruby"><code class="sourceCode ruby"></code></pre>
-<p><code>cd bundle-update &amp;&amp; bundle exec bin/bundle-update.rb &amp;&amp; cd ..</code></p>
-<h4 id="example">Example</h4>
-<p><a href="https://github.com/sanemat/ruby-example-rails-banana">sanemat/ruby-example-rails-banana</a></p>
-<h4 id="we-got-ready-for-essential-tools">We got ready for essential tools</h4>
-<p>細かいのいろいろ作ったので検討してくれ</p>
-<ul>
-<li><a href="https://rubygems.org/gems/compare_linker_wrapper">compare_linker_wrapper</a></li>
-<li><a href="https://rubygems.org/gems/saddler">saddler</a></li>
-<li><a href="https://rubygems.org/gems/env_branch">env_branch</a></li>
-<li><a href="https://rubygems.org/gems/parse_gemspec-cli">parse_gemspec-cli</a></li>
-<li><a href="https://rubygems.org/gems/parse_gemspec">parse_gemspec</a></li>
-<li><a href="https://rubygems.org/gems/github_status_notifier">github_status_notifier</a></li>
-<li><a href="https://rubygems.org/gems/env_pull_request">env_pull_request</a></li>
-<li><a href="https://rubygems.org/gems/restore_bundled_with">restore_bundled_with</a></li>
-<li><a href="https://rubygems.org/gems/git_httpsable-push">git_httpsable-push</a></li>
-<li><a href="https://rubygems.org/gems/pull_request-create">pull_request-create</a></li>
-<li><a href="https://rubygems.org/gems/cron_for_github">cron_for_github</a></li>
-<li><a href="https://rubygems.org/gems/git_diff_parser">git_diff_parser</a></li>
-</ul>
-<h2 id="compare_linker"><a href="https://rubygems.org/gems/https://rubygems.org/gems/compare_linker">compare_linker</a></h2>
-<p>最近のupdate as a serviceならだいたい持ってる、github上のdiffにリンク貼ったコメントを付けてくれるgem</p>
-<p>webサービスなら同時にやってくれる方がいいかもだけど、 ライブラリならtachikomaに内蔵するより、別コマンドの方が良い あと、github api依存の部分を外した compare-linker-wrapperと<code>bin/compare-linker.sh</code>。あとsaddlerも使っている。 compare-linker-wrapperで出力して、saddlerでpull requestのコメントに載せている。</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env bash</span>
-<span class="kw">set</span> <span class="kw">-ev</span>
-
-<span class="kw">if [[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> &amp;&amp; <span class="st">&quot;</span><span class="ot">${TRAVIS_PULL_REQUEST}</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;false&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span>
-  <span class="co"># gem prepare</span>
-  <span class="kw">gem</span> install --no-document saddler saddler-reporter-github \
-  <span class="kw">compare_linker_wrapper</span> text_to_checkstyle github_status_notifier
-
-  <span class="kw">github-status-notifier</span> notify --state pending --context saddler/compare_linker
-
-  <span class="kw">git</span> diff --name-only origin/master \
-   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> <span class="kw">||</span> <span class="ot">RETURN_CODE=$?</span>
-
-  <span class="kw">case</span> <span class="st">&quot;</span><span class="ot">$RETURN_CODE</span><span class="st">&quot;</span><span class="kw"> in</span>
-   <span class="st">&quot;&quot;</span> <span class="kw">)</span> <span class="kw">echo</span> <span class="st">&quot;found&quot;</span> <span class="kw">;;</span>
-   <span class="st">&quot;1&quot;</span> )
-     <span class="kw">echo</span> <span class="st">&quot;not found&quot;</span>
-     <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
-     <span class="kw">exit</span> 0 <span class="kw">;;</span>
-   <span class="kw">*</span> )
-     <span class="kw">echo</span> <span class="st">&quot;Error&quot;</span>
-     <span class="kw">github-status-notifier</span> notify --state failure --context saddler/compare_linker
-     <span class="kw">exit</span> <span class="ot">$RETURN_CODE</span> <span class="kw">;;</span>
-  <span class="kw">esac</span>
-
-  <span class="kw">git</span> diff --name-only origin/master \
-   <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;.*[gG]emfile.lock$&quot;</span> \
-   <span class="kw">|</span> <span class="kw">xargs</span> compare-linker-wrapper --base origin/master \
-      <span class="kw">--formatter</span> CompareLinker::Formatter::Markdown \
-   <span class="kw">|</span> <span class="kw">text-to-checkstyle</span> \
-   <span class="kw">|</span> <span class="kw">saddler</span> report \
-      <span class="kw">--require</span> saddler/reporter/github \
-      <span class="kw">--reporter</span> Saddler::Reporter::Github::PullRequestComment
-
-  <span class="kw">github-status-notifier</span> notify --state success --context saddler/compare_linker
-<span class="kw">fi</span>
-
-<span class="kw">exit</span> 0</code></pre>
-<p>ruby版 あとでかく; for Ruby TBD</p>
-<p>If you don't want to add tools to app's dependency, it's ok with <code>bundle-update/Gemfile</code> or <code>compare-linker/Gemfile</code>. (I don't try this yet.) And this dependencies (bundle-update/Gemfile.lock) can <code>bundle update</code> regularly. (If you write so.)</p>
-<p>アプリの依存に載せたくないばあいも、<code>bundle-update/Gemfile</code>や<code>compare-linker/Gemfile</code>にしておけばいいんじゃないですかね(試してない) なお、そうするとこっちの依存部分についても、定期的にbundle updateできる。 (ように自分で書けば良い)</p>
-<h2 id="npm-check-updates">npm-check-updates</h2>
-<p>tachikoma gem uses <code>david</code>, but I feel better about npm-check-updates. Recently, npm-check-updates becomes a bit fragile... (e.g. they got <code>bower update</code>)</p>
-<p>tachikomaはdavid使ってるけど、npm-check-updatesの方が筋がいい。 最近微妙だけど… bower-update とりこんじゃったり。+1と-1で荒れて、取り外されてめでたし。</p>
-<h2 id="problems">Problems</h2>
-<p>課題</p>
-<p>Sometimes a execution regularly fails during <code>gem install</code>. I recommend <code>travis_retry gem install xxx</code>. (If you run this on travis-ci.)</p>
-<p>gem installがコケて定期実行に失敗することがあるらしい travis_retry gem install xxx とすればよいのでは(travisなら)</p>
-<p>tachikoma gemは発展的解消できたな でも、コレ設定メンドイな…わかってる自分でやるのもメンドイぐらいなので、他の人 はできないな やっぱtachikoma.io便利だな</p>
-<h2 id="余談">余談</h2>
-<h3 id="パイプ最高期">パイプ最高期</h3>
-<p>shell scriptなら言語中立にいけるやん! パイプ最高や!期にノッて書いたライブラリ群</p>
-<p>あれ、shell scriptって環境依存激しいし微妙に方言が有る windows? なにそれうまいの? windowsユーザー多いし、どうせなら多くの人に使ってもらいたい。</p>
-<h3 id="saddler-toolchain">saddler toolchain</h3>
-<p>このツールチェーンでは、C extensionを使わない。nokogiri, ruggedを避ける 標準モジュールを使う nokogiriではなくrexml ビルドするの大変になる&amp; JRubyなどでもいけるように rugged使わなかったけど、それではwindowsで動かないので。。。</p>
-<h3 id="golangやりたいやってない期">golangやりたい(やってない)期</h3>
-<p>golangで書き換えたいからgolangの勉強はじめようかな うーん n度目のgolangやりたい期 golangだとインストールがcurlとかになるのでそれはそれでどうなのよ</p>
-<p>おわり</p>
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20151210-tachikoma-next%2F&amp;t=Tachikoma%20next" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+<h3 id="how-to-be-friends-with-bundler-4">How to be friends with bundler</h3>
+<pre><code>if File.exist?(&#39;Gemfile&#39;)
+  @bundler_key_file = &#39;Gemfile&#39;
+  @bundler_lock_file = &#39;Gemfile.lock&#39;
+elsif File.exist?(&#39;gems.rb&#39;)
+  @bundler_key_file = &#39;gems.rb&#39;
+  @bundler_lock_file = &#39;gems.locked&#39;
+else
+  @bundler_key_file = &#39;Gemfile&#39;
+  @bundler_lock_file = &#39;Gemfile.lock&#39;
+end</code></pre>
+<p>oh</p>
+<p>https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L85-L94</p>
+<h2 id="bundler-v1.13">Bundler v1.13</h2>
+<p>Bundler v1.13.0 (2016-09-09)</p>
+<blockquote>
+<p><span class="citation" data-cites="sanemat">@sanemat</span> And mention bundle patch? Now in prerelease version of Bundler. https://twitter.com/JuanitoFatas/status/774138984729448448</p>
+</blockquote>
+<p>I don't <del>battle</del> be friends with bundler v1.13 yet, :)</p>
+<p>To be continued...</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20160907-how-to-be-friends-with-bundler%2F&amp;t=How%20to%20be%20friends%20with%20bundler" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>
 </body>
