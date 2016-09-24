@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="How to be friends with bundler" />
+  <meta property="og:type" content="article" />
+  <title>How to be friends with bundler</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20160907-how-to-be-friends-with-bundler/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="how-to-be-friends-with-bundler">How to be friends with bundler</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="what-is-be-friends-with-bundler">What is &quot;be friends with bundler&quot;???</h2>
+<ul>
+<li>Slide: EN</li>
+<li>Talk: JA</li>
+</ul>
+<p>Money Forward, Inc.</p>
+<h2 id="challenge-1-ruby-dsl">Challenge 1: ruby DSL</h2>
+<pre><code>ruby &quot;2.3.0&quot;
+source &quot;https://rubygems.org&quot;
+gem &quot;ecdsa&quot;</code></pre>
+<p>In Gemfile.</p>
+<ul>
+<li>Error out if the ruby version doesn't match</li>
+</ul>
+<pre><code>$ bundle
+Your Ruby version is 2.3.1, but your Gemfile specified 2.3.0
+(exit code: 0)</code></pre>
+<p>You may use this with heroku app.</p>
+<h3 id="history">History</h3>
+<p>Bundler v1.2.0 (Aug 30, 2012)</p>
+<ul>
+<li>add ruby to DSL, to specify version of ruby</li>
+</ul>
+<h3 id="bundle-update"><code>bundle update</code></h3>
+<ul>
+<li>Tachikoma is a gem which helps <code>bundle update</code> and sends pull request.</li>
+<li><a href="http://tachikoma.io">Tachikoma.io</a> is <code>Bundle Update as a Service</code>.</li>
+<li>I'm a founder of both tachikoma gem and tachikoma.io :)</li>
+</ul>
+<p>I use &quot;one&quot; ruby version, and run <code>bundle update</code> with Gemfile which has <code>ruby &quot;2.3.0&quot;</code>, <code>ruby &quot;2.3.1&quot;</code>, ...</p>
+<h3 id="how-to-be-friends-with-bundler-1">How to be friends with bundler</h3>
+<p>Run this before <code>bundle update</code>.</p>
+<pre><code>sh(*[&#39;ruby&#39;, &#39;-i&#39;, &#39;-pe&#39;, &#39;$_.gsub! /^ruby/, &quot;#ruby&quot;&#39;, &#39;Gemfile&#39;])</code></pre>
+<p>:-)</p>
+<p>https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L81</p>
+<h2 id="challenge-2-bundled-with">Challenge 2: BUNDLED WITH</h2>
+<pre><code>GEM
+  remote: https://rubygems.org/
+  specs:
+    ecdsa (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ecdsa
+
+BUNDLED WITH
+   1.12.0</code></pre>
+<p>You can store bundler version in Gemfile.lock after <code>bundle update</code>.</p>
+<h3 id="history-1">History</h3>
+<p>Bundler v1.10.0 (2015-05-28)</p>
+<ul>
+<li>Bundler v1.9 always removes BUNDLED WITH section.</li>
+<li>Bundler v1.10 always adds BUNDLED WITH section.</li>
+</ul>
+<p>I use one bundler :(</p>
+<h3 id="how-to-be-friends-with-bundler-2">How to be friends with bundler</h3>
+<p>https://github.com/packsaddle/ruby-restore_bundled_with</p>
+<p>$ restore-bundled-with</p>
+<p>This restores BUNDLED WITH section from git repository.</p>
+<h2 id="challenge-3-ruby-version">Challenge 3: RUBY VERSION</h2>
+<pre><code>GEM
+  remote: https://rubygems.org/
+  specs:
+    ecdsa (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ecdsa
+
+RUBY VERSION
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.12.5</code></pre>
+<ul>
+<li>If you write <code>ruby &quot;2.3.1&quot;</code>, then lock ruby version in Gemfile.lock.</li>
+<li>This allows you can write <code>ruby &quot;~&gt; 2.3.0&quot;</code>.</li>
+<li>Cool!</li>
+</ul>
+<h3 id="history-2">History</h3>
+<p>Bundler v1.12.0 (2016-04-28)</p>
+<ul>
+<li><code>bundle update</code> with v1.12.0, always add RUBY VERSION section.</li>
+<li><code>bundle update</code> with v1.12.5, if creating Gemfile.lock, then adding RUBY VERSION, if not then don't write RUBY VERSION in Gemfile.lock.</li>
+</ul>
+<p>I use one ruby :)</p>
+<h3 id="how-to-be-friends-with-bundler-3">How to be friends with bundler</h3>
+<p>https://github.com/packsaddle/ruby-restore_ruby_version</p>
+<p><code>$ restore-ruby-version</code></p>
+<p>This restores RUBY VERSION section from git repository.</p>
+<p>This does not publish yet ;(</p>
+<h2 id="bundler-v2.0">Bundler v2.0</h2>
+<p>Future :)</p>
+<ul>
+<li>Gemfile -&gt; gems.rb</li>
+<li>Gemfile.lock -&gt; gems.locked</li>
+</ul>
+<h3 id="how-to-be-friends-with-bundler-4">How to be friends with bundler</h3>
+<pre><code>if File.exist?(&#39;Gemfile&#39;)
+  @bundler_key_file = &#39;Gemfile&#39;
+  @bundler_lock_file = &#39;Gemfile.lock&#39;
+elsif File.exist?(&#39;gems.rb&#39;)
+  @bundler_key_file = &#39;gems.rb&#39;
+  @bundler_lock_file = &#39;gems.locked&#39;
+else
+  @bundler_key_file = &#39;Gemfile&#39;
+  @bundler_lock_file = &#39;Gemfile.lock&#39;
+end</code></pre>
+<p>oh</p>
+<p>https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L85-L94</p>
+<h2 id="bundler-v1.13">Bundler v1.13</h2>
+<p>Bundler v1.13.0 (2016-09-09)</p>
+<blockquote>
+<p><span class="citation" data-cites="sanemat">@sanemat</span> And mention bundle patch? Now in prerelease version of Bundler. https://twitter.com/JuanitoFatas/status/774138984729448448</p>
+</blockquote>
+<p>I don't <del>battle</del> be friends with bundler v1.13 yet, :)</p>
+<p>To be continued...</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20160907-how-to-be-friends-with-bundler%2F&amp;t=How%20to%20be%20friends%20with%20bundler" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
