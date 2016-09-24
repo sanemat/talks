@@ -21,8 +21,8 @@ sanemat {AT} tachikoma.io
 
 ## What is "be friends with bundler"???
 
-Slide: EN
-Talk: JA
+- Slide: EN
+- Talk: JA
 
 Money Forward, Inc.
 
@@ -54,9 +54,9 @@ Bundler v1.2.0 (Aug 30, 2012)
 
 ### `bundle update`
 
-Tachikoma is a gem which helps `bundle update` and sends pull request.
-[Tachikoma.io](http://tachikoma.io) is `Bundle Update as a Service`.
-I'm a founder of both tachikoma gem and tachikoma.io :)
+- Tachikoma is a gem which helps `bundle update` and sends pull request.
+- [Tachikoma.io](http://tachikoma.io) is `Bundle Update as a Service`.
+- I'm a founder of both tachikoma gem and tachikoma.io :)
 
 I use "one" ruby version, and run `bundle update` with Gemfile which has `ruby "2.3.0"`, `ruby "2.3.1"`, ...
 
@@ -97,8 +97,8 @@ You can store bundler version in Gemfile.lock after `bundle update`.
 
 Bundler v1.10.0 (2015-05-28)
 
-Bundler v1.9 always removes BUNDLED WITH section.
-Bundler v1.10 always adds BUNDLED WITH section.
+- Bundler v1.9 always removes BUNDLED WITH section.
+- Bundler v1.10 always adds BUNDLED WITH section.
 
 I use one bundler :(
 
@@ -131,17 +131,17 @@ BUNDLED WITH
    1.12.5
 ```
 
-If you write `ruby "2.3.1"`, then lock ruby version in Gemfile.lock.
-This allows you can write `ruby "~> 2.3.0"`.
-Cool!
+- If you write `ruby "2.3.1"`, then lock ruby version in Gemfile.lock.
+- This allows you can write `ruby "~> 2.3.0"`.
+- Cool!
 
 ### History
 
 Bundler v1.12.0 (2016-04-28)
 
 
-`bundle update` with v1.12.0, always add RUBY VERSION section.
-`bundle update` with v1.12.5, if creating Gemfile.lock, then adding RUBY VERSION, if not then don't write RUBY VERSION in Gemfile.lock.
+- `bundle update` with v1.12.0, always add RUBY VERSION section.
+- `bundle update` with v1.12.5, if creating Gemfile.lock, then adding RUBY VERSION, if not then don't write RUBY VERSION in Gemfile.lock.
 
 I use one ruby :)
 
@@ -149,22 +149,18 @@ I use one ruby :)
 
 https://github.com/packsaddle/ruby-restore_ruby_version
 
-$ restore-ruby-version
+`$ restore-ruby-version`
 
 This restores RUBY VERSION section from git repository.
 
 This does not publish yet ;(
 
-## Bundler v1.13
-
-Coming soon
-
 ## Bundler v2.0
 
 Future :)
 
-- gems.rb
-- gems.locked
+- Gemfile -> gems.rb
+- Gemfile.lock -> gems.locked
 
 ### How to be friends with bundler
 
@@ -185,8 +181,17 @@ oh
 
 https://github.com/sanemat/tachikoma/blob/391307db508f29cde46957edf9baba38c7a2933e/lib/tachikoma/application.rb#L85-L94
 
-To be continued...
+## Bundler v1.13
 
+Bundler v1.13.0 (2016-09-09)
+
+> @sanemat And mention bundle patch? Now in prerelease version of Bundler.
+https://twitter.com/JuanitoFatas/status/774138984729448448
+
+I don't ~~battle~~ be friends with bundler v1.13 yet, :)
+
+
+To be continued...
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20160907-how-to-be-friends-with-bundler%2F&t=How%20to%20be%20friends%20with%20bundler" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
