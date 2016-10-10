@@ -19,6 +19,40 @@ ogimage: http://sanemat.github.io/talks/template/interval-pull-requests.gif
 
 sanemat {AT} tachikoma.io
 
+
+ほんのがぞうとリンク
+
+- 名前聞いたことある人
+- 読んでみたい人
+- 読んでみた人
+- [『Mastering Bitcoin』日本語訳がネット上に全文公開されていた - YAMDAS現更新履歴](http://d.hatena.ne.jp/yomoyomo/20160508/materingbitcoin)
+
+[Translations of Mastering Bitcoin](https://www.bitcoinbook.info/translations-of-mastering-bitcoin/)
+
+CC BY-SA
+
+[ビットコインとブロックチェーン:暗号通貨を支える技術](https://www.amazon.co.jp/dp/4757103670)
+
+日オライリーから出てるかと思って探したんだけどなくて、エヌティティ出版からなのね。
+
+### 疑問点
+
+読んでいろいろわかんないわけですね。
+
+- [Mastering Bitcoin（日本語訳 PDF）を読んで解決した疑問点、しなかった疑問点 - 無印吉澤](http://muziyoshiz.hatenablog.com/entry/2016/02/25/011117)
+
+web屋っぽい 近いところにいるはずなのに俺より全然レベルたけーな おれもっといろいろわかんなかった…
+
+[bitcoin-cliを使ったBitcoinAPI入門 - Qiita](http://qiita.com/osada/items/39c63a146c203f4dc751)
+
+## 社内おやつ商店
+
+bitcoin専門
+
+複数ウォレットが準備できるデスクトップアプリを準備。
+そこにbitflyerからbitcoinを送信。
+
+
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-shibuya-rb-saddler%2F&t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
 
