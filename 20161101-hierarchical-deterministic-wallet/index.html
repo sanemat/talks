@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Hierarchical Deterministic Wallet / Bitcoin etc," />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20161101-hierarchical-deterministic-wallet/shiba-shop.jpg" />
+  <title>Hierarchical Deterministic Wallet</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20161101-hierarchical-deterministic-wallet/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="hierarchical-deterministic-wallet">Hierarchical Deterministic Wallet</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<h2 id="経過">経過</h2>
+<p>やってみてるけど、俺たちの戦いはこれからだ!ってかんじ。 できてるか出来てないか微妙なとこですね。資料作成時点ではできてない。 作る過程でいろいろ調べた。</p>
+<h3 id="自分の理解">自分の理解</h3>
+<p>あやふやなところもあるから間違ってたら突っ込んでね</p>
+<h2 id="アドレスの固定">アドレスの固定</h2>
+<p>さっきbitcoin専門社内おやつ商店の話で、1アドレスを紙に書いてしまった話をした。</p>
+<figure>
+<img src="./shiba-shop.jpg" alt="おやつ商店" /><figcaption>おやつ商店</figcaption>
+</figure>
+<p>ビットコインアドレスって、使い捨てにしたほうがいい。 取引金額なんてバレてもいーじゃんってはじめは思う。 こちらのセキュリティ的な話。相手のセキュリティ的な話。51%攻撃受けやすくなる。</p>
+<p>表示側もワンタイム生成のアプリにすべきですな。</p>
+<p>着金したかどうかってどうやってわかるんじゃろう hdwalletにして、拡張公開鍵だけ入れておけばいいのでは? 一見良さそうに見えた。</p>
+<p>アプリ側の実装によるのかもしれないが、copay androidアプリからだと、拡張公開鍵だけで送金「依頼」のようなものが出せた。 wallet client側の見た目の数字は減って、秘密鍵を持っているアプリに、「この送金をverifyしますか y/n」のようなダイアログが出て、yを押したら送金処理になった。 もちろんnを押したり、無視したりすれば送金されないが、ちと、ちと。</p>
+<h2 id="hd-walletと-bip0032bip0044の説明">HD Walletと BIP0032/BIP0044の説明</h2>
+<p>HD wallet(Hierarchical Deterministic Wallet) 階層的決定性ウォレット</p>
+<p>mastering bitcoinを読んでくれ! 以上</p>
+<h3 id="ランダムウォレット非決定性ウォレット">ランダムウォレット(非決定性ウォレット)</h3>
+<p>ウォレットはランダム生成した秘密鍵の束</p>
+<h3 id="決定性ウォレット">決定性ウォレット</h3>
+<p>ウォレットで共通のseedから一方向ハッシュで秘密鍵生成</p>
+<h3 id="hd-wallethierarchical-deterministic-wallet">HD wallet(Hierarchical Deterministic Wallet)</h3>
+<p>seedからmaster key生成、そこからツリー上にchild keys, grandchild keys と生成</p>
+<p>(mastering bitcoinからコピペ)</p>
+<blockquote>
+<p>ツリー構造に情報付加できる ユーザーが秘密鍵に触れることなく公開鍵を生成できる</p>
+</blockquote>
+<h2 id="気になるところ">気になるところ</h2>
+<blockquote>
+<p>拡張公開鍵がchain codeを含んでいる</p>
+</blockquote>
+<p>拡張公開鍵って「公開鍵」って言いつついろいろ出来てしまうので、ふつうにsshの公開鍵みたいに全世界に公開していいの? って問題意識とも関連してくるんだけど</p>
+<blockquote>
+<p>拡張公開鍵はchain codeを含んでいるため、もし子秘密鍵が知られているまたは漏洩してしまった場合、 このchain codeを使ってその他すべての子秘密鍵を導けてしまう このリスクへの解決策として、HDウォレットは hardened child key derivation 強化子公開鍵導出 関数を使っている もし拡張公開鍵の利便性を使い、しかもchain codeの漏洩リスクを回避したいのであれば、通常の親(親公開鍵)ではなく、 強化された親(親秘密鍵)から拡張公開鍵を導出すべきです。 ベストプラクティスとしては、マスターキーの1階層目の子供を常にhardened derivationを通して導出されるようにしておくことが良いでしょう。</p>
+</blockquote>
+<p>なんか小さくベストプラクティスが書いてあるが、一般に使われるクライアントは、みんなこれやってると思っていいんだろうか…</p>
+<h2 id="utxo">UTXO</h2>
+<p>UTXO (unspent transaction output)</p>
+<p>だいたいのwalletでwallet.balance() とかでとれるやつ</p>
+<p>ここまで来てやっと意味がわかった。 walletは未使用含めてbitcoinアドレスを持っていて(作成できて)、それにはpathに0とか1とか2とか順に名前がついてて、pathは小さい順から使う暗黙ルールがあるらしい(未確認) なぜなら、未使用が20個続いたら探索打ち切り、などがウォレットアプリ側で実装されている なので、条件に依っては、あるウォレットで見つからなくなってしまったbitcoinが、アドレスの使用数が進んだら出てくることもあるようだ(未確認)</p>
+<p>ツリー状のはどうたどるんだ? これがbitcoin-explorer って名付けられてるタイプのライブラリの仕事なのかな (未調査)</p>
+<h2 id="まとめ">まとめ</h2>
+<p>俺たちの戦いはこれからだ!!</p>
+<p>ツールを作ると学習が進む(作れてない)</p>
+<h2 id="ヨタ話">ヨタ話</h2>
+<p>プログラム言語は何で実装見てたんですか</p>
+<p>Nodejsです</p>
+<p>golang学習がてらやろうとしたら全然そんな余裕がなく、土地勘のあるrubyとnodejsだとnodejsにライブラリが結構あった。 bitcoin coreがC++だし、C++が一番楽なのでは。俺書けないけど。 それかpython。俺書けないけど。 btcdがgolangだからgolangもよさそう。俺書けないけど。 ほんとはgolangでbitcoinプロトコルしゃべろうと思ったんだ…</p>
+<p>nodejsでなんとなく見たのは</p>
+<ul>
+<li>bitcoinjs-lib</li>
+<li>bitcore-lib (bitpay.io)</li>
+<li>bcoin (purse.io)</li>
+</ul>
+<p>この順番がリリース順で、APIの洗練され具合も下が良い。 あと、full nodeかSPV nodeか、web serviceとの連携具合とかが違う。 なんだけど、npmソムリエ的には、おすすめは上から下。</p>
+<p>ただいずれにしてもそこまでアクティブではないように見える。一応メンテはされてる。</p>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-hierarchical-deterministic-wallet%2F&amp;t=Hierarchical%20Deterministic%20Wallet%20%2F%20Bitcoin%20etc%2C%20%232" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
