@@ -59,7 +59,9 @@ web屋っぽい 近いところにいるはずなのに俺より全然レベル�
 
 ## 社内おやつ商店
 
-bitcoin専門
+bitcoin専門社内おやつ商店 芝商店
+![internal-shop](./shiba-shop.jpg)
+
 
 ## 結果
 
@@ -97,7 +99,5 @@ bitcoin専門
 - 新たなライバル商店の出現
 
 
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-shibuya-rb-saddler%2F&t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-build-internal-shop%2F&t=Build%20internal%20shop%20%2F%20Bitcoin%20etc%20%232" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
-
-[tachikoma-io]:http://tachikoma.io/?utm_source=talk&utm_medium=slide&utm_campaign=20150217-shibuya-rb-saddler
