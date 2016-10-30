@@ -1,12 +1,12 @@
 ---
-pagetitle: Build UXTO cli
+pagetitle: Hierarchical Deterministic Wallet
 css:
   - github-markdown.css
   - page.css
   - http://fonts.googleapis.com/css?family=Lato
-canonical: http://sanemat.github.io/talks/20161101-build-uxto-cli/
+canonical: http://sanemat.github.io/talks/20161101-hierarchical-deterministic-wallet/
 lang: ja
-description: Build UXTO cli / Bitcoin etc, #2
+description: Hierarchical Deterministic Wallet / Bitcoin etc, #2
 ogimage: http://sanemat.github.io/talks/template/interval-pull-requests.gif
 ---
 <script type="text/javascript">
@@ -15,40 +15,19 @@ ogimage: http://sanemat.github.io/talks/template/interval-pull-requests.gif
   window.analytics.page();
 </script>
 
-# Build UXTO cli
+# Hierarchical Deterministic Wallet
 
 sanemat {AT} tachikoma.io
 
-このアプローチが正しいかもよくわからん
+やってみてるけど、俺たちの戦いはこれからだ!ってかんじ
 
-bitcoin core
+このへんでHD Walletと BIP0032/BIP0044の説明
 
-リファレンス実装、全部入り
+自分の理解
+あやふやなところもあるから間違ってたら突っ込んでね
 
-bitcoin-cli
 
-bitcoin core json-rpc api
 
-pycoin
-
-btcd
-
-[btcd: Not your mom’s Bitcoin daemon | Conformal Systems, LLC.](https://blog.conformal.com/btcd-not-your-moms-bitcoin-daemon/)
-
-やりたいアプローチはコレに近いんだけど、コマンドラインでワンタイムにやりたいっすね
-
-[bitpay/bitcore-wallet-service: A multisig, HD wallet service. Used by Copay.](https://github.com/bitpay/bitcore-wallet-service)
-
-bitpayって人たちがnodejsでやってる
-
-自分がかけるのはRubyとNodejsだから、bitpayのプロダクトcopayとかはドンピシャなんだけど、まあgolangでかいてみるかなーっていう。
-golang勉強がてら。
-
-んで、拡張公開鍵は相手のサービスに預けたくないわけで、それを保持したままUXTOを集めたい。
-golangのデータ構造に閉じ込めて、インメモリとかで。と思ったけどpostgresかなんかにつめておくほうが楽かもしれない? わかんない
-ちょっとやってみよう
-
-testnetとやらで試してみる。
 
 <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20150217-shibuya-rb-saddler%2F&t=Saddler%20-%20better%20pronto%20%2F%20Shibuya.rb" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
