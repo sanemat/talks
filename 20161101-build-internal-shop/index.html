@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Build internal shop / Bitcoin etc" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://sanemat.github.io/talks/20161101-build-internal-shop/shiba-shop.jpg" />
+  <title>Build internal shop</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="github-markdown.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato">
+  <link rel="canonical" href="http://sanemat.github.io/talks/20161101-build-internal-shop/">
+</head>
+<body>
+<article class="markdown-body">
+<script type="text/javascript">
+  window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+  window.analytics.load("ig7q6np7c1");
+  window.analytics.page();
+</script>
+<h1 id="build-internal-shop">Build internal shop</h1>
+<p>sanemat {AT} tachikoma.io</p>
+<p>bitcoin専門社内おやつ商店 芝商店 <img src="./shiba-shop.jpg" alt="internal-shop" /></p>
+<h2 id="mastering-bitcoin">Mastering bitcoin</h2>
+<p><a href="https://www.bitcoinbook.info/translations-of-mastering-bitcoin/"><img src="./mastering-bitcoin.jpg" alt="mastering bitcoin" /></a></p>
+<p><a href="https://www.amazon.co.jp/dp/4757103670">ビットコインとブロックチェーン:暗号通貨を支える技術</a></p>
+<ul>
+<li>名前聞いたことある人</li>
+<li>読んでみた人</li>
+<li>訳してみた人</li>
+<li>読んでみたい人</li>
+</ul>
+<p><a href="https://www.bitcoinbook.info/translations-of-mastering-bitcoin/">Translations of Mastering Bitcoin</a></p>
+<p>CC BY-SA</p>
+<p><a href="https://www.amazon.co.jp/dp/4757103670">ビットコインとブロックチェーン:暗号通貨を支える技術</a></p>
+<p>日オライリーから出てるかと思って探したんだけどなくて、エヌティティ出版からなのね。</p>
+<h2 id="疑問点">疑問点</h2>
+<p>読んでいろいろわかんないわけですね。</p>
+<p>感想探してみた。</p>
+<ul>
+<li><a href="http://muziyoshiz.hatenablog.com/entry/2016/02/25/011117">Mastering Bitcoin（日本語訳 PDF）を読んで解決した疑問点、しなかった疑問点 - 無印吉澤</a></li>
+</ul>
+<p>web屋っぽい 近いところにいるはずなのに俺より全然レベルたけーな おれもっといろいろわかんなかった…</p>
+<h2 id="自分の興味">自分の興味</h2>
+<p>よく決済手数料が激安に済むとか中央で通貨管理しなくていいとか聞くけど、実際どうで現状どうか</p>
+<h2 id="社内おやつ商店">社内おやつ商店</h2>
+<p>bitcoin専門社内おやつ商店 芝商店 <img src="./shiba-shop.jpg" alt="internal-shop" /></p>
+<h2 id="結果">結果</h2>
+<ul>
+<li>面白がって買ってくれる人が社内に自分以外に2人いた</li>
+<li>bitcoinを買ったことある人はいてもmobileウォレット誰ももってねえ</li>
+<li>紙のQRコードの読み取り性能がだいぶつらい
+<ul>
+<li>これは自分の問題か</li>
+</ul></li>
+<li>紙だから1個のアドレスを使い回すはめになり、アドレスと人がひも付きやすい 匿名性とは
+<ul>
+<li>これそのまんま1個のアドレスを使い回す危険性の話</li>
+</ul></li>
+<li>0回confirmで持っていけることにした
+<ul>
+<li>仕組み上もともとただで持っていけるし</li>
+<li>スタバでbitcoin決済するとして1-3回confirmまで待つって無理くないですかね</li>
+</ul></li>
+<li>blockchain.info のurlを貼ってくれた方がいて、明朗経営が実現</li>
+<li>bitcoinで仕入れらんねえ
+<ul>
+<li>そこで<a href="https://coingift.jp/">コインギフト | モナーコイン・ビットコインでAmazonギフト券・iTunesカードが買える！</a> ですよ</li>
+<li>おっそうだな</li>
+</ul></li>
+<li>自分のクレカで仕入れて、商店のウォレットから自分のウォレットに送信</li>
+<li>商店のウォレットは自分で管理かあ</li>
+<li>HD walletにして拡張公開鍵だけ入れておけば送金できないかと思ったら、送金の依頼っぽいリクエストが出せる(後述)</li>
+<li>モバイルアプリのトランザクションフィー、アプリにも依るが最低限よりだいぶ高い</li>
+<li>十数円、数十円の決済には向かねーな
+<ul>
+<li>ユーザーが手数料決めるって構造の課題なのかも</li>
+<li>普段決済手数料意識することない 銀行の振込手数料はなんかいろいろ駆使して無料の範囲で収める</li>
+</ul></li>
+</ul>
+<h2 id="学び">学び</h2>
+<ul>
+<li>実際にどういう流れでどういう処理が行われるか</li>
+<li>transactionの各項目の意味がなんとなくわかる</li>
+<li>モバイルアプリの使い勝手</li>
+<li>何が公開してよくて何が公開していけない情報なのか</li>
+</ul>
+<h2 id="おもしろ">おもしろ</h2>
+<ul>
+<li>自分で仕入れてきてほぼ自分で買う羽目になった</li>
+<li>既存の社内商店のとなりに陣取ったので、弊商店からおやつをとって既存の商店に入金する事案</li>
+<li>薬局で買ってボッタクリで売ったので店自体は黒字 ほぼ自分で買ったので実情は???</li>
+<li>新たなライバル商店の出現</li>
+</ul>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-build-internal-shop%2F&amp;t=Build%20internal%20shop%20%2F%20Bitcoin%20etc%20%232" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+</iframe>
+</article>
+</body>
+</html>
