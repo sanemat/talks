@@ -178,5 +178,5 @@ nodejsでなんとなく見たのは
 - ただいずれにしてもそこまでアクティブではないように見える。
 - 一応メンテはされてる。
 
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-hierarchical-deterministic-wallet%2F&t=%83c%81%5B%83%8B%82%F0%8D%EC%82%E8%82%A9%82%AF%82%BD%82%CC%82%C5%82%ED%82%A9%82%E9bitcoin%20HD%20Wallet%82%CC%82%B5%82%AD%82%DD%20%2F%20Bitcoin%20etc%2C%20%232" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-hierarchical-deterministic-wallet%2F&t=Hierarchical%20Deterministic%20Wallet%20%2F%20Bitcoin%20etc%2C%20%232" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>

@@ -130,5 +130,5 @@ bitcoin専門社内おやつ商店 芝商店
 - 新たなライバル商店の出現
 
 
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-build-internal-shop%2F&t=%82%E2%82%C1%82%C4%82%DD%82%C8%82%AD%82%C4%82%E0%82%ED%82%A9%82%E9bitcoin%90%EA%96%E5%8E%D0%93%E0%82%A8%82%E2%82%C2%8F%A4%93X%82%CC%82%DC%82%C8%82%D1%20%2F%20Bitcoin%20etc%20%232" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-build-internal-shop%2F&t=Build%20Internal%20Shop%20%2F%20Bitcoin%20etc%2C%20%232" frameborder=0 frametransparency=1 scrolling=no height=30 width=300>
 </iframe>
