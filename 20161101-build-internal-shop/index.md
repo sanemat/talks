@@ -19,6 +19,8 @@ ogimage: http://sanemat.github.io/talks/20161101-build-internal-shop/shiba-shop.
 
 sanemat {AT} tachikoma.io
 
+## これはなに
+
 ぼくは自分でやってみないとわからなくて、やってみて学んだので、やってみなくても持って帰れるようにしました
 
 
@@ -36,7 +38,7 @@ bitcoin専門社内おやつ商店 芝商店
 - 訳してみた人
 - 読んでみたい人
 
-[Translations of Mastering Bitcoin](https://www.bitcoinbook.info/translations-of-mastering-bitcoin/)
+[Translations of Mastering Bitcoin pdf](https://www.bitcoinbook.info/translations-of-mastering-bitcoin/)
 
 CC BY-SA
 
@@ -66,11 +68,11 @@ web屋っぽい人の感想 近いところにいるはずなのに俺より全�
 ## 社内おやつ商店
 
 bitcoin専門社内おやつ商店 芝商店
-![internal-shop](./shiba-shop.jpg)
+![shiba-shop](./shiba-shop.jpg)
 
-社内に既存のおやつ商店がある
-その隣を勝手に陣取って、
-品物仕入れてきて、かごに入れて、紙にビットコインアドレスQRコード貼って固定額2000bitsで売る。以上
+- 社内に既存のおやつ商店がある
+- その隣を勝手に陣取って、
+- 品物仕入れてきて、かごに入れて、紙にビットコインアドレスQRコード貼って固定額2000bitsで売る。以上
 
 
 ## 結果
@@ -112,6 +114,13 @@ bitcoin専門社内おやつ商店 芝商店
 それはやってみるしか…
 
 やってみてからmastering bitcoin読み直すとさくさく頭に入ってくる(部分もある)
+
+## 参照
+
+- [Translations of Mastering Bitcoin pdf](https://www.bitcoinbook.info/translations-of-mastering-bitcoin/)
+- [ビットコインとブロックチェーン:暗号通貨を支える技術](https://www.amazon.co.jp/dp/4757103670)
+- [コインギフト | モナーコイン・ビットコインでAmazonギフト券・iTunesカードが買える！](https://coingift.jp/)
+- [Bitcoin Block Explorer - Blockchain](https://blockchain.info/)
 
 ## おもしろ
 

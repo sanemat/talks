@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Hierarchical Deterministic Wallet / Bitcoin etc," />
+  <meta name="description" content="ツールを作りかけたのでわかるbitcoin HD Walletのしくみ / Bitcoin etc," />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="http://sanemat.github.io/talks/20161101-hierarchical-deterministic-wallet/shiba-shop.jpg" />
-  <title>Hierarchical Deterministic Wallet</title>
+  <title>ツールを作りかけたのでわかるbitcoin HD Walletのしくみ / Bitcoin etc,</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -23,34 +23,83 @@
   window.analytics.load("ig7q6np7c1");
   window.analytics.page();
 </script>
-<h1 id="hierarchical-deterministic-wallet">Hierarchical Deterministic Wallet</h1>
+<h1 id="ツールを作りかけたのでわかるbitcoin-hd-walletのしくみ">ツールを作りかけたのでわかるbitcoin HD Walletのしくみ</h1>
 <p>sanemat {AT} tachikoma.io</p>
-<h2 id="経過">経過</h2>
-<p>やってみてるけど、俺たちの戦いはこれからだ!ってかんじ。 できてるか出来てないか微妙なとこですね。資料作成時点ではできてない。 作る過程でいろいろ調べた。</p>
-<h3 id="自分の理解">自分の理解</h3>
-<p>あやふやなところもあるから間違ってたら突っ込んでね</p>
+<ul>
+<li>Hierarchical Deterministic Wallet 階層的決定性ウォレット</li>
+<li>BIP0032/BIP0044</li>
+</ul>
+<h2 id="これはなに">これはなに</h2>
+<ul>
+<li>WalletのUXTO (未使用残高)をwallet実装無しで計算するツールを作ろうとした</li>
+<li>現在進行形で作りかけ</li>
+<li>結論は「既存のWalletを使え」なんだけど、 そのツールを作る過程でbitcoin HD Walletのしくみを理解してきたので、まとめました</li>
+</ul>
+<p><strong>あやふやなところもあるからわかりにくかったら突っ込んでね</strong></p>
 <h2 id="アドレスの固定">アドレスの固定</h2>
-<p>さっきbitcoin専門社内おやつ商店の話で、1アドレスを紙に書いてしまった話をした。</p>
 <figure>
-<img src="./shiba-shop.jpg" alt="おやつ商店" /><figcaption>おやつ商店</figcaption>
+<img src="./shiba-shop.jpg" alt="shiba-shop" /><figcaption>shiba-shop</figcaption>
 </figure>
-<p>ビットコインアドレスって、使い捨てにしたほうがいい。 取引金額なんてバレてもいーじゃんってはじめは思う。 こちらのセキュリティ的な話。相手のセキュリティ的な話。51%攻撃受けやすくなる。</p>
-<p>表示側もワンタイム生成のアプリにすべきですな。</p>
-<p>着金したかどうかってどうやってわかるんじゃろう hdwalletにして、拡張公開鍵だけ入れておけばいいのでは? 一見良さそうに見えた。</p>
-<p>アプリ側の実装によるのかもしれないが、copay androidアプリからだと、拡張公開鍵だけで送金「依頼」のようなものが出せた。 wallet client側の見た目の数字は減って、秘密鍵を持っているアプリに、「この送金をverifyしますか y/n」のようなダイアログが出て、yを押したら送金処理になった。 もちろんnを押したり、無視したりすれば送金されないが、ちと、ちと。</p>
+<p>さっきbitcoin専門社内おやつ商店の話で、1アドレスを紙に書いてしまった話をした。</p>
+<h3 id="アドレスは使い捨てにする">アドレスは使い捨てにする</h3>
+<ul>
+<li>ビットコインアドレスって、使い捨てにしたほうがいい。</li>
+<li>こちらの取引金額なんてバレてもいーじゃんってはじめは思う。</li>
+<li>こちらのセキュリティ的な話。</li>
+<li>相手のセキュリティ的な話。</li>
+<li>51%攻撃受けやすくなる。
+<ul>
+<li>transactionをpoolに入れたり、blockの中だったりでゴニョゴニョしうる余地を産んでしまう</li>
+</ul></li>
+<li>表示側もワンタイム生成のアプリにすべきですな。</li>
+</ul>
+<h2 id="walletのuxto-未使用残高をwallet実装無しで計算するツール">WalletのUXTO (未使用残高)をwallet実装無しで計算するツール</h2>
+<ul>
+<li>なぜwallet実装無しでやりたかった?</li>
+<li>着金したかどうかってどうやってわかるんじゃろう</li>
+<li>残高どうやって出そう</li>
+<li>wallet使えばいいじゃん</li>
+<li>HD Walletにして、拡張公開鍵だけ入れておけばいいのでは?
+<ul>
+<li>一見良さそうに見えた。</li>
+</ul></li>
+</ul>
+<h3 id="送金依頼のような">送金依頼のような</h3>
+<ul>
+<li>アプリ側の実装によるのかもしれないが、copay androidアプリからだと、拡張公開鍵だけで送金「依頼」のようなものが出せた。</li>
+<li>wallet client側の見た目の数字は減って、秘密鍵を持っているアプリに、「この送金をverifyしますか y/n」のようなダイアログが出て、yを押したら送金処理になった。</li>
+<li>もちろんnを押したり、無視したりすれば送金されないが、ちと、ちと。</li>
+</ul>
 <h2 id="hd-walletと-bip0032bip0044の説明">HD Walletと BIP0032/BIP0044の説明</h2>
 <p>HD wallet(Hierarchical Deterministic Wallet) 階層的決定性ウォレット</p>
-<p>mastering bitcoinを読んでくれ! 以上</p>
+<p>mastering bitcoinを読むか、BIP0032/BIP0044直接読んでくれ! 以上</p>
+<p><a href="https://www.bitcoinbook.info/translations-of-mastering-bitcoin/"><img src="./mastering-bitcoin.jpg" alt="mastering-bitcoin" /></a></p>
+<h2 id="ウォレット">ウォレット</h2>
+<ul>
+<li>公開鍵の別表現がビットコインアドレス</li>
+<li>秘密鍵をどう持つか/作るか、のはなし</li>
+</ul>
 <h3 id="ランダムウォレット非決定性ウォレット">ランダムウォレット(非決定性ウォレット)</h3>
-<p>ウォレットはランダム生成した秘密鍵の束</p>
+<ul>
+<li>ウォレットはランダム生成した秘密鍵の束</li>
+</ul>
 <h3 id="決定性ウォレット">決定性ウォレット</h3>
 <p>ウォレットで共通のseedから一方向ハッシュで秘密鍵生成</p>
 <h3 id="hd-wallethierarchical-deterministic-wallet">HD wallet(Hierarchical Deterministic Wallet)</h3>
-<p>seedからmaster key生成、そこからツリー上にchild keys, grandchild keys と生成</p>
+<p>13個のmnemonic codeからseedを作成 seedからmaster key生成、そこからツリー上にchild keys, grandchild keys と生成</p>
 <p>(mastering bitcoinからコピペ)</p>
 <blockquote>
-<p>ツリー構造に情報付加できる ユーザーが秘密鍵に触れることなく公開鍵を生成できる</p>
+<ol type="1">
+<li>ツリー構造に情報付加できる</li>
+</ol>
 </blockquote>
+<p>keyのpath こんなやつ <code>Bitcoin    second  change  second  m / 44' / 0' / 1' / 1 / 1</code></p>
+<blockquote>
+<ol start="2" type="1">
+<li>ユーザーが秘密鍵に触れることなく公開鍵を生成できる</li>
+</ol>
+</blockquote>
+<p>ビットコインアドレスを作れる、と同じ意味合い</p>
 <h2 id="気になるところ">気になるところ</h2>
 <blockquote>
 <p>拡張公開鍵がchain codeを含んでいる</p>
@@ -63,24 +112,55 @@
 <h2 id="utxo">UTXO</h2>
 <p>UTXO (unspent transaction output)</p>
 <p>だいたいのwalletでwallet.balance() とかでとれるやつ</p>
-<p>ここまで来てやっと意味がわかった。 walletは未使用含めてbitcoinアドレスを持っていて(作成できて)、それにはpathに0とか1とか2とか順に名前がついてて、pathは小さい順から使う暗黙ルールがあるらしい(未確認) なぜなら、未使用が20個続いたら探索打ち切り、などがウォレットアプリ側で実装されている なので、条件に依っては、あるウォレットで見つからなくなってしまったbitcoinが、アドレスの使用数が進んだら出てくることもあるようだ(未確認)</p>
-<p>ツリー状のはどうたどるんだ? これがbitcoin-explorer って名付けられてるタイプのライブラリの仕事なのかな (未調査)</p>
+<p>ここまで来てやっと意味がわかった。</p>
+<ul>
+<li>walletは未使用含めてbitcoinアドレスを持っていて(作成できて)</li>
+<li>それにはpathに0とか1とか2とか順に名前がついてて</li>
+<li>pathは小さい順から使う暗黙ルールがあるらしい(未確認)</li>
+<li>なぜなら、未使用が20個続いたら探索打ち切り、などがウォレットアプリ側で実装されている</li>
+<li>なので、条件に依っては、あるウォレットで見つからなくなってしまったbitcoinが、アドレスの使用数が進んだら出てくることもあるようだ(未確認)</li>
+</ul>
+<p>まだわからないところ</p>
+<ul>
+<li>ツリー状のはどうたどるんだ?
+<ul>
+<li>pathのルールがコレ <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP: 44, Title: Multi-Account Hierarchy for Deterministic Wallets</a></li>
+</ul></li>
+<li>これがbitcoin-explorer って名付けられてるタイプのライブラリの仕事なのかな (未調査)</li>
+</ul>
 <h2 id="まとめ">まとめ</h2>
 <p>俺たちの戦いはこれからだ!!</p>
 <p>ツールを作ると学習が進む(作れてない)</p>
+<h2 id="参照">参照</h2>
+<ul>
+<li><a href="http://bitcoin.peryaudo.org/implement.html">Bitcoinウォレットを実装する - ビットコインの仕組み：Bitcoinを技術的に徹底解説！</a></li>
+<li><a href="https://www.bitcoinbook.info/translations-of-mastering-bitcoin/">Translations of Mastering Bitcoin pdf</a></li>
+<li><a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP: 32, Title: Hierarchical Deterministic Wallets</a></li>
+<li><a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP: 44, Title: Multi-Account Hierarchy for Deterministic Wallets</a></li>
+</ul>
 <h2 id="ヨタ話">ヨタ話</h2>
 <p>プログラム言語は何で実装見てたんですか</p>
 <p>Nodejsです</p>
-<p>golang学習がてらやろうとしたら全然そんな余裕がなく、土地勘のあるrubyとnodejsだとnodejsにライブラリが結構あった。 bitcoin coreがC++だし、C++が一番楽なのでは。俺書けないけど。 それかpython。俺書けないけど。 btcdがgolangだからgolangもよさそう。俺書けないけど。 ほんとはgolangでbitcoinプロトコルしゃべろうと思ったんだ…</p>
+<p>各言語の実装はbipからリンクが貼ってある</p>
+<ul>
+<li>golang学習がてらやろうとしたら全然そんな余裕がなく、土地勘のあるrubyとnodejsだとnodejsにライブラリが結構あった。</li>
+<li>bitcoin coreがC++だし、C++が一番楽なのでは。俺書けないけど。</li>
+<li>それかpython。俺書けないけど。</li>
+<li>btcdがgolangだからgolangもよさそう。俺書けないけど。</li>
+<li>ほんとはgolangでbitcoinプロトコルしゃべろうと思ったんだ…</li>
+</ul>
 <p>nodejsでなんとなく見たのは</p>
 <ul>
-<li>bitcoinjs-lib</li>
-<li>bitcore-lib (bitpay.io)</li>
-<li>bcoin (purse.io)</li>
+<li><a href="https://github.com/bitcoinjs/bitcoinjs-lib">bitcoinjs-lib</a></li>
+<li><a href="https://github.com/bitpay/bitcore-lib">bitcore-lib</a> (<a href="https://bitpay.io">bitpay.io</a>)</li>
+<li><p><a href="https://github.com/bcoin-org/bcoin">bcoin</a> (<a href="https://purse.io">purse.io</a>)</p></li>
+<li>この順番がリリース順で、APIの洗練され具合も下が良い。</li>
+<li>あと、full nodeかSPV nodeか、web serviceとの連携具合とかが違う。</li>
+<li><p>なんだけど、npmソムリエ的には、おすすめは上から下。</p></li>
+<li>ただいずれにしてもそこまでアクティブではないように見える。</li>
+<li><p>一応メンテはされてる。</p></li>
 </ul>
-<p>この順番がリリース順で、APIの洗練され具合も下が良い。 あと、full nodeかSPV nodeか、web serviceとの連携具合とかが違う。 なんだけど、npmソムリエ的には、おすすめは上から下。</p>
-<p>ただいずれにしてもそこまでアクティブではないように見える。一応メンテはされてる。</p>
-<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-hierarchical-deterministic-wallet%2F&amp;t=Hierarchical%20Deterministic%20Wallet%20%2F%20Bitcoin%20etc%2C%20%232" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
+<iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fsanemat.github.io%2Ftalks%2F20161101-hierarchical-deterministic-wallet%2F&amp;t=%83c%81%5B%83%8B%82%F0%8D%EC%82%E8%82%A9%82%AF%82%BD%82%CC%82%C5%82%ED%82%A9%82%E9bitcoin%20HD%20Wallet%82%CC%82%B5%82%AD%82%DD%20%2F%20Bitcoin%20etc%2C%20%232" frameborder="0" frametransparency="1" scrolling="no" height="30" width="300">
 </iframe>
 </article>
 </body>
