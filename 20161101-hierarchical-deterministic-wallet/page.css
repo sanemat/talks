@@ -9,3 +9,12 @@ img {
 figure {
   margin: 0;
 }
+
+img[alt="shiba-shop"] {
+  max-width:  400px;
+  display: block;
+}
+img[alt="mastering-bitcoin"] {
+  max-width:  400px;
+  display: block;
+}
